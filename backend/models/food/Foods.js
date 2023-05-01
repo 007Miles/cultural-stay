@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Restaurants from ('../restaurants/Restaurants')
+// import Restaurants from '../restaurants/restaurants'
 
 const FoodSchema = new mongoose.Schema(
   {
@@ -20,7 +20,7 @@ const FoodSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, 'Please provide png or jpg food images'],
+      required: [true, 'Please provide png or jpg food image'],
     },
     ingrediants: {
       type: [String],
@@ -32,11 +32,12 @@ const FoodSchema = new mongoose.Schema(
     },
     restaurants: {
       type: [String],
-      ref: 'Restaurants',
+      // ref: 'Restaurants',
       default: [],
     },
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Food', FoodSchema)
+const Food = mongoose.model('Food', FoodSchema)
+export default Food

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import geojsonSchema from ('mongoose-geojson-schema')
-const Food = require('../food/Foods')
+import geojsonSchema from 'mongoose-geojson-schema'
+// import Food from '../food/Foods'
 
 const RestaurantSchema = new mongoose.Schema(
   {
@@ -37,6 +37,10 @@ const RestaurantSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    image: {
+      type: String,
+      required: [true, 'Please provide png or jpg restaurant images'],
+    },
     rating: {
       type: Number,
       default: 0.0,
@@ -55,12 +59,13 @@ const RestaurantSchema = new mongoose.Schema(
     //   required: true
     // },
     food: {
-        type: [String],
-        ref: 'Food',
-        default: [],
-      },
+      type: [String],
+      // ref: 'Food',
+      default: [],
+    },
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Restaurants', RestaurantSchema)
+const Restaurants = mongoose.model('Restaurants', RestaurantSchema)
+export default Restaurants
