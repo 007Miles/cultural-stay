@@ -67,7 +67,7 @@ export const updateRestaurant = asyncWrapper(async (req, res, next) => {
       createCustomError(`No restaurant with id: ${restaurantID}`, 404)
     )
   }
-  res.status(200).json({ restaurant })
+  res.status(200).json(restaurant)
 })
 
 // get all restaurants with search and sort options passed as a query in the req
@@ -83,8 +83,8 @@ export const getAllRestaurants = async (req, res) => {
     queryObject.city = { $regex: city, $options: 'i' }
   }
 
-  if (food && Array.isArray(food)) {
-    queryObject.food = { $in: food }
+  if (food) {
+    queryObject.food = { $regex: `^${food}$`, $options: 'i' }
   }
 
   if (numericFilters) {
@@ -142,11 +142,11 @@ export const changeRestaurantRatingByID = asyncWrapper(
         runValidators: true,
       }
     )
-    var changeRating = async function () {
+    var changeRating = function () {
       restaurant.rating = req.body.rating
       restaurant.rate_count = restaurant.rate_count + 1
       restaurant.rate_aggregate = restaurant.rate_aggregate + restaurant.rating
-      var newRating = restaurant.rate_aggregate / restaurant
+      var newRating = restaurant.rate_aggregate / restaurant.rate_count
 
       restaurant.rating = parseFloat(newRating).toFixed(2) //newRating
       restaurant.save()
