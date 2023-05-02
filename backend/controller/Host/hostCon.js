@@ -4,21 +4,21 @@ const cloudinary = require('../middleware/cloudinary')
 const { createCustomError } = require('../errors/custom-error')
 
 // This is used to retriew all Hosts-----------------------------------------------------
-const getAllHosts = asyncWrapper(async (req, res) => {
+export const getAllHosts = asyncWrapper(async (req, res) => {
   const hosts = await Host.find({})
   res.status(200).json({ hosts })
 })
 // -------------------------------------------------------------------------------------------
 
 // This is used to add a single Host---------------------------------------
-const addHost = asyncWrapper(async (req, res) => {
+export const addHost = asyncWrapper(async (req, res) => {
   const hosts = await Host.create(req.body)
   res.status(201).json({ hosts })
 })
 // -------------------------------------------------------------------------------------------
 
 // This is used to update cart items-------------------------------------------------------------
-const updatehost = asyncWrapper(async (req, res) => {
+export const updatehost = asyncWrapper(async (req, res) => {
   const { id: hostID } = req.params
 
   const hosts = await Host.findOneAndUpdate({ _id: hostID }, req.body, {
@@ -35,7 +35,7 @@ const updatehost = asyncWrapper(async (req, res) => {
 // -------------------------------------------------------------------------------------------
 
 // This is used to delete single item from the cart-------------------------------------------
-const deletehost = asyncWrapper(async (req, res) => {
+export const deletehost = asyncWrapper(async (req, res) => {
   const { id: hostID } = req.params
   const hosts = await Host.findOneAndDelete({ _id: hostID })
   if (!hosts) {
@@ -45,10 +45,3 @@ const deletehost = asyncWrapper(async (req, res) => {
   res.status(200).json({ hosts })
 })
 // -------------------------------------------------------------------------------------------
-
-module.exports = {
-  getAllHosts,
-  addHost,
-  updatehost,
-  deletehost,
-}
