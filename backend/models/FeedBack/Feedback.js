@@ -4,7 +4,7 @@ const FeedBackSchema = new mongoose.Schema({
   location_type: {
     type: String,
     required: true,
-    enum: ['Accommodation', 'Restaurants'],
+    enum: ['Accommodation', 'Restaurants', 'TouristAttraction'],
   },
   loc_id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -18,7 +18,7 @@ const FeedBackSchema = new mongoose.Schema({
   },
   ratings_list: [
     {
-      val: { type: Number },
+      val: { type: Number, max: 5.0 },
       postedBy: { type: String },
     },
   ],
