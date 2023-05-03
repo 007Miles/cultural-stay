@@ -5,6 +5,10 @@ import { createCustomError } from '../../errors/Food/custom-error.js'
 
 // create a new product with checking image file
 export const createFood = asyncWrapper(async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: 'No image provided' })
+  }
+
   const result = await cloudinary.uploader.upload(req.file.path, {
     folder: 'afFood',
   })
