@@ -58,18 +58,18 @@ export const deleteaccommodation = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ accommodation })
 })
 
-// //using errors custom-error.js for createCustomError
-// //get all Accommodation of a given category
-// const getAccommodationByHost = asyncWrapper(async (req, res, next) => {
-//   const { id: hostID } = req.params
-//   const accommodation = await Accommodation.find({ createdBy: hostID }).exec()
-//   if (!accommodation) {
-//     return next(
-//       createCustomError(`No accommodation with category: ${hostID}`, 404)
-//     )
-//   }
-//   res.status(200).json({ accommodation })
-// })
+//using errors custom-error.js for createCustomError
+
+export const getAccommodationByHost = asyncWrapper(async (req, res, next) => {
+  const { id: hostID } = req.params
+  const accommodation = await Accommodation.find({ createdBy: hostID }).exec()
+  if (!accommodation) {
+    return next(
+      createCustomError(`No accommodation with category: ${hostID}`, 404)
+    )
+  }
+  res.status(200).json({ accommodation })
+})
 
 // This is used to retriew all Accommodation Details-----------------------------------------------------
 export const getAllAccommodation = asyncWrapper(async (req, res) => {
