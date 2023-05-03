@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+.grid{
+    display: grid;
+    align-items: center;
+}
