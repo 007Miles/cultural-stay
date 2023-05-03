@@ -1,10 +1,11 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const AccommodationSchema = new mongoose.Schema(
   {
     accommodation_name: {
       type: String,
-      required: [true, 'must provide accommodation name'],
+      required: [false, 'must provide accommodation name'],
       trim: true,
     },
     location_name: {
@@ -23,6 +24,7 @@ const AccommodationSchema = new mongoose.Schema(
     },
     availability_from: {
       type: Date,
+      default: Date.now(),
     },
     availability_to: {
       type: Date,
@@ -35,14 +37,17 @@ const AccommodationSchema = new mongoose.Schema(
     no_of_bedrooms: {
       type: Number,
       required: false,
+      default: 1,
     },
     no_of_beds: {
       type: Number,
       required: false,
+      default: 1,
     },
     no_of_washrooms: {
       type: Number,
       required: false,
+      default: 1,
     },
     price_per_night: {
       type: Number,
@@ -65,12 +70,12 @@ const AccommodationSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, 'must provide accommodation description'],
+      required: [false, 'must provide accommodation description'],
       trim: true,
     },
     facilities: {
       type: String,
-      required: [true, 'must provide accommodation facilities'],
+      required: [false, 'must provide accommodation facilities'],
       trim: true,
     },
     rating: {
@@ -85,24 +90,24 @@ const AccommodationSchema = new mongoose.Schema(
     createdBy: {
       type: String,
       // ref: 'Host',
-      required: [true, 'Please provide Host'],
+      required: [false, 'Please provide Host'],
     },
-    image_01: {
+    image: {
       type: String,
       required: [false, 'Please provide png or jpg product images'],
     },
-    image_02: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    image_03: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    image_04: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
+    // image_02: {
+    //   type: String,
+    //   required: [false, 'Please provide png or jpg product images'],
+    // },
+    // image_03: {
+    //   type: String,
+    //   required: [false, 'Please provide png or jpg product images'],
+    // },
+    // image_04: {
+    //   type: String,
+    //   required: [false, 'Please provide png or jpg product images'],
+    // },
     rate_count: {
       type: Number,
       default: 0,
@@ -115,4 +120,6 @@ const AccommodationSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Accommodation', AccommodationSchema)
+const Accommodation = mongoose.model('Accommodation', AccommodationSchema)
+// module.exports = mongoose.model('Accommodation', AccommodationSchema)
+export default Accommodation
