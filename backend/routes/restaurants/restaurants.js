@@ -8,7 +8,7 @@ import {
   updateRestaurant,
   deleteRestaurant,
   getAllRestaurants,
-  changeRestaurantRatingByID,
+  // changeRestaurantRatingByID,
 } from '../../controller/restaurants/restaurants.js'
 
 // middleware for routes
@@ -24,6 +24,6 @@ router
   .get(getRestaurant)
   .patch(upload.single('image'), updateRestaurant)
   .delete(deleteRestaurant)
-router.route('/restaurantRating/:id').patch(changeRestaurantRatingByID)
+// router.route('/restaurantRating/:id').patch(changeRestaurantRatingByID)
 
 export default router

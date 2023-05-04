@@ -76,7 +76,7 @@ export const updateRestaurant = asyncWrapper(async (req, res, next) => {
 
 // get all restaurants with search and sort options passed as a query in the req
 export const getAllRestaurants = async (req, res) => {
-  const { name, city, food, sort, fields, numericFilters } = req.query
+  const { name, city, food, area, sort, fields, numericFilters } = req.query
   const queryObject = {}
 
   if (name) {
@@ -85,6 +85,10 @@ export const getAllRestaurants = async (req, res) => {
 
   if (city) {
     queryObject.city = { $regex: city, $options: 'i' }
+  }
+
+  if (area) {
+    queryObject.area = { $regex: area, $options: 'i' }
   }
 
   if (food) {
@@ -135,33 +139,33 @@ export const getAllRestaurants = async (req, res) => {
 }
 
 //update restaurant rating by id
-export const changeRestaurantRatingByID = asyncWrapper(
-  async (req, res, next) => {
-    const { id: restaurantID } = req.params
-    const restaurant = await Restaurants.findOneAndUpdate(
-      { _id: restaurantID },
-      req.body.rating,
-      {
-        new: true,
-        runValidators: true,
-      }
-    )
-    var changeRating = function () {
-      restaurant.rating = req.body.rating
-      restaurant.rate_count = restaurant.rate_count + 1
-      restaurant.rate_aggregate = restaurant.rate_aggregate + restaurant.rating
-      var newRating = restaurant.rate_aggregate / restaurant.rate_count
+// export const changeRestaurantRatingByID = asyncWrapper(
+//   async (req, res, next) => {
+//     const { id: restaurantID } = req.params
+//     const restaurant = await Restaurants.findOneAndUpdate(
+//       { _id: restaurantID },
+//       req.body.rating,
+//       {
+//         new: true,
+//         runValidators: true,
+//       }
+//     )
+//     var changeRating = function () {
+//       restaurant.rating = req.body.rating
+//       restaurant.rate_count = restaurant.rate_count + 1
+//       restaurant.rate_aggregate = restaurant.rate_aggregate + restaurant.rating
+//       var newRating = restaurant.rate_aggregate / restaurant.rate_count
 
-      restaurant.rating = parseFloat(newRating).toFixed(2) //newRating
-      restaurant.save()
-    }
-    changeRating()
+//       restaurant.rating = parseFloat(newRating).toFixed(2) //newRating
+//       restaurant.save()
+//     }
+//     changeRating()
 
-    if (!restaurant) {
-      return next(
-        createCustomError(`No restaurant with id: ${restaurantID}`, 404)
-      )
-    }
-    res.status(200).json(`Rating successfully updated`)
-  }
-)
+//     if (!restaurant) {
+//       return next(
+//         createCustomError(`No restaurant with id: ${restaurantID}`, 404)
+//       )
+//     }
+//     res.status(200).json(`Rating successfully updated`)
+//   }
+// )
