@@ -1,4 +1,5 @@
 import express from 'express'
+import upload from '../../middleware/cloudinary.js'
 
 const router = express.Router()
 
@@ -14,7 +15,8 @@ import {
 router.get('/', getAllTouristAttractions)
 
 //create new tourist attraction site
-router.post('/', createTouristAttraction)
+// router.post('/', upload.single('image'), createTouristAttraction)
+router.route('/').post(upload.single('image'), createTouristAttraction)
 
 router.put('/:id', updateTouristAttraction)
 

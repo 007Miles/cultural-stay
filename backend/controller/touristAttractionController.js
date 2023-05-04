@@ -1,4 +1,5 @@
 import TouristAttraction from '../models/TouristAttraction.js'
+import cloudinary from '../config/cloudinary.js'
 
 // export const getAllTouristAttractions = async (req, res) => {
 //   const { area } = req.query
@@ -67,12 +68,19 @@ export const getTouristAttractionById = async (req, res) => {
 
 export const createTouristAttraction = async (req, res) => {
   const { name, description, location, image, area } = req.body
+
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    folder: 'afPlaces',
+  })
+
+  // req.body.image = result.secure_url
+
   try {
     const newTouristAttraction = new TouristAttraction({
       name,
       description,
       location,
-      image,
+      image: result.secure_url,
       area,
     })
     await newTouristAttraction.save()
