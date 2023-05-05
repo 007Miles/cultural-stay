@@ -6,8 +6,10 @@ const Navbar = () => {
     <div class="bg-white">
         <nav class="flex justify-between items-center w-[92%]  mx-auto" >
             <div>
-                {/* <img class="w-16 cursor-pointer" src="https://cdn-icons-png.flaticon.com/512/5968/5968204.png" alt="..." /> */}
-                <h1 className='w-auto py-4 font-bold  cursor-pointer font-sigmar text-3xl'>Cultural Stay</h1>
+                <a href='/' >
+                   <h1 className='w-auto py-4 font-bold  cursor-pointer font-sigmar text-3xl'>Cultural Stay</h1> 
+                </a>
+                
             </div>
             <div
                 class="nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-20 top-[-100%] md:w-auto  w-full flex items-center px-5">
@@ -22,7 +24,7 @@ const Navbar = () => {
                         <a class="text-gray-500 hover:text-black" href="#">Food</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 hover:text-black" href="#">Attractions</a>
+                        <a class="text-gray-500 hover:text-black" href="/attractions">Attractions</a>
                     </li>
                     <li>
                         <a class="text-gray-500 hover:text-black" href="#">Search</a>
@@ -30,7 +32,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div class="flex items-center gap-6">
-                <button class="bg-[#5e92ec] text-white px-5 py-2 rounded-full hover:bg-[#87acec]">Sign in</button>
+                <button class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2">Sign in</button>
             </div>
             </nav>
     </div>

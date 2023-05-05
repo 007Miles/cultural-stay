@@ -1,16 +1,5 @@
-import TouristAttraction from '../models/TouristAttraction.js'
-import cloudinary from '../config/cloudinary.js'
-
-// export const getAllTouristAttractions = async (req, res) => {
-//   const { area } = req.query
-//   try {
-//     const touristAttractions = await TouristAttraction.find({ area }).exec()
-//     res.json(touristAttractions)
-//   } catch (error) {
-//     console.error(error)
-//     res.status(500).send('Server error')
-//   }
-// }
+import TouristAttraction from '../../models/TouristAttraction/TouristAttraction.js'
+import cloudinary from '../../config/cloudinary.js'
 
 // get all tourist attractions with search and sort options passed as a query in the req
 export const getAllTouristAttractions = async (req, res) => {
@@ -29,7 +18,7 @@ export const getAllTouristAttractions = async (req, res) => {
     queryObject.area = { $regex: area, $options: 'i' }
   }
 
-  console.log(queryObject)
+  // console.log(queryObject)
 
   let result = TouristAttraction.find(queryObject)
 
@@ -53,10 +42,9 @@ export const getAllTouristAttractions = async (req, res) => {
     .json({ touristAttractions, nbHits: touristAttractions.length })
 }
 
+// Get single tourists attractions by Id
 export const getTouristAttractionById = async (req, res) => {
   const id = req.params.id
-  //   console.log(req.params)
-  //   console.log(req.query)
   try {
     const touristAttractions = await TouristAttraction.findById(id).exec()
     res.json(touristAttractions)
@@ -66,15 +54,14 @@ export const getTouristAttractionById = async (req, res) => {
   }
 }
 
+// Create a new tourits attraction site with uploading an image
 export const createTouristAttraction = async (req, res) => {
   const { name, description, location, image, area } = req.body
 
   const result = await cloudinary.uploader.upload(req.file.path, {
     folder: 'afPlaces',
   })
-
   // req.body.image = result.secure_url
-
   try {
     const newTouristAttraction = new TouristAttraction({
       name,
@@ -91,6 +78,7 @@ export const createTouristAttraction = async (req, res) => {
   }
 }
 
+// Update a tourist attractions by Id
 export const updateTouristAttraction = async (req, res) => {
   const { id } = req.params
   const { name, description, location, image, area } = req.body
@@ -107,6 +95,7 @@ export const updateTouristAttraction = async (req, res) => {
   }
 }
 
+// Delete a tourist attraction by Id
 export const deleteTouristAttraction = async (req, res) => {
   const { id } = req.params
   try {
