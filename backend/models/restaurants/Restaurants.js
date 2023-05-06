@@ -41,6 +41,25 @@ const RestaurantSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide png or jpg restaurant images'],
     },
+    area: {
+      type: String,
+      required: [true, 'must provide restaurant province'],
+      trim: true,
+      enum: {
+        values: [
+          'Western',
+          'Northern',
+          'North Central',
+          'North Western',
+          'Central',
+          'Eastern',
+          'Uva',
+          'Sabaragamuwa',
+          'Southern',
+        ],
+        message: '{VALUE} is not a valid province',
+      },
+    },
     rating: {
       type: Number,
       default: 0.0,
