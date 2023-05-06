@@ -1,4 +1,4 @@
-import Restaurants from '../../models/restaurants/restaurants.js'
+import Restaurants from '../../models/restaurants/Restaurants.js'
 import asyncWrapper from '../../middleware/food/async.js'
 import cloudinary from '../../config/cloudinary.js'
 import { createCustomError } from '../../errors/Food/custom-error.js'
