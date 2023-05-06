@@ -10,7 +10,7 @@ const SuggestionsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    location: {
+    address: {
       type: String,
       required: true,
     },

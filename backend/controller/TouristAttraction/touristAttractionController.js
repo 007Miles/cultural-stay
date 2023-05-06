@@ -3,15 +3,15 @@ import cloudinary from '../../config/cloudinary.js'
 
 // get all tourist attractions with search and sort options passed as a query in the req
 export const getAllTouristAttractions = async (req, res) => {
-  const { name, location, area, sort, fields } = req.query
+  const { name, address, area, sort, fields } = req.query
   const queryObject = {}
 
   if (name) {
     queryObject.name = { $regex: name, $options: 'i' }
   }
 
-  if (location) {
-    queryObject.location = { $regex: location, $options: 'i' }
+  if (address) {
+    queryObject.address = { $regex: address, $options: 'i' }
   }
 
   if (area) {
@@ -56,7 +56,7 @@ export const getTouristAttractionById = async (req, res) => {
 
 // Create a new tourits attraction site with uploading an image
 export const createTouristAttraction = async (req, res) => {
-  const { name, description, location, image, area } = req.body
+  const { name, description, address, image, area } = req.body
 
   const result = await cloudinary.uploader.upload(req.file.path, {
     folder: 'afPlaces',
@@ -66,7 +66,7 @@ export const createTouristAttraction = async (req, res) => {
     const newTouristAttraction = new TouristAttraction({
       name,
       description,
-      location,
+      address,
       image: result.secure_url,
       area,
     })
@@ -81,11 +81,11 @@ export const createTouristAttraction = async (req, res) => {
 // Update a tourist attractions by Id
 export const updateTouristAttraction = async (req, res) => {
   const { id } = req.params
-  const { name, description, location, image, area } = req.body
+  const { name, description, address, image, area } = req.body
   try {
     const touristAttraction = await TouristAttraction.findByIdAndUpdate(
       id,
-      { name, description, location, image, area },
+      { name, description, address, image, area },
       { new: true }
     ).exec()
     res.json(touristAttraction)
