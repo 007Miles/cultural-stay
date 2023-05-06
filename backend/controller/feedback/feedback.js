@@ -24,6 +24,37 @@ export const addFeedback = asyncWrapper(async (req, res) => {
   }
 })
 
+// add a feedback
+export const giveRating = asyncWrapper(async (req, res) => {
+  const { id: locID } = req.params
+  let rating = req.body.rating
+  let userId = req.body.rating.postedBy
+
+  const feedback = await FeedBack.findOne({ loc_id: locID })
+  const existingRating = feedback.ratings_list.find(
+    (rating) => rating.postedBy === userId
+  )
+
+  if (existingRating) {
+    // Update the existing rating
+    existingRating.val = rating.val
+  } else {
+    // Add a new rating to the ratings_list array
+    feedback.ratings_list.push(rating)
+  }
+
+  // const result = await FeedBack.findOneAndUpdate(
+  //   { loc_id: locID },
+  //   { $push: { ratings_list: rating } },
+  //   { new: true, returnOriginal: false }
+  // )
+  const result = feedback.save()
+
+  if (result) {
+    res.status(201).json({ msg: 'rating updated' })
+  }
+})
+
 //delete a feedback
 export const deleteFeedback = asyncWrapper(async (req, res) => {
   const { id: locID } = req.params

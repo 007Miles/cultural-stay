@@ -6,6 +6,7 @@ import {
   addFeedback,
   deleteFeedback,
   getAllFeedbackforLoc,
+  giveRating,
 } from '../../controller/feedback/feedback.js'
 
 //end-points
@@ -15,5 +16,6 @@ router
   .get(getAllFeedbackforLoc)
   .patch(addFeedback)
   .delete(deleteFeedback)
+router.route('/ratings/:id').patch(giveRating)
 
 export default router
