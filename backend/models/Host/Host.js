@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+// const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+// const bcrypt = require('bcryptjs')
+// const jwt = require('jsonwebtoken')
 
 const HostSchema = new mongoose.Schema({
   name: {
@@ -79,4 +80,7 @@ const HostSchema = new mongoose.Schema({
 //   return isMatch
 // }
 
-module.exports = mongoose.model('Host', HostSchema)
+// module.exports = mongoose.model('Host', HostSchema)
+const Host = mongoose.model('Host', HostSchema)
+
+export default Host

@@ -1,18 +1,23 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const AccommodationSchema = new mongoose.Schema(
   {
-    accommodation_name: {
+    name: {
       type: String,
-      required: [true, 'must provide accommodation name'],
+      required: [false, 'must provide accommodation name'],
       trim: true,
     },
-    location_name: {
+    address: {
       type: String,
       required: [false, 'must provide accommodation location'],
       trim: true,
     },
-    location_link: {
+    area: {
+      type: String,
+      required: [false, 'must provide accommodation location'],
+      trim: true,
+    },
+    location_maplink: {
       type: String,
       required: [false, 'must provide accommodation location link'],
       trim: true,
@@ -23,6 +28,7 @@ const AccommodationSchema = new mongoose.Schema(
     },
     availability_from: {
       type: Date,
+      default: Date.now(),
     },
     availability_to: {
       type: Date,
@@ -30,19 +36,22 @@ const AccommodationSchema = new mongoose.Schema(
     no_of_guests_welcome: {
       type: Number,
       required: [false, 'must provide no of guests welcome'],
-      min: [1, 'package must welcome at least 1 guests'],
+      min: [1, 'Welcome at least 1 guests'],
     },
     no_of_bedrooms: {
       type: Number,
       required: false,
+      default: 1,
     },
     no_of_beds: {
       type: Number,
       required: false,
+      default: 1,
     },
     no_of_washrooms: {
       type: Number,
       required: false,
+      default: 1,
     },
     price_per_night: {
       type: Number,
@@ -54,30 +63,21 @@ const AccommodationSchema = new mongoose.Schema(
       required: false,
       trim: true,
       enum: {
-        values: ['Couple', 'Family', 'Solo'],
+        values: ['Couple', 'Family', 'Solo', 'Student'],
         message: '{VALUE} is not a valid Type',
       },
     },
-    category: {
-      type: String,
-      required: [false, 'must provide accommodation category'],
-      trim: true,
-    },
     description: {
       type: String,
-      required: [true, 'must provide accommodation description'],
+      required: [false, 'must provide accommodation description'],
       trim: true,
     },
     facilities: {
       type: String,
-      required: [true, 'must provide accommodation facilities'],
+      required: [false, 'must provide accommodation facilities'],
       trim: true,
     },
-    rating: {
-      type: Number,
-      default: 0.0,
-      max: [5, 'rating cannot be higher than 5, {VALUE} is invalid'],
-    },
+
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -85,34 +85,16 @@ const AccommodationSchema = new mongoose.Schema(
     createdBy: {
       type: String,
       // ref: 'Host',
-      required: [true, 'Please provide Host'],
+      required: [false, 'Please provide Host'],
     },
-    image_01: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    image_02: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    image_03: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    image_04: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    rate_count: {
-      type: Number,
-      default: 0,
-    },
-    rate_aggregate: {
-      type: Number,
-      default: 0.0,
+    images: {
+      type: [String],
+      default: [],
     },
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Accommodation', AccommodationSchema)
+const Accommodation = mongoose.model('Accommodation', AccommodationSchema)
+// module.exports = mongoose.model('Accommodation', AccommodationSchema)
+export default Accommodation
