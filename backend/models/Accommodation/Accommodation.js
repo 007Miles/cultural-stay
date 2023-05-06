@@ -1,19 +1,23 @@
-// const mongoose = require('mongoose')
 import mongoose from 'mongoose'
 
 const AccommodationSchema = new mongoose.Schema(
   {
-    accommodation_name: {
+    name: {
       type: String,
       required: [false, 'must provide accommodation name'],
       trim: true,
     },
-    location_name: {
+    address: {
       type: String,
       required: [false, 'must provide accommodation location'],
       trim: true,
     },
-    location_link: {
+    area: {
+      type: String,
+      required: [false, 'must provide accommodation location'],
+      trim: true,
+    },
+    location_maplink: {
       type: String,
       required: [false, 'must provide accommodation location link'],
       trim: true,
@@ -32,7 +36,7 @@ const AccommodationSchema = new mongoose.Schema(
     no_of_guests_welcome: {
       type: Number,
       required: [false, 'must provide no of guests welcome'],
-      min: [1, 'package must welcome at least 1 guests'],
+      min: [1, 'Welcome at least 1 guests'],
     },
     no_of_bedrooms: {
       type: Number,
@@ -59,14 +63,9 @@ const AccommodationSchema = new mongoose.Schema(
       required: false,
       trim: true,
       enum: {
-        values: ['Couple', 'Family', 'Solo'],
+        values: ['Couple', 'Family', 'Solo', 'Student'],
         message: '{VALUE} is not a valid Type',
       },
-    },
-    category: {
-      type: String,
-      required: [false, 'must provide accommodation category'],
-      trim: true,
     },
     description: {
       type: String,
@@ -78,11 +77,7 @@ const AccommodationSchema = new mongoose.Schema(
       required: [false, 'must provide accommodation facilities'],
       trim: true,
     },
-    rating: {
-      type: Number,
-      default: 0.0,
-      max: [5, 'rating cannot be higher than 5, {VALUE} is invalid'],
-    },
+
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -92,29 +87,9 @@ const AccommodationSchema = new mongoose.Schema(
       // ref: 'Host',
       required: [false, 'Please provide Host'],
     },
-    image: {
-      type: String,
-      required: [false, 'Please provide png or jpg product images'],
-    },
-    // image_02: {
-    //   type: String,
-    //   required: [false, 'Please provide png or jpg product images'],
-    // },
-    // image_03: {
-    //   type: String,
-    //   required: [false, 'Please provide png or jpg product images'],
-    // },
-    // image_04: {
-    //   type: String,
-    //   required: [false, 'Please provide png or jpg product images'],
-    // },
-    rate_count: {
-      type: Number,
-      default: 0,
-    },
-    rate_aggregate: {
-      type: Number,
-      default: 0.0,
+    images: {
+      type: [String],
+      default: [],
     },
   },
   { timestamps: true }

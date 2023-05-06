@@ -1,6 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Home from '../pages/Home/Home'
+
+import AccommodationHome from '../pages/Home/AccommodationHome.js'
+import AccommodationDetails from '../pages/Home/AccommodationDetails'
+import AccommodationForm from '../pages/Home/AccommodationForm'
 import Feedback from '../components/FeedBack and Review/Feedback'
 
 const IndexRoutes = () => {
@@ -11,6 +15,12 @@ const IndexRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="feedback" element={<Feedback />} />
+        <Route path="/accommodationHome" element={<AccommodationHome />} />
+        <Route
+          path="/accommodationDetails"
+          element={<AccommodationDetails />}
+        />
+        <Route path="/accommodationForm" element={<AccommodationForm />} />
       </Routes>
       {/* </div> */}
     </div>
