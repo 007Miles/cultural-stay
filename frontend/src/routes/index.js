@@ -1,7 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Home from '../pages/Home/Home'
+
 import Attractions from '../pages/TouristAttraction/attractions'
+import Registration from '../pages/Registration/registration'
 
 const IndexRoutes = () => {
   return (
@@ -11,6 +13,7 @@ const IndexRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/attractions" element={<Attractions />} />
+          <Route path="/registration" element={<Registration />} />
         </Routes>
       </div>
     </div>
