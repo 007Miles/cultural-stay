@@ -8,6 +8,7 @@ import AccommodationHome from '../pages/Home/AccommodationHome.js'
 import AccommodationDetails from '../pages/Home/AccommodationDetails'
 import AccommodationForm from '../pages/Home/AccommodationForm'
 import Feedback from '../components/FeedBack and Review/Feedback'
+import AttractionView from '../components/Attractions/attractionView'
 
 const IndexRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const IndexRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/attractions" element={<Attractions />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/attractionView/:id" element={<AttractionView />} />
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/accommodationHome" element={<AccommodationHome />} />
