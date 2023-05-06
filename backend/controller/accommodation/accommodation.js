@@ -1,25 +1,28 @@
-// const Accommodation = require('../../models/Accommodation/Accommodation')
 import Accommodation from '../../models/Accommodation/Accommodation.js'
 import asyncWrapper from '../../middleware/Host/async.js'
-// const asyncWrapper = require('../../middleware/Host/async')
-import cloudinary from '../../middleware/cloudinary.js'
-// const cloudinary = require('../middleware/cloudinary')
+import cloudinary from '../../config/cloudinary.js'
 import { createCustomError } from '../../errors/Host/custom-error.js'
-// const  createCustomError  = require('../../errors/Host/custom-error')
 
 // Register a new accommodation
 export const createaccommodation = asyncWrapper(async (req, res) => {
-  //   if (!req.file) {
-  //     return res.status(400).json({ message: 'No image provided' })
-  //   }
+  if (!req.files) {
+    return res.status(400).json({ message: 'No images provided' })
+  }
 
-  //   const result = await cloudinary.uploader.upload(req.file.path, {
-  //     folder: 'afAccommodation',
-  //   })
+  const images = []
 
-  //   req.body.image = result.secure_url
+  for (const file of req.files) {
+    const result = await cloudinary.uploader.upload(file.path, {
+      folder: 'afAccommodation',
+    })
+
+    images.push(result.secure_url)
+  }
+
+  req.body.images = images
 
   const accommodation = await Accommodation.create(req.body)
+
   res.status(201).json({ accommodation })
 })
 
