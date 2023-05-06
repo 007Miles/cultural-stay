@@ -47,13 +47,13 @@ import { FaArrowRight } from 'react-icons/fa'
 const AccommodationHome = () => {
   const culturalStayHotels = [
     {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
-      host: 'Kasun',
-      dates: 'April 5-10',
-      price: 'Rs.2500.00/night',
+      name: 'Punchi Doowa',
+      location: 'Kamburugamuwa, Southern Province, Sri Lanka',
+      host: 'Hettie',
+      dates: '2020-10-10 - 2020-10-15',
+      price: 'Rs.4500.00/night',
       image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
+        'https://res.cloudinary.com/itp03/image/upload/v1683392797/afAccommodation/7d864e7d052952180da8ac4be17856d7_olt66u.jpg',
     },
     {
       name: 'Double Room',
@@ -64,34 +64,6 @@ const AccommodationHome = () => {
       image:
         'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
     },
-    {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
-      host: 'Kasun',
-      dates: 'April 5-10',
-      price: 'Rs.2500.00/night',
-      image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
-    },
-    {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
-      host: 'Kasun',
-      dates: 'April 5-10',
-      price: 'Rs.2500.00/night',
-      image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
-    },
-    {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
-      host: 'Kasun',
-      dates: 'April 5-10',
-      price: 'Rs.2500.00/night',
-      image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
-    },
-    // Add more hotel objects here
   ]
 
   return (
@@ -113,7 +85,7 @@ const AccommodationHome = () => {
               <p className="text-gray-700 text-sm text-left">
                 Stay with {hotel.host}
                 <br />
-                {hotel.dates}
+                Available : {hotel.dates}
               </p>
             </div>
             <div className="px-6 pt-2 pb-2 text-left">

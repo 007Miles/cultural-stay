@@ -1,47 +1,64 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const ReserveForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phoneNumber: '',
-    laguagesspeak: '',
-    country: '',
-    startDate: '',
-    endDate: '',
-    description: '',
-    passengers: '',
-  })
+  const [Name, setName] = useState('')
+  const [Email, setEmail] = useState('')
+  const [PhoneNumber, setPhoneNumber] = useState('')
+  const [Laguagesspeak, setLaguagesspeak] = useState('')
+  const [Country, setCountry] = useState('')
+  const [StartDate, setStartDate] = useState('')
+  const [EndDate, setEndDate] = useState('')
+  const [Description, setDescription] = useState('')
+  const [NoPassengers, setNoPassengers] = useState('')
+  const [HostID, setHostID] = useState('02')
 
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    setFormData({ ...formData, [name]: value })
-  }
+  function sendData(e) {
+    e.preventDefault() // to execute only the function "sendData" without submitting data.
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+    const newReservation = {
+      Name,
+      Email,
+      PhoneNumber,
+      Laguagesspeak,
+      Country,
+      StartDate,
+      EndDate,
+      Description,
+      NoPassengers,
+      HostID,
+    }
 
-    console.log(formData)
+    axios
+      .post('http://localhost:4000/api/accommodationReserve', newReservation)
+      .then(() => {
+        console.log('Success')
+      })
+      .catch((err) => {
+        console.log('error')
+      })
   }
 
   return (
-    <form onSubmit={handleSubmit} className=" p-6 ">
+    <form onSubmit={sendData} className=" p-6 ">
       <h2 className="text-2xl font-semibold mb-4">Reserve</h2>
 
       <div className="space-y-4">
         <input
           type="text"
           name="name"
-          value={formData.name}
-          onChange={handleChange}
+          onChange={(e) => {
+            setName(e.target.value)
+          }}
           placeholder="Name"
           className="w-full p-2 border border-gray-300 rounded"
         />
         <input
           type="email"
           name="email"
-          value={formData.email}
-          onChange={handleChange}
+          onChange={(e) => {
+            setEmail(e.target.value)
+          }}
           placeholder="Email"
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -49,24 +66,27 @@ const ReserveForm = () => {
         <input
           type="tel"
           name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
+          onChange={(e) => {
+            setPhoneNumber(e.target.value)
+          }}
           placeholder="Phone Number"
           className="w-full p-2 border border-gray-300 rounded"
         />
         <input
           type="String"
           name="laguagesspeak"
-          value={formData.laguagesspeak}
-          onChange={handleChange}
+          onChange={(e) => {
+            setLaguagesspeak(e.target.value)
+          }}
           placeholder="Languages Speakable"
           className="w-full p-2 border border-gray-300 rounded"
         />
         <input
           type="String"
           name="country"
-          value={formData.country}
-          onChange={handleChange}
+          onChange={(e) => {
+            setCountry(e.target.value)
+          }}
           placeholder="Country"
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -75,16 +95,18 @@ const ReserveForm = () => {
           <input
             type="date"
             name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
+            onChange={(e) => {
+              setStartDate(e.target.value)
+            }}
             className="w-full p-2 border border-gray-300 rounded"
           />
 
           <input
             type="date"
             name="endDate"
-            value={formData.endDate}
-            onChange={handleChange}
+            onChange={(e) => {
+              setEndDate(e.target.value)
+            }}
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
@@ -92,8 +114,9 @@ const ReserveForm = () => {
         <input
           type="String"
           name="description"
-          value={formData.description}
-          onChange={handleChange}
+          onChange={(e) => {
+            setDescription(e.target.value)
+          }}
           placeholder="Description"
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -101,13 +124,15 @@ const ReserveForm = () => {
         <input
           type="number"
           name="passengers"
-          value={formData.passengers}
-          onChange={handleChange}
+          onChange={(e) => {
+            setNoPassengers(e.target.value)
+          }}
           placeholder="Number of Passengers"
           className="w-full p-2 border border-gray-300 rounded"
         />
 
         <button
+          onSubmit={sendData}
           type="submit"
           className="w-full p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
         >

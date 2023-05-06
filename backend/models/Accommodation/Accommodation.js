@@ -91,6 +91,10 @@ const AccommodationSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    image: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 )

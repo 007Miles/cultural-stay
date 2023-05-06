@@ -1,4 +1,3 @@
-// const mongoose = require('mongoose')
 import mongoose from 'mongoose'
 // const bcrypt = require('bcryptjs')
 // const jwt = require('jsonwebtoken')
@@ -44,19 +43,6 @@ const HostSchema = new mongoose.Schema({
   },
   profile_image: {
     type: String,
-  },
-  rating: {
-    type: Number,
-    default: 0.0,
-    max: [5, 'rating cannot be higher than 5, {VALUE} is invalid'],
-  },
-  rate_count: {
-    type: Number,
-    default: 0,
-  },
-  rate_aggregate: {
-    type: Number,
-    default: 0.0,
   },
 })
 

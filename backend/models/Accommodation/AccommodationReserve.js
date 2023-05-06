@@ -3,12 +3,12 @@ import mongoose from 'mongoose'
 const ReserveSchema = new mongoose.Schema({
   rp_name: {
     type: String,
-    required: [true, 'Please provide name'],
+    required: [false, 'Please provide name'],
     trim: true,
   },
   rp_email: {
     type: String,
-    required: [true, 'Please provide email'],
+    required: [false, 'Please provide email'],
     match: [
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Please provide a valid email',
@@ -17,7 +17,7 @@ const ReserveSchema = new mongoose.Schema({
   },
   rp_phone: {
     type: Number,
-    required: [true, 'Please provide contact number'],
+    required: [false, 'Please provide contact number'],
     min: [
       9,
       'phone number should contain at least 9 digits, {VALUE} is invalid',
@@ -46,6 +46,10 @@ const ReserveSchema = new mongoose.Schema({
   rp_noofPassengers: {
     type: Number,
     trim: true,
+  },
+  status: {
+    type: String,
+    default: 'pending',
   },
   hostId: {
     type: String,

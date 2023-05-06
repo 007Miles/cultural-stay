@@ -34,6 +34,15 @@ const AccommodationForm = () => {
     console.log(formData)
   }
 
+  const handleImageChange = (e) => {
+    const files = e.target.files
+    let images = []
+    for (let i = 0; i < files.length; i++) {
+      images.push(files[i])
+    }
+    setFormData({ ...formData, images })
+  }
+
   return (
     <div className="w-full max-w-md mx-auto mt-10">
       <form
@@ -211,6 +220,25 @@ const AccommodationForm = () => {
             value={formData.facilities}
             onChange={handleChange}
           ></textarea>
+        </div>
+
+        {/* Image uploader */}
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="images"
+          >
+            Upload Images
+          </label>
+          <input
+            id="images"
+            name="images"
+            type="file"
+            multiple
+            accept="image/*"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleImageChange}
+          />
         </div>
 
         <div class="flex justify-end mt-6">

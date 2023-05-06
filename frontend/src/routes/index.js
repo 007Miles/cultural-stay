@@ -4,8 +4,10 @@ import Home from '../pages/Home/Home'
 
 import AccommodationHome from '../pages/Home/AccommodationHome.js'
 import AccommodationDetails from '../pages/Home/AccommodationDetails'
+import HostDashboardProfile from '../pages/Home/HostDashboardProfile.js'
 import AccommodationForm from '../pages/Home/AccommodationForm'
 import Feedback from '../components/FeedBack and Review/Feedback'
+import HostEditPersonalInformation from '../pages/Home/HostEditPersonalInformation.js'
 
 const IndexRoutes = () => {
   return (
@@ -21,6 +23,14 @@ const IndexRoutes = () => {
           element={<AccommodationDetails />}
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />
+        <Route
+          path="/hostDashboardProfile"
+          element={<HostDashboardProfile />}
+        />
+        <Route
+          path="/hostEditPersonalInformation"
+          element={<HostEditPersonalInformation />}
+        />
       </Routes>
       {/* </div> */}
     </div>
