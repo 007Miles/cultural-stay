@@ -25,7 +25,7 @@ const Restaurant = ({ image, name, id, description, city }) => {
         <h5 class="mb-2 h-[40px] text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
           {name} - {city}
         </h5>
-        <p class="mt-4 mb-4 text-base text-neutral-600 dark:text-neutral-200">
+        <p class="mt-4 mb-0 h-[40px] text-base text-neutral-600 dark:text-neutral-200">
           {description}
         </p>
       </div>

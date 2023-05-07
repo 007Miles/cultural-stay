@@ -102,7 +102,9 @@ const SingleFood = () => {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={12}>
-                <Typography variant="h4">Ingrediants</Typography>
+                <Typography variant="h4">
+                  <u>Ingrediants</u>
+                </Typography>
                 <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
                   {ingrediants.map((ingrediant, index) => (
                     <li key={index}>{ingrediant}</li>
@@ -112,7 +114,9 @@ const SingleFood = () => {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={12}>
-                <Typography variant="h4">Method</Typography>
+                <Typography variant="h4">
+                  <u>Method</u>
+                </Typography>
                 <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
                   {method.map((step, index) => (
                     <li key={index}>{step}</li>

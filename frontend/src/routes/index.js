@@ -12,6 +12,10 @@ import SingleFood from '../pages/Food/SingleFood'
 import RestaurantsByFood from '../pages/Restaurants/RestaurantsByFood'
 import Restaurants from '../pages/Restaurants/Restaurant'
 import SingleRestaurant from '../pages/Restaurants/SingleRestaurant'
+import AddFood from '../pages/Admin/AddFood'
+import UpdateFood from '../pages/Admin/UpdateFood'
+import AddRestaurant from '../pages/Admin/AddRestaurant'
+import UpdateRestaurant from '../pages/Admin/UpdateRestaurant'
 
 const IndexRoutes = () => {
   return (
@@ -38,6 +42,13 @@ const IndexRoutes = () => {
           element={<RestaurantsByFood />}
         />
 
+        <Route path="/admin/add-food" element={<AddFood />} />
+        <Route path="/admin/update-food/:id" element={<UpdateFood />} />
+        <Route path="/admin/add-restaurant" element={<AddRestaurant />} />
+        <Route
+          path="/admin/update-restaurant/:id"
+          element={<UpdateRestaurant />}
+        />
         {/* insert all routes above the error route */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
