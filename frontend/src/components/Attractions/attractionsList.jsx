@@ -82,29 +82,25 @@ const AttractionsList = () => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto mt-10 w-2/3">
       <h1 className="text-3xl font-bold mb-6 text-gray-600">
         Tourist Attractions
       </h1>
       {attractions.map((attraction) => (
-        <div key={attraction._id} className="border p-4 mb-4">
+        <div
+          key={attraction._id}
+          className="bg-white border p-4 mb-8 shadow-lg rounded-xl"
+        >
           <h2 className="text-2xl font-bold mb-4">{attraction.name}</h2>
           <p>{attraction.description}</p>
           <p>{attraction.address}</p>
           <p>{attraction.area}</p>
-          {/* {attraction.image && (
-            <img
-              src={attraction.image}
-              alt={attraction.name}
-              className="w-64 mt-4"
-            />
-          )} */}
           <div className="flex justify-center space-x-4 mt-4">
             {attraction.images.map((image, index) => (
               <img
                 key={index}
                 src={image}
-                alt={`${attractionsData.name} - ${index}`}
+                alt={`${attraction.name} - ${index}`}
                 className="w-64"
               />
             ))}
@@ -112,10 +108,10 @@ const AttractionsList = () => {
           <div className="flex justify-center space-x-4 mt-6">
             <TouristAttractionUpdateForm
               attraction={attraction}
-              onUpdate={fetchAttractions}
+              onUpdate={() => {}}
             />
             <button
-              className="inline-block px-6 py-2 mt-4 border-2 border-red-500 bg-red-500 text-white leading-tight uppercase rounded-full hover:blue-900 hover:bg-opacity-50 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+              className="inline-block px-6 py-2 mt-4 border-2 border-red-500 bg-red-500 text-white leading-tight uppercase rounded-full hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
               onClick={() => handleDelete(attraction._id)}
             >
               Delete
