@@ -12,16 +12,24 @@ const HostDashboardReservationDetail = () => {
       </div>
       <div className="flex justify-center space-x-4 mt-5">
         <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-blue-600">
-          Profile
+          <a class="nav-link" href="/hostDashboardProfile">
+            Profile
+          </a>
         </button>
         <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-green-600">
-          All Reservations
+          <a class="nav-link" href="/hostDashboardReservationAll">
+            All Reservations
+          </a>
         </button>
         <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-red-600">
-          Reservation History
+          <a class="nav-link" href="/hostDashboardReservationHistory">
+            Reservation History
+          </a>
         </button>
         <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-red-600">
-          Accommodation Edit
+          <a class="nav-link" href="/hostDashboardPlaceUpdate">
+            Accommodation Edit
+          </a>
         </button>
       </div>
 

@@ -209,6 +209,17 @@ const AccommodationDetails = () => {
                   </section>
                 </div>
               </div>
+
+              <hr className="border-b border-gray-300 my-8" />
+
+              <div className="flex items-center">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="Profile"
+                  className="rounded-full h-10 w-10 mr-2"
+                />
+                <h1 className="text-lg font-medium">Hosted by Hettie</h1>
+              </div>
             </div>
           </div>
 
@@ -250,7 +261,7 @@ const AccommodationDetails = () => {
 
                 <p className="text-gray-700 text-sm text-left">
                   <span>Status : </span>
-                  <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-xs font-semibold text-white-700">
+                  <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-xs font-semibold text-white">
                     Available
                   </span>
                 </p>

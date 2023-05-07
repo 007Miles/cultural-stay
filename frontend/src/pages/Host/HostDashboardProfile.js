@@ -118,7 +118,9 @@ const HostDashboardProfile = () => {
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 href="/hostEditPersonalInformation"
               >
-                Edit Profile
+                <a class="nav-link" href="/hostEditPersonalInformation">
+                  Edit Profile
+                </a>
               </button>
             </div>
           </div>

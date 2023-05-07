@@ -95,7 +95,9 @@ const editPersonalInformation = () => {
               </div>
               <div className="flex justify-end mb-4 mt-5">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                  Cancel
+                  <a class="nav-link" href="/hostDashboardProfile">
+                    Cancel
+                  </a>
                 </button>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Update Profile

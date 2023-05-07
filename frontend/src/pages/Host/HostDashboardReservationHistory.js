@@ -6,9 +6,11 @@ const reservations = [
     name: 'John Doe',
     dateFrom: '2023-05-10',
     dateTo: '2023-05-15',
+    phoneNo: '52145214125',
     languages: 'English, French',
     country: 'UN',
     passengers: '2',
+    email: 'john@gmail.com',
     status: 'pending',
   },
   {
@@ -16,10 +18,12 @@ const reservations = [
     name: 'Jane Smith',
     dateFrom: '2023-06-01',
     dateTo: '2023-06-07',
+    phoneNo: '54245214525',
     languages: 'Spanish',
     country: 'Spain',
     passengers: '4',
-    status: 'pending',
+    email: 'jane@gmail.com',
+    status: 'Accepted',
   },
 ]
 
@@ -75,13 +79,13 @@ const HostDashboardReservationHistory = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Request Date From
+                      Requested Date Range
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Request Date To
+                      Reserver Phone No
                     </th>
                     <th
                       scope="col"
@@ -105,11 +109,17 @@ const HostDashboardReservationHistory = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      Reserver Email
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Status
                     </th>
-                    <th scope="col" className="relative px-6 py-3">
+                    {/* <th scope="col" className="relative px-6 py-3">
                       <span className="sr-only">View</span>
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -122,12 +132,12 @@ const HostDashboardReservationHistory = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.dateFrom}
+                          {reservation.dateFrom} - {reservation.dateTo}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.dateTo}
+                          {reservation.phoneNo}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -147,13 +157,19 @@ const HostDashboardReservationHistory = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.status}
+                          {reservation.email}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button className=" p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
-                          View
-                        </button>
+                        <span
+                          className={`inline-block rounded-full px-3 py-1 text-sm font-semibold text-white ${
+                            reservation.status === 'Accepted'
+                              ? 'bg-green-500'
+                              : 'bg-orange-500 '
+                          }`}
+                        >
+                          {reservation.status}
+                        </span>
                       </td>
                     </tr>
                   ))}

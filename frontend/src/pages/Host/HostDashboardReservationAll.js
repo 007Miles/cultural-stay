@@ -24,6 +24,33 @@ const reservations = [
 ]
 
 const HostDashboardReservationAll = () => {
+  // const [reservationDetails, setreservationDetails] = useState([])
+
+  // useEffect(() => {
+  //   function fetchData() {
+  //     axios
+  //       .get('http://localhost:4000/api/accommodation')
+  //       .then((res) => {
+  //         if (Array.isArray(res.data.accommodation)) {
+  //           setCulturalStayHotels(res.data.accommodation)
+  //         } else {
+  //           console.error(
+  //             'Received data is not an array:',
+  //             res.data.accommodation
+  //           )
+  //         }
+  //         console.log('your data has been received')
+  //         console.log(res.data.accommodation)
+
+  //         setCulturalStayHotels(res.data.accommodation) //using set function to retrieve data and display on website
+  //       })
+  //       .catch((err) => {
+  //         alert(err.message)
+  //       })
+  //   }
+  //   fetchData()
+  // }, [culturalStayHotels])
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -147,12 +174,19 @@ const HostDashboardReservationAll = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.status}
+                          <span class="inline-block bg-orange-400 rounded-full px-3 py-1 text-sm font-semibold text-white">
+                            {reservation.status}
+                          </span>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button className=" p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
-                          View
+                          <a
+                            class="nav-link"
+                            href="/hostDashboardReservationDetail"
+                          >
+                            View
+                          </a>
                         </button>
                       </td>
                     </tr>
