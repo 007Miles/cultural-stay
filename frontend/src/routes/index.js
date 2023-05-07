@@ -4,10 +4,16 @@ import Home from '../pages/Home/Home'
 
 import Attractions from '../pages/TouristAttraction/attractionsPage'
 import Registration from '../pages/Registration/registration'
-import AccommodationHome from '../pages/Home/AccommodationHome.js'
-import AccommodationDetails from '../pages/Home/AccommodationDetails'
-import AccommodationForm from '../pages/Home/AccommodationForm'
+import AccommodationHome from '../pages/Accommodation/AccommodationHome.js'
+import AccommodationDetails from '../pages/Accommodation/AccommodationDetails'
+import HostDashboardProfile from '../pages/Host/HostDashboardProfile.js'
+import AccommodationForm from '../pages/Accommodation/AccommodationForm.js'
 import Feedback from '../components/FeedBack and Review/Feedback'
+import HostEditPersonalInformation from '../pages/Host/HostEditPersonalInformation.js'
+import HostDashboardReservationAll from '../pages/Host/HostDashboardReservationAll.js'
+import HostDashboardReservationDetail from '../pages/Host/HostDashboardReservationDetail.js'
+import HostDashboardPlaceUpdate from '../pages/Host/HostDashboardPlaceUpdate.js'
+import HostDashboardReservationHistory from '../pages/Host/HostDashboardReservationHistory.js'
 import AttractionView from '../components/Attractions/attractionView'
 import CreateAttraction from '../components/Attractions/createAttraction'
 import RecommendAttraction from '../components/Attractions/recommendAttraction'
@@ -35,6 +41,30 @@ const IndexRoutes = () => {
           element={<AccommodationDetails />}
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />
+        <Route
+          path="/hostDashboardProfile"
+          element={<HostDashboardProfile />}
+        />
+        <Route
+          path="/hostEditPersonalInformation"
+          element={<HostEditPersonalInformation />}
+        />
+        <Route
+          path="/hostDashboardReservationAll"
+          element={<HostDashboardReservationAll />}
+        />
+        <Route
+          path="/hostDashboardReservationDetail"
+          element={<HostDashboardReservationDetail />}
+        />
+        <Route
+          path="/hostDashboardPlaceUpdate"
+          element={<HostDashboardPlaceUpdate />}
+        />
+        <Route
+          path="/hostDashboardReservationHistory"
+          element={<HostDashboardReservationHistory />}
+        />
       </Routes>
       <Footer />
     </div>
