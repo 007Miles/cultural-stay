@@ -21,11 +21,22 @@ export const Home = () => {
         <div className="absolute inset-0 flex flex-col justify-center items-center">
           <h1 className="text-5xl font-bold text-white">Explore Sri Lanka</h1>
           <p className="text-lg font-medium text-white mt-2">
-            Discover amazing places to visit and create unforgettable memories
+            Experience Sri Lanka's cultural heritage with sustainable travel
+            options
           </p>
         </div>
       </div>
       <div className="">
+        <h1 className="text-3xl font-bold mb-6 text-gray-700 mt-20">
+          Welcome to Cultural Stay!{' '}
+        </h1>
+        <p className="text-lg font-medium text-gray-700 mt-2 w-1/2 m-auto mb-20">
+          Our platform is designed to help travelers who are eager to experience
+          Sri Lanka's rich cultural heritage and traditions while enjoying
+          sustainable travel options. With Cultural Stay, you can enjoy
+          affordable accommodations, access to local cultural experiences, and
+          the ability to leave feedback for other travelers.
+        </p>
         <div className="">
           <PlacesList />
         </div>
