@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 const restaurants = [
   {
     id: 1,
-    name: 'Gal Oya National Park',
+    name: 'Milky Way Restaurant',
     description:
-      'A beautiful national park in Sri Lanka that is home to various wildlife and bird species.',
+      'No.01 Restaurant in Sri Lanka',
     address: 'Gal Oya National Park, Ampara, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449392/afPlaces/g2_l4sl38.jpg',
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683387266/afRestaurant/pcgwmxri1lm0fvjesiv5.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449390/afPlaces/g1_meld5b.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449554/afPlaces/g3_ibexum.jpg',
     ],
@@ -17,12 +17,12 @@ const restaurants = [
   },
   {
     id: 2,
-    name: 'Delft Island',
+    name: 'Bastille Restaurant',
     description:
-      'A small island located in the Jaffna district with beautiful scenery and wild horses.',
+      'Sothern food seconds to none',
     address: 'Delft Island, Jaffna, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d1_fzuohi.jpg',
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683457661/afRestaurant/csj4iakfiwvll5rdfnl4.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d3_nvpwuv.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d2_elkug0.jpg',
     ],
@@ -30,12 +30,12 @@ const restaurants = [
   },
   {
     id: 3,
-    name: 'Pigeon Island',
+    name: 'Prestige Restaurant',
     description:
-      'A beautiful island with clear blue waters and white sandy beaches located in Trincomalee.',
+      'Experience the Sri Lankan magic',
     address: 'Nilaveli, Trincomalee, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p1_z2xtsw.jpg',
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683457897/afRestaurant/fhkr2gnhqnozqi44dl2l.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
     ],
@@ -43,12 +43,12 @@ const restaurants = [
   },
   {
     id: 4,
-    name: 'Ritigala',
+    name: 'Royal Restaurant',
     description:
-      'A beautiful forest monastery located in the Anuradhapura district with ruins of ancient buildings and a scenic hiking trail.',
+      'Come and enjoy a luxerious meal with us',
     address: 'Ritigala, Anuradhapura, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r1_quumb5.jpg',
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683458233/afRestaurant/vxpqcg3bljphupeiqzvx.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
     ],
