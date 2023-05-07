@@ -1,6 +1,8 @@
 import React from 'react'
 import Video from '../../Assets/v1.mp4'
-import PlacesList from '../../components/Attractions/places'
+import PlacesList from '../../components/Home/popularPlaces'
+import FoodsList from '../../components/Home/featuredFoods'
+import RestaurantsList from '../../components/Home/featuredRestaurants'
 // import './home.css'
 
 export const Home = () => {
@@ -26,6 +28,12 @@ export const Home = () => {
       <div className="">
         <div className="">
           <PlacesList />
+        </div>
+        <div className="">
+          <FoodsList />
+        </div>
+        <div className="">
+          <RestaurantsList />
         </div>
       </div>
     </div>
