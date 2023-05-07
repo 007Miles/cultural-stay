@@ -12,6 +12,7 @@ import AttractionView from '../components/Attractions/attractionView'
 import CreateAttraction from '../components/Attractions/createAttraction'
 import RecommendAttraction from '../components/Attractions/recommendAttraction'
 import AttractionsList from '../components/Attractions/attractionsList'
+import Footer from '../components/Footer/footer'
 
 const IndexRoutes = () => {
   return (
@@ -35,6 +36,7 @@ const IndexRoutes = () => {
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />
       </Routes>
+      <Footer />
     </div>
   )
 }
