@@ -20,18 +20,24 @@ export default function Feedback() {
       text: 'Kasun is an amazing host! We had such a great time with her!',
       created: '2023-05-03T18:25:36.468Z',
       postedBy: 'Eva',
+      image_url:
+        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg',
       _id: '6452a8448540665498e29f0c',
     },
     {
       text: 'wonderful experience',
       created: '2023-05-03T19:06:20.807Z',
       postedBy: 'Evelyn',
+      image_url:
+        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg',
       _id: '6452b1c5f550a3c4c7d30f0b',
     },
     {
       text: 'wow soo nice',
       created: '2023-05-03T19:06:20.807Z',
       postedBy: 'Alessandra',
+      image_url:
+        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg',
       _id: '6452b1c5f550a3c4c7d30f0b',
     },
   ]
@@ -57,20 +63,21 @@ export default function Feedback() {
   // }, [comments])
 
   return (
-    <div class="flex items-center justify-center w-screen">
+    <div class="flex items-center justify-center">
       <Grid
         container
         spacing={2}
-        sx={{ width: '100%', maxWidth: 1280, bgcolor: 'background.paper' }}
-        className="mt-4 border-4 rounded-lg"
+        sx={{ bgcolor: 'background.paper' }}
+        className="w-full md:w-2/3 m-4 rounded-lg p-4 shadow-xl pb-6"
       >
-        <Grid item xs={12} className="bg-slate-500 p-6 ">
+        <Grid item xs={12} className=" p-1 ">
           <div className="inline-block align-middle align-text-left ">
             <Rating name="read-only" value={rating} precision={0.5} readOnly />
             {/* <span>{rating}</span> */}
-            <span> - </span>
+            <span className="inline-block align-text-top mx-3"> . </span>
             <span>{ratings_list.length + ' Reviews'}</span>
           </div>
+          <hr className="border-b border-gray-300 my-2" />
         </Grid>
 
         {comments.map((comment) => (
@@ -78,15 +85,19 @@ export default function Feedback() {
             <Grid item xs={6} key={comment._id}>
               <ListItem alignItems="flex-start" key={comment._id}>
                 <ListItemAvatar>
-                  <Avatar alt="User" src="/static/images/avatar/1.jpg">
-                    {comment.postedBy[0].toUpperCase()}
+                  <Avatar alt="User" src={comment.image_url}>
+                    {/* {comment.postedBy[0].toUpperCase()} */}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
                   primary={
                     <React.Fragment>
                       <Typography
-                        sx={{ display: 'inline', fontWeight: 'bold' }}
+                        sx={{
+                          display: 'inline',
+                          fontWeight: 'bold',
+                          fontSize: '21px',
+                        }}
                         component="span"
                         variant="body2"
                         color="text.primary"
@@ -98,7 +109,7 @@ export default function Feedback() {
                   secondary={
                     <React.Fragment>
                       <Typography
-                        sx={{ display: 'inline' }}
+                        sx={{ display: 'inline', fontSize: '18px' }}
                         component="span"
                         variant="body2"
                         color="text.primary"

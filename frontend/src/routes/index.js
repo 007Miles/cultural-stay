@@ -6,6 +6,7 @@ import AccommodationHome from '../pages/Home/AccommodationHome.js'
 import AccommodationDetails from '../pages/Home/AccommodationDetails'
 import AccommodationForm from '../pages/Home/AccommodationForm'
 import Feedback from '../components/FeedBack and Review/Feedback'
+import Search from '../pages/Search/Search'
 
 const IndexRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const IndexRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="feedback" element={<Feedback />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/accommodationHome" element={<AccommodationHome />} />
         <Route
           path="/accommodationDetails"
