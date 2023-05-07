@@ -1,8 +1,31 @@
-import React, { useState } from 'react'
-
-import editPersonalInformation from '../../components/Host/editPersonalInformation.js'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const HostDashboardProfile = () => {
+  const [hostData, setHostData] = useState(null)
+
+  const hostId = '64525da5476b8cab8b1e6c08'
+
+  useEffect(() => {
+    const fetchHostData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/hostLocal/${hostId}`
+        )
+        console.log('Host data received:', response.data)
+        setHostData(response.data.host)
+      } catch (error) {
+        console.error('Error fetching host data:', error)
+      }
+    }
+
+    fetchHostData()
+  }, [hostId])
+
+  if (!hostData) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -14,13 +37,24 @@ const HostDashboardProfile = () => {
       </div>
       <div className="flex justify-center space-x-4 mt-5">
         <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600">
-          Profile
+          <a class="nav-link" href="/hostDashboardProfile">
+            Profile
+          </a>
         </button>
         <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-green-600">
-          All Reservations
+          <a class="nav-link" href="/hostDashboardReservationAll">
+            All Reservations
+          </a>
         </button>
         <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-red-600">
-          Reservation History
+          <a class="nav-link" href="/hostDashboardReservationHistory">
+            Reservation History
+          </a>
+        </button>
+        <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-red-600">
+          <a class="nav-link" href="/hostDashboardPlaceUpdate">
+            Accommodation Edit
+          </a>
         </button>
       </div>
 
@@ -40,7 +74,7 @@ const HostDashboardProfile = () => {
                       Full name
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Hettie
+                      {hostData.name}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -48,7 +82,7 @@ const HostDashboardProfile = () => {
                       Email address
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Hettie@gmail.com
+                      {hostData.email}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -56,7 +90,7 @@ const HostDashboardProfile = () => {
                       Phone number
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      7745214521
+                      {hostData.phone}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -64,7 +98,8 @@ const HostDashboardProfile = () => {
                       Address
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Kamburugamuwa, Southern Province, Sri Lanka
+                      {hostData.address}
+                      Lanka
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -72,7 +107,7 @@ const HostDashboardProfile = () => {
                       Languages
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      English, Sinhala
+                      {hostData.languages}
                     </dd>
                   </div>
                 </dl>

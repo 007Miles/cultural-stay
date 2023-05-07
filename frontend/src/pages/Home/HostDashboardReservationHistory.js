@@ -23,7 +23,7 @@ const reservations = [
   },
 ]
 
-const HostDashboardReservationAll = () => {
+const HostDashboardReservationHistory = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -39,12 +39,12 @@ const HostDashboardReservationAll = () => {
             Profile
           </a>
         </button>
-        <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-green-600">
+        <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-green-600">
           <a class="nav-link" href="/hostDashboardReservationAll">
             All Reservations
           </a>
         </button>
-        <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-red-600">
+        <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-red-600">
           <a class="nav-link" href="/hostDashboardReservationHistory">
             Reservation History
           </a>
@@ -167,4 +167,4 @@ const HostDashboardReservationAll = () => {
   )
 }
 
-export default HostDashboardReservationAll
+export default HostDashboardReservationHistory

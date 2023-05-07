@@ -47,3 +47,14 @@ export const deletehost = asyncWrapper(async (req, res) => {
   res.status(200).json({ hosts })
 })
 // -------------------------------------------------------------------------------------------
+
+//get a host by id
+export const gethostbyID = asyncWrapper(async (req, res, next) => {
+  const { id: hostID } = req.params
+  const host = await Host.findOne({ _id: hostID })
+
+  if (!host) {
+    return next(createCustomError(`No host with this id: ${hostID}`, 404))
+  }
+  res.status(200).json({ host })
+})

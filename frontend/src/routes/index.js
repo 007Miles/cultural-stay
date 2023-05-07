@@ -8,6 +8,10 @@ import HostDashboardProfile from '../pages/Home/HostDashboardProfile.js'
 import AccommodationForm from '../pages/Home/AccommodationForm'
 import Feedback from '../components/FeedBack and Review/Feedback'
 import HostEditPersonalInformation from '../pages/Home/HostEditPersonalInformation.js'
+import HostDashboardReservationAll from '../pages/Home/HostDashboardReservationAll.js'
+import HostDashboardReservationDetail from '../pages/Home/HostDashboardReservationDetail.js'
+import HostDashboardPlaceUpdate from '../pages/Home/HostDashboardPlaceUpdate.js'
+import HostDashboardReservationHistory from '../pages/Home/HostDashboardReservationHistory.js'
 
 const IndexRoutes = () => {
   return (
@@ -30,6 +34,22 @@ const IndexRoutes = () => {
         <Route
           path="/hostEditPersonalInformation"
           element={<HostEditPersonalInformation />}
+        />
+        <Route
+          path="/hostDashboardReservationAll"
+          element={<HostDashboardReservationAll />}
+        />
+        <Route
+          path="/hostDashboardReservationDetail"
+          element={<HostDashboardReservationDetail />}
+        />
+        <Route
+          path="/hostDashboardPlaceUpdate"
+          element={<HostDashboardPlaceUpdate />}
+        />
+        <Route
+          path="/hostDashboardReservationHistory"
+          element={<HostDashboardReservationHistory />}
         />
       </Routes>
       {/* </div> */}
