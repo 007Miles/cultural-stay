@@ -3,7 +3,7 @@ import Loading from '../../components/Food/Loading'
 import { useParams, Link } from 'react-router-dom'
 import { Grid, Button, Container, Typography, Input } from '@mui/material'
 import './sinFood.css'
-import { useGlobalContext } from './context'
+import { useGlobalContext } from '../Restaurants/contextResByFood'
 import axios from 'axios'
 
 const url = 'http://localhost:4000/api/food/'
@@ -14,6 +14,7 @@ const createMarkup = (text) => {
 }
 
 const SingleFood = () => {
+  // const { setSearchTerm } = useGlobalContext()
   const { id } = useParams()
   const [loading, setLoading] = React.useState(false)
   const [food, setFood] = React.useState(null)
@@ -70,6 +71,10 @@ const SingleFood = () => {
     max: 5,
   }
 
+  // const sortRes = () => {
+  //   setSearchTerm(name)
+  // }
+
   return (
     <div>
       <Container className="product-view">
@@ -118,7 +123,12 @@ const SingleFood = () => {
             <Grid container spacing={4}>
               <Grid item xs={12}>
                 <Link to={`/restaurants/by-food/${name}`}>
-                  <Button size="small" color="primary" variant="contained">
+                  <Button
+                    size="small"
+                    color="primary"
+                    variant="contained"
+                    // onClick={sortRes}
+                  >
                     Find Restaurants to taste {name}
                   </Button>
                 </Link>

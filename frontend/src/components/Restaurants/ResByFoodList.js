@@ -1,10 +1,10 @@
 import React from 'react'
 import Restaurant from './Restaurant'
 import Loading from '../Food/Loading'
-import { useGlobalContext } from '../../pages/Restaurants/context'
+import { useGlobalContext } from '../../pages/Restaurants/contextResByFood'
 import '../../components/Food/food.css'
 
-const RestaurantList = () => {
+const ResByFoodList = () => {
   const { restaurant, loading } = useGlobalContext()
 
   console.log(restaurant)
@@ -23,7 +23,7 @@ const RestaurantList = () => {
   return (
     <div>
       <div className="title">
-        <h2>Sri Lankan Restaurants</h2>
+        <h2>Resaturants to look for</h2>
         <div className="underline"></div>
       </div>
       <div className="main_content">{listItems}</div>
@@ -31,4 +31,4 @@ const RestaurantList = () => {
   )
 }
 
-export default RestaurantList
+export default ResByFoodList

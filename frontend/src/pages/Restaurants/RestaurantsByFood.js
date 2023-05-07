@@ -1,9 +1,15 @@
 import React from 'react'
+import { AppProvider } from './contextResByFood'
+import ResByFoodList from '../../components/Restaurants/ResByFoodList'
 
 const RestaurantsByFood = () => {
   return (
     <main>
-      <div>Restaurants by Food</div>
+      <AppProvider>
+        <div>
+          <ResByFoodList />
+        </div>
+      </AppProvider>
     </main>
   )
 }

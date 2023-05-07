@@ -1,5 +1,5 @@
 import React from 'react'
-// import FoodList from '../../components/Food/FoodList'
+import RestaurantList from '../../components/Restaurants/RestaurantList'
 import { AppProvider } from './context'
 
 const Restaurants = () => {
@@ -7,8 +7,7 @@ const Restaurants = () => {
     <main>
       <AppProvider>
         <div>
-          {/* <FoodList /> */}
-          Restaurant page
+          <RestaurantList />
         </div>
       </AppProvider>
     </main>
