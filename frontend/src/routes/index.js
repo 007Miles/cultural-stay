@@ -8,6 +8,10 @@ import AccommodationForm from '../pages/Home/AccommodationForm'
 import Feedback from '../components/FeedBack and Review/Feedback'
 import ErrorPage from '../pages/error'
 import Foods from '../pages/Food/Food'
+import SingleFood from '../pages/Food/SingleFood'
+import RestaurantsByFood from '../pages/Restaurants/RestaurantsByFood'
+import Restaurants from '../pages/Restaurants/Restaurant'
+import SingleRestaurant from '../pages/Restaurants/SingleRestaurant'
 
 const IndexRoutes = () => {
   return (
@@ -23,7 +27,16 @@ const IndexRoutes = () => {
           element={<AccommodationDetails />}
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />
+
         <Route path="/food" element={<Foods />} />
+        <Route path="/food/:id" element={<SingleFood />} />
+
+        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/restaurants/:id" element={<SingleRestaurant />} />
+        <Route
+          path="/restaurants/by-food/:id"
+          element={<RestaurantsByFood />}
+        />
 
         {/* insert all routes above the error route */}
         <Route path="*" element={<ErrorPage />} />
