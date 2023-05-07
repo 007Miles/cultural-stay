@@ -1,7 +1,4 @@
-// const mongoose = require('mongoose')
 import mongoose from 'mongoose'
-// const bcrypt = require('bcryptjs')
-// const jwt = require('jsonwebtoken')
 
 const HostSchema = new mongoose.Schema({
   name: {
@@ -19,11 +16,9 @@ const HostSchema = new mongoose.Schema({
     trim: true,
     unique: true,
   },
-  //   password: {
-  //     type: String,
-  //     required: [true, 'Please provide password'],
-  //     minlength: 6,
-  //   },
+  credentialID: {
+    type: String,
+  },
   address: {
     type: String,
     required: [true, 'Please provide address'],
@@ -45,42 +40,8 @@ const HostSchema = new mongoose.Schema({
   profile_image: {
     type: String,
   },
-  rating: {
-    type: Number,
-    default: 0.0,
-    max: [5, 'rating cannot be higher than 5, {VALUE} is invalid'],
-  },
-  rate_count: {
-    type: Number,
-    default: 0,
-  },
-  rate_aggregate: {
-    type: Number,
-    default: 0.0,
-  },
 })
 
-// SellerSchema.pre('save', async function () {
-//   const salt = await bcrypt.genSalt(10)
-//   this.password = await bcrypt.hash(this.password, salt)
-// })
-
-// SellerSchema.methods.createJWT = function () {
-//   return jwt.sign(
-//     { userId: this._id, name: this.name },
-//     process.env.JWT_SECRET,
-//     {
-//       expiresIn: process.env.JWT_LIFETIME,
-//     }
-//   )
-// }
-
-// SellerSchema.methods.comparePassword = async function (candidatePassword) {
-//   const isMatch = await bcrypt.compare(candidatePassword, this.password)
-//   return isMatch
-// }
-
-// module.exports = mongoose.model('Host', HostSchema)
 const Host = mongoose.model('Host', HostSchema)
 
 export default Host

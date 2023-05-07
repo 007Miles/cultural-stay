@@ -23,8 +23,8 @@ const AccommodationSchema = new mongoose.Schema(
       trim: true,
     },
     availability: {
-      type: Boolean,
-      default: true,
+      type: String,
+      default: 'Available',
     },
     availability_from: {
       type: Date,
@@ -61,7 +61,7 @@ const AccommodationSchema = new mongoose.Schema(
     welcome_type: {
       type: String,
       required: false,
-      trim: true,
+
       enum: {
         values: ['Couple', 'Family', 'Solo', 'Student'],
         message: '{VALUE} is not a valid Type',
@@ -70,12 +70,10 @@ const AccommodationSchema = new mongoose.Schema(
     description: {
       type: String,
       required: [false, 'must provide accommodation description'],
-      trim: true,
     },
     facilities: {
       type: String,
       required: [false, 'must provide accommodation facilities'],
-      trim: true,
     },
 
     createdAt: {
@@ -83,13 +81,17 @@ const AccommodationSchema = new mongoose.Schema(
       default: Date.now(),
     },
     createdBy: {
-      type: String,
-      // ref: 'Host',
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Host',
       required: [false, 'Please provide Host'],
     },
     images: {
       type: [String],
       default: [],
+    },
+    image: {
+      type: String,
+      required: false,
     },
   },
   { timestamps: true }

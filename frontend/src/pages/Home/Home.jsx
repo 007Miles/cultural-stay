@@ -1,20 +1,42 @@
 import React from 'react'
-// import Video from '../../Assets/v1.mp4'
+import Video from '../../Assets/v1.mp4'
+import PlacesList from '../../components/Home/popularPlaces'
+import FoodsList from '../../components/Home/featuredFoods'
+import RestaurantsList from '../../components/Home/featuredRestaurants'
 // import './home.css'
 
 export const Home = () => {
   return (
-    <section className="home">
-      <div className="overlay">
-        {/* <video src={Video} muted autoPlay loop type="video/mp4" className='h-full w-full relative'></video> */}
-        <div>
-          <div>
-            <span className="">Visit Sri Lanka</span>
-            <h1>Learn Our Culture</h1>
-          </div>
+    <div className="">
+      <div className="relative inset-0 overflow-hidden w-screen">
+        <video
+          className="w-screen object-cover"
+          style={{ height: '750px' }}
+          autoPlay
+          muted
+          loop
+          src={Video}
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex flex-col justify-center items-center">
+          <h1 className="text-5xl font-bold text-white">Explore Sri Lanka</h1>
+          <p className="text-lg font-medium text-white mt-2">
+            Discover amazing places to visit and create unforgettable memories
+          </p>
         </div>
       </div>
-    </section>
+      <div className="">
+        <div className="">
+          <PlacesList />
+        </div>
+        <div className="">
+          <FoodsList />
+        </div>
+        <div className="">
+          <RestaurantsList />
+        </div>
+      </div>
+    </div>
   )
 }
 export default Home
