@@ -115,6 +115,8 @@ export default function Feedback() {
                         color="text.primary"
                       >
                         {comment.text}
+                        <br />
+                        <button className="bg-red-600">Delete</button>
                       </Typography>
                     </React.Fragment>
                   }
