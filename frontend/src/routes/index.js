@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Home from '../pages/Home/Home'
 
-import Attractions from '../pages/TouristAttraction/attractions'
+import Attractions from '../pages/TouristAttraction/attractionsPage'
 import Registration from '../pages/Registration/registration'
 import AccommodationHome from '../pages/Accommodation/AccommodationHome.js'
 import AccommodationDetails from '../pages/Accommodation/AccommodationDetails'
@@ -15,6 +15,10 @@ import HostDashboardReservationDetail from '../pages/Host/HostDashboardReservati
 import HostDashboardPlaceUpdate from '../pages/Host/HostDashboardPlaceUpdate.js'
 import HostDashboardReservationHistory from '../pages/Host/HostDashboardReservationHistory.js'
 import AttractionView from '../components/Attractions/attractionView'
+import CreateAttraction from '../components/Attractions/createAttraction'
+import RecommendAttraction from '../components/Attractions/recommendAttraction'
+import AttractionsList from '../components/Attractions/attractionsList'
+import Footer from '../components/Footer/footer'
 
 const IndexRoutes = () => {
   return (
@@ -26,6 +30,9 @@ const IndexRoutes = () => {
         <Route path="/attractions" element={<Attractions />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/attractionView/:id" element={<AttractionView />} />
+        <Route path="/createAttraction" element={<CreateAttraction />} />
+        <Route path="/suggestion" element={<RecommendAttraction />} />
+        <Route path="/AttractionsList" element={<AttractionsList />} />
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/accommodationHome" element={<AccommodationHome />} />
@@ -59,6 +66,7 @@ const IndexRoutes = () => {
           element={<HostDashboardReservationHistory />}
         />
       </Routes>
+      <Footer />
     </div>
   )
 }
