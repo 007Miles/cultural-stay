@@ -63,10 +63,10 @@ const Registration = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form
-        className="max-w-md w-full bg-white rounded-lg shadow-lg p-8"
+        className="w-1/2 bg-white rounded-lg shadow-lg p-8"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl font-bold mb-6">Host Registration</h2>
+        <h2 className="text-2xl font-bold mb-6">Registration</h2>
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
             {error}
@@ -85,7 +85,7 @@ const Registration = () => {
             Name
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="name"
             type="text"
             placeholder="Enter your name"
@@ -101,7 +101,7 @@ const Registration = () => {
             Email
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="email"
             placeholder="Enter your email"
@@ -117,7 +117,7 @@ const Registration = () => {
             Address
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="address"
             type="text"
             placeholder="Enter your address"
@@ -133,7 +133,7 @@ const Registration = () => {
             Phone
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="phone"
             type="tel"
             placeholder="Enter your phone number"
@@ -149,7 +149,7 @@ const Registration = () => {
             Languages
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="languages"
             type="text"
             placeholder="Enter languages (comma separated)"
@@ -165,7 +165,7 @@ const Registration = () => {
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
             placeholder="Enter your password"
@@ -181,7 +181,7 @@ const Registration = () => {
             Confirm Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="confirmPassword"
             type="password"
             placeholder="Confirm your password"
@@ -189,7 +189,7 @@ const Registration = () => {
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center py-10">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"

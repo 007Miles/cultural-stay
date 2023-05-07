@@ -12,8 +12,8 @@ import AttractionView from '../components/Attractions/attractionView'
 
 const IndexRoutes = () => {
   return (
-    <div class="bg-gradient-to-t from-cyan-200 to-[#a6c1ee] min-h-screen">
-      {/* <div class="bg-gradient-to-t from-[#c2fbd3] to-[#a6c1ee] h-screen w-screen"> */}
+    <div>
+      {/* <div class="bg-gradient-to-t from-cyan-200 to-[#a6c1ee] min-h-screen"> */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -29,7 +29,6 @@ const IndexRoutes = () => {
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />
       </Routes>
-      {/* </div> */}
     </div>
   )
 }

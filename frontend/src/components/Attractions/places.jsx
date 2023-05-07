@@ -40,7 +40,7 @@ const PlaceCard = ({ place }) => {
   // const [hovered, setHovered] = React.useState(false);
 
   return (
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-xl hover:shadow-slate-400">
       {/* <a href=`/{place.id}`> */}
       <Link to={`/attractionView/${place.id}`}>
         <img class="rounded-t-lg" src={place.image} alt={place.name} />

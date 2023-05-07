@@ -79,7 +79,7 @@ const AttractionView = () => {
             {place.name}
           </h2>
           {/* {place.images && <Slideshow />} */}
-          <div class="mx-auto w-1/2">
+          <div class="mx-auto w-2/3">
             <ImageGallery
               items={place.images}
               showPlayButton={true}
