@@ -4,6 +4,7 @@ import AccommodationOffer from '../../components/Accommodation/AccommodationOffe
 import ReserveForm from '../../components/Accommodation/ReserveForm.js'
 import { FaKey } from 'react-icons/fa'
 import Feedback from '../../components/FeedBack and Review/Feedback.js'
+import CommentBox from '../../components/FeedBack and Review/CommentBox.js'
 
 const AccommodationDetails = () => {
   const [showModal, setShowModal] = useState(false)
@@ -143,6 +144,14 @@ const AccommodationDetails = () => {
               <div className="mb-6">
                 <div className="font-bold text-2xl  text-left">
                   <Feedback />
+                </div>
+              </div>
+
+              <hr className="border-b border-gray-300 my-8" />
+
+              <div className="mb-6">
+                <div className="font-bold text-2xl  text-left">
+                  <CommentBox />
                 </div>
               </div>
             </div>
