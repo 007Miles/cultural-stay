@@ -1,0 +1,97 @@
+*
+{
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: cursive; */
+}
+
+.page-404
+{
+    padding: 40px 0;
+    background: #fff;
+    font-family: 'Poppins';
+    margin: auto;
+}
+
+.page-404 img
+{
+    width: 100%;
+}
+
+.background-404
+{
+    background: url('./404-error.gif');
+    height: 400px;
+    background-position: center;
+    margin: auto;
+}
+.h1h {
+    font-size: 80px;
+    color: red;
+    -webkit-text-fill-color: red; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.h3h {
+    font-size: 40px;
+}
+
+.paragraph {
+    color: gray;
+}
+
+.content-box-404
+{
+    margin-top: -50px;
+}
+
+.buttonx {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: rgb(33,190,33);
+    display: inline-block;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    box-shadow: 0 4px #999;
+    
+}
+
+.buttonx:hover {background-color: #3e8e41}
+
+.buttonx:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.buttonx span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .buttonx span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .buttonx:hover span {
+    padding-right: 25px;
+  }
+  
+  .buttonx:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
