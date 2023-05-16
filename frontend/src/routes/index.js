@@ -37,7 +37,7 @@ const IndexRoutes = () => {
         <Route path="feedback" element={<Feedback />} />
         <Route path="/accommodationHome" element={<AccommodationHome />} />
         <Route
-          path="/accommodationDetails"
+          path="/accommodationDetails/:id"
           element={<AccommodationDetails />}
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />

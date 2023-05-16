@@ -8,6 +8,7 @@ import {
   getAllAccommodation,
   updateAccommodation,
   getAccommodationByHost,
+  getAccommodation,
 } from '../../controller/accommodation/accommodation.js'
 
 // middleware for routes
@@ -22,5 +23,7 @@ router
   .patch(updateAccommodation)
   .delete(deleteaccommodation)
   .get(getAccommodationByHost)
+
+router.route('/byid/:id').get(getAccommodation)
 
 export default router

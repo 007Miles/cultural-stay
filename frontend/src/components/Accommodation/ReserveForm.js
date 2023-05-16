@@ -32,7 +32,7 @@ const ReserveForm = () => {
     axios
       .post('http://localhost:4000/api/accommodationReserve', newReservation)
       .then(() => {
-        console.log('Success')
+        console.log('Success', newReservation)
       })
       .catch((err) => {
         console.log('error')
