@@ -153,7 +153,7 @@ export const getAllRestaurants = async (req, res) => {
   }
 
   if (food) {
-    queryObject.food = { $regex: `^${food}$`, $options: 'i' }
+    queryObject.food = { $regex: food, $options: 'i' }
   }
 
   if (numericFilters) {
