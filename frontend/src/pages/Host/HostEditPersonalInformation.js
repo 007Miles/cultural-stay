@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const editPersonalInformation = () => {
+const EditPersonalInformation = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -94,7 +94,7 @@ const editPersonalInformation = () => {
                 </div>
               </div>
               <div className="flex justify-end mb-4 mt-5">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
                   <a class="nav-link" href="/hostDashboardProfile">
                     Cancel
                   </a>
@@ -111,4 +111,4 @@ const editPersonalInformation = () => {
   )
 }
 
-export default editPersonalInformation
+export default EditPersonalInformation

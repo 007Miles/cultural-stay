@@ -126,7 +126,7 @@ const SingleFood = () => {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={12}>
-                <Link to={`/restaurants/by-food/${name}`}>
+                <Link to={`/restaurants/by-food/${name}`} state={{ food }}>
                   <Button
                     size="small"
                     color="primary"

@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const HostDashboardPlaceUpdate = () => {
+  const [accommodationData, setAccommodationData] = useState(null)
+
+  const hostId = '64525da5476b8cab8b1e6c08'
+
+  useEffect(() => {
+    const fetchAccommodationData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/accommodation/${hostId}`
+        )
+        console.log('Host data received:', response.data.accommodation)
+        setAccommodationData(response.data.accommodation)
+      } catch (error) {
+        console.error('Error fetching accommodation data:', error)
+      }
+    }
+
+    fetchAccommodationData()
+  }, [])
+
+  if (!accommodationData) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -47,14 +72,12 @@ const HostDashboardPlaceUpdate = () => {
                   <dl className="sm:divide-y sm:divide-gray-200">
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                       <dt className="text-base font-medium text-gray-500">
-                        Accommodation Name
+                        Accommodation Name{accommodationData.area}
                       </dt>
                       <input
                         type="String"
                         readOnly
-                        value={
-                          'Punchi Doowa, Private Mud House Near Kamburugamuwa'
-                        }
+                        value={accommodationData.name}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
