@@ -55,7 +55,7 @@ const IndexRoutes = () => {
 
         <Route path="/accommodationHome" element={<AccommodationHome />} />
         <Route
-          path="/accommodationDetails"
+          path="/accommodationDetails/:id"
           element={<AccommodationDetails />}
         />
         <Route path="/accommodationForm" element={<AccommodationForm />} />
@@ -65,7 +65,7 @@ const IndexRoutes = () => {
           element={<HostDashboardProfile />}
         />
         <Route
-          path="/hostEditPersonalInformation"
+          path="/hostEditPersonalInformation/:id"
           element={<HostEditPersonalInformation />}
         />
         <Route
@@ -73,7 +73,7 @@ const IndexRoutes = () => {
           element={<HostDashboardReservationAll />}
         />
         <Route
-          path="/hostDashboardReservationDetail"
+          path="/hostDashboardReservationDetail/:id"
           element={<HostDashboardReservationDetail />}
         />
         <Route

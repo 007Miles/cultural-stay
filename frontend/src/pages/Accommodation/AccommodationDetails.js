@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import AccommodationOffer from '../../components/Accommodation/AccommodationOffer.js'
 import ReserveForm from '../../components/Accommodation/ReserveForm.js'
@@ -8,6 +8,8 @@ import RatingBox from '../../components/FeedBack and Review/RatingBox.js'
 import CommentBox from '../../components/FeedBack and Review/CommentBox.js'
 import ratingLayout from '../../components/FeedBack and Review/ratingLayout.js'
 import useAuth from '../../hooks/useAuth.js'
+import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const amenitiesData = [
   { name: 'Kitchen', icon: '🍴' },
@@ -24,8 +26,14 @@ const AmenityItem = ({ name, icon }) => (
 )
 
 const AccommodationDetails = () => {
+  const [accommodation, setAccommodation] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const { auth } = useAuth()
+
+  const location = useLocation()
+  console.log(location) //testing for function in console getting ID
+  const id = location.pathname.split('/')[2]
+  console.log(id) //testing for function in console and splitting ID
 
   const openModal = () => {
     setShowModal(true)
@@ -35,22 +43,32 @@ const AccommodationDetails = () => {
     setShowModal(false)
   }
 
+  useEffect(() => {
+    // Fetch accommodation details from the API
+    fetch(`http://localhost:4000/api/accommodation/byid/${id}`)
+      .then((response) => response.json())
+      .then((data) => setAccommodation(data.accommodation))
+      .catch((error) => console.error(error))
+  }, [accommodation])
+
+  if (!accommodation) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div>
       <div className=" mx-64 my-14">
         <div className="mb-6">
           <div className="font-bold text-2xl  text-left">
-            Punchi Doowa, Private Mud House Near Kamburugamuwa
+            {accommodation.name}
           </div>
-          <p className="text-sm text-left underline">
-            Kamburugamuwa, Southern Province, Sri Lanka
-          </p>
+          <p className="text-sm text-left underline">{accommodation.address}</p>
         </div>
         {/* -------------------------------------------------------------------------Images----------------------------------------------------------------------------- */}
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2">
             <img
-              src="https://res.cloudinary.com/itp03/image/upload/v1683392797/afAccommodation/7d864e7d052952180da8ac4be17856d7_olt66u.jpg"
+              src={accommodation.images[0]}
               alt="Large Image"
               className="w-full rounded-l-lg mr-4 h-[335px]"
             />
@@ -59,14 +77,14 @@ const AccommodationDetails = () => {
             <div className="w-full md:w-1/2 flex flex-wrap">
               <div className="w-1/2 md:w-full">
                 <img
-                  src="https://res.cloudinary.com/itp03/image/upload/v1683383259/afAccommodation/99edf8eed5f40019f56a42aac21afa51_wdcjng.jpg"
+                  src={accommodation.images[1]}
                   alt="Small Image 1"
                   className="w-full mx-2 mb-2"
                 />
               </div>
               <div className="w-1/2 md:w-full">
                 <img
-                  src="https://res.cloudinary.com/itp03/image/upload/v1683392797/afAccommodation/a73072231ca3becad88f0c4271cafaaa_elkici.jpg"
+                  src={accommodation.images[2]}
                   alt="Small Image 2"
                   className="w-full mx-2"
                 />
@@ -75,14 +93,14 @@ const AccommodationDetails = () => {
             <div className="w-full md:w-1/2 flex flex-wrap">
               <div className="w-1/2 md:w-full">
                 <img
-                  src="https://res.cloudinary.com/itp03/image/upload/v1683383259/afAccommodation/99307d2f425003a5f985656c69901189_ao0ol9.jpg"
+                  src={accommodation.images[3]}
                   alt="Small Image 3"
                   className="w-full rounded-tr-lg ml-4 mb-2"
                 />
               </div>
               <div className="w-1/2 md:w-full">
                 <img
-                  src="https://res.cloudinary.com/itp03/image/upload/v1683392869/afAccommodation/2de4f2aecb73972ab4f2f3a54c439363_jckoge.jpg"
+                  src={accommodation.images[4]}
                   alt="Small Image 4"
                   className="w-full rounded-br-lg ml-4 "
                 />
@@ -99,7 +117,10 @@ const AccommodationDetails = () => {
                 Entire house hosted by Hettie
               </div>
               <p className="text-sm text-left ">
-                4 guests | 1 bedroom | 2 bed | 1 bath
+                {accommodation.no_of_guests_welcome} guests |{' '}
+                {accommodation.no_of_bedrooms} bedroom |{' '}
+                {accommodation.no_of_beds} bed | {accommodation.no_of_washrooms}{' '}
+                bath
               </p>
               {/* <div className="  flex justify-end">
                 <img
@@ -116,7 +137,7 @@ const AccommodationDetails = () => {
                   <div className="flex items-center mt-4">
                     <FaKey className="text-xl text-gray-700" />
                     <div className="text-gray-700 font-bold text-lg ml-4">
-                      Families are wellcome
+                      {accommodation.welcome_type} are wellcome
                     </div>
                     <FaKey className="text-xl text-gray-700 ml-10" />
                     <div className="text-gray-700 font-bold text-lg ml-4">
@@ -147,46 +168,7 @@ const AccommodationDetails = () => {
                 <div className="font-bold text-2xl  text-left">
                   <div className="flex items-center mt-4">
                     <div className="text-gray-700  text-base ml-4 text-justify">
-                      Discover the authentic charm of Sri Lanka with a unique
-                      village home stay experience. Immerse yourself in the
-                      serene beauty of the countryside, where lush green paddy
-                      fields stretch as far as the eye can see, and traditional
-                      mud houses stand as proud reminders of the country's rich
-                      heritage.
-                      <br />
-                      <br />
-                      During your village home stay, you'll be welcomed with
-                      genuine warmth and hospitality by local families who are
-                      eager to share their culture, customs, and way of life
-                      with you. Wake up to the sound of birdsong and the gentle
-                      rustle of palm leaves swaying in the breeze. Savor
-                      traditional Sri Lankan dishes made with fresh, organic
-                      ingredients sourced directly from the family's own garden
-                      or the nearby market.
-                      <br />
-                      <br />
-                      Take part in daily activities such as cooking classes,
-                      where you can learn the secrets behind mouthwatering
-                      curries, fragrant rice dishes, and flavorful chutneys.
-                      Explore the surrounding countryside on foot or by bicycle,
-                      taking in the vibrant colors of the landscape and
-                      witnessing the age-old techniques used by farmers to
-                      cultivate their land.
-                      <br />
-                      <br />
-                      Experience the simple pleasures of village life, such as
-                      sharing a cup of tea with the neighbors or joining in a
-                      game of cricket with the local children. As the sun sets,
-                      gather around a bonfire under a starlit sky to listen to
-                      captivating stories passed down through generations or
-                      enjoy the enchanting rhythms of traditional Sri Lankan
-                      music and dance.
-                      <br />
-                      <br />A Sri Lankan village home stay is more than just a
-                      place to rest your head; it's an opportunity to forge
-                      lasting connections with the people and the land, and to
-                      leave with a newfound appreciation for the country's rich
-                      cultural tapestry.
+                      {accommodation.description}
                     </div>
                   </div>
                   <div className="mt-4">
@@ -257,7 +239,7 @@ const AccommodationDetails = () => {
             <div className="max-w-sm md:max-w-sm rounded-xl overflow-hidden shadow-xl bg-white h-[320px] w-[350px] mr-0 ml-16 ">
               <div className="px-6 py-2">
                 <div className="font-bold text-xl  text-left mt-4 mb-5">
-                  Rs.4500.00/night
+                  Rs.{accommodation.price_per_night}.00/night
                 </div>
 
                 <div className="rounded-lg overflow-hidden border border-gray-200  mb-5">
@@ -276,12 +258,16 @@ const AccommodationDetails = () => {
                       <tr>
                         <td className="px-6 py-4 whitespace-no-wrap">
                           <div className="text-xs leading-5 text-gray-900">
-                            2023-10-10
+                            {new Date(accommodation.availability_from)
+                              .toISOString()
+                              .substring(0, 10)}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap">
                           <div className="text-xs leading-5 text-gray-900">
-                            2023-10-15
+                            {new Date(accommodation.availability_to)
+                              .toISOString()
+                              .substring(0, 10)}
                           </div>
                         </td>
                       </tr>
@@ -291,8 +277,14 @@ const AccommodationDetails = () => {
 
                 <p className="text-gray-700 text-sm text-left">
                   <span>Status : </span>
-                  <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-xs font-semibold text-white">
-                    Available
+                  <span
+                    className={`inline-block bg-green-500 rounded-full px-3 py-1 text-xs font-semibold text-white ${
+                      accommodation.availability === 'Available'
+                        ? 'bg-green-500'
+                        : 'bg-red-500 '
+                    }`}
+                  >
+                    {accommodation.availability}
                   </span>
                 </p>
               </div>

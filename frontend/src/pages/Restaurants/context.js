@@ -2,18 +2,20 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useCallback } from 'react'
 
 const search = 'http://localhost:4000/api/restaurants?name='
+const area = '&area='
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
+  const [searchPro, setSearchPro] = useState('')
   const [restaurant, setRestaurant] = useState([])
 
   const fetchRestaurants = useCallback(async () => {
     setLoading(true)
     try {
-      const response = await fetch(`${search}${searchTerm}`)
+      const response = await fetch(`${search}${searchTerm}${area}${searchPro}`)
       const data = await response.json()
       // const data = response
       const { restaurant } = data
@@ -57,10 +59,10 @@ const AppProvider = ({ children }) => {
       console.log(error)
       setLoading(false)
     }
-  }, [searchTerm])
+  }, [searchTerm, searchPro])
   useEffect(() => {
     fetchRestaurants()
-  }, [searchTerm, fetchRestaurants])
+  }, [searchTerm, searchPro, fetchRestaurants])
 
   return (
     <AppContext.Provider
@@ -68,6 +70,7 @@ const AppProvider = ({ children }) => {
         loading,
         restaurant,
         setSearchTerm,
+        setSearchPro,
       }}
     >
       {children}

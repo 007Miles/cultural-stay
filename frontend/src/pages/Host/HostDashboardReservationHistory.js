@@ -1,33 +1,35 @@
-import React, { useState } from 'react'
-
-const reservations = [
-  {
-    id: 1,
-    name: 'John Doe',
-    dateFrom: '2023-05-10',
-    dateTo: '2023-05-15',
-    phoneNo: '52145214125',
-    languages: 'English, French',
-    country: 'UN',
-    passengers: '2',
-    email: 'john@gmail.com',
-    status: 'pending',
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    dateFrom: '2023-06-01',
-    dateTo: '2023-06-07',
-    phoneNo: '54245214525',
-    languages: 'Spanish',
-    country: 'Spain',
-    passengers: '4',
-    email: 'jane@gmail.com',
-    status: 'Accepted',
-  },
-]
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const HostDashboardReservationHistory = () => {
+  const [reservationDetails, setReservationDetails] = useState([])
+
+  useEffect(() => {
+    function fetchData() {
+      axios
+        .get('http://localhost:4000/api/accommodationReserve')
+        .then((res) => {
+          if (Array.isArray(res.data.reservation)) {
+            setReservationDetails(res.data.reservation)
+          } else {
+            console.error('Received data is not an array:', res.data)
+          }
+          console.log('your data has been received')
+          console.log(res.data.reservation)
+
+          setReservationDetails(res.data.reservation) //using set function to retrieve data and display on website
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+    fetchData()
+  }, [reservationDetails])
+
+  if (!reservationDetails) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -123,41 +125,47 @@ const HostDashboardReservationHistory = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {reservations.map((reservation) => (
+                  {reservationDetails.map((reservation) => (
                     <tr key={reservation.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
-                          {reservation.name}
+                          {reservation.rp_name}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.dateFrom} - {reservation.dateTo}
+                          {new Date(reservation.reserve_from)
+                            .toISOString()
+                            .substring(0, 10)}{' '}
+                          -{' '}
+                          {new Date(reservation.reserve_to)
+                            .toISOString()
+                            .substring(0, 10)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.phoneNo}
+                          {reservation.rp_phone}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.languages}
+                          {reservation.rp_languages}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.country}
+                          {reservation.rp_country}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.passengers}
+                          {reservation.rp_noofPassengers}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.email}
+                          {reservation.rp_email}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

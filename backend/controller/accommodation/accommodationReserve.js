@@ -32,7 +32,7 @@ export const addReserve = asyncWrapper(async (req, res) => {
 // })
 // -------------------------------------------------------------------------------------------
 
-// This is used to delete single item from the cart-------------------------------------------
+// This is used to delete single item -------------------------------------------
 export const deletereservation = asyncWrapper(async (req, res) => {
   const { id: reserveID } = req.params
   const reservation = await AccommodationReserve.findOneAndDelete({
@@ -72,8 +72,8 @@ export const updateReservationStatus = async (req, res, next) => {
   }
 }
 
-// Get reservation by hostId and status equal to pendingReservation
-export const getPendingReservationsByHostId = async (req, res) => {
+// Get reservation by hostId and status equal to pending Reservation
+export const getPendingReservationsByHostId = async (req, res, next) => {
   try {
     const { hostId } = req.params
 
@@ -98,3 +98,16 @@ export const getPendingReservationsByHostId = async (req, res) => {
       .json({ message: 'Error fetching pending reservations' })
   }
 }
+
+//get a accommodation by id
+export const getReservationByID = asyncWrapper(async (req, res, next) => {
+  const { id: reservationID } = req.params
+  const reservation = await AccommodationReserve.findOne({ _id: reservationID })
+
+  if (!reservation) {
+    return next(
+      createCustomError(`No reservation with this id: ${reservationID}`, 404)
+    )
+  }
+  res.status(200).json({ reservation })
+})

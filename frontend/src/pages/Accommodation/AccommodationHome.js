@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const AccommodationHome = () => {
   const [culturalStayHotels, setCulturalStayHotels] = useState([])
@@ -51,14 +52,32 @@ const AccommodationHome = () => {
               <div class="text-sm text-left">{accommodation.address}</div>
               <div class="flex justify-between items-center">
                 <p class="text-gray-700 text-sm text-left">
-                  Stay with {accommodation.createdBy}
+                  Stay with
+                  {/* {accommodation.createdBy} */}
                   <br />
-                  Available : 2023-05-04 - 2023-05-09
+                  Available :{' '}
+                  {new Date(accommodation.availability_from)
+                    .toISOString()
+                    .substring(0, 10)}{' '}
+                  -{' '}
+                  {new Date(accommodation.availability_to)
+                    .toISOString()
+                    .substring(0, 10)}
                 </p>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded-full flex items-center">
-                  <a class="nav-link" href="/accommodationDetails">
+                  <a
+                    class="nav-link"
+                    href={`/accommodationDetails/${accommodation._id}`}
+                  >
                     <FaArrowRight />
                   </a>
+                  {/* 
+                  <Link // Use Link instead of <a> tag
+                    className="nav-link"
+                    to={`/accommodationDetails/${accommodation._id}`} // Specify the route path
+                  >
+                    <FaArrowRight />
+                  </Link> */}
                 </button>
               </div>
             </div>
