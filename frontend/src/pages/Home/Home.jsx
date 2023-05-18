@@ -3,6 +3,7 @@ import Video from '../../Assets/v1.mp4'
 import PlacesList from '../../components/Home/popularPlaces'
 import FoodsList from '../../components/Home/featuredFoods'
 import RestaurantsList from '../../components/Home/featuredRestaurants'
+// import HomeReview from '../../components/HomeReview/HomeReview.js'
 // import './home.css'
 
 export const Home = () => {

@@ -89,7 +89,7 @@ export const getAllFood = async (req, res) => {
 
   if (restaurants) {
     // queryObject.restaurants = { $eq: restaurants } // case-sensitive match
-    queryObject.restaurants = { $regex: `^${restaurants}$`, $options: 'i' }
+    queryObject.restaurants = { $regex: restaurants, $options: 'i' }
   }
 
   console.log(queryObject)

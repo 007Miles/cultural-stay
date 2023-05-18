@@ -24,7 +24,7 @@ function HomeReview() {
     return () => clearInterval(slider)
   }, [index])
   return (
-    <section className="section">
+    <section className="sections">
       <div className="title">
         <h2>reviews on Cultural Stay</h2>
         <div className="underline"></div>

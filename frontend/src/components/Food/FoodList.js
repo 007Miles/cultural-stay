@@ -14,7 +14,18 @@ const FoodList = () => {
     return <Loading />
   }
   if (food.length < 1) {
-    return <h2 className="section-title">No Food Available</h2>
+    return (
+      <div>
+        <div className="title">
+          <h2>Sri Lankan Food</h2>
+          <div className="underline"></div>
+        </div>
+        <div class="mt-[50px]">
+          <SearchForm />
+        </div>
+        <h2 className="section-title">No Food Available</h2>
+      </div>
+    )
   }
 
   const listItems = food.map((item) => <Food key={item.id} {...item} />)

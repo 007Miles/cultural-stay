@@ -66,7 +66,7 @@ const SearchFormRes = () => {
               ref={searchValue}
               //   onChange={searchRestaurant}
               class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-[#0092FB] focus:border-[#0092FB] dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-[#0092FB]"
-              placeholder="Search Products..."
+              placeholder="Search Sri Lankan Restaurants..."
               required
             ></input>
             <button
