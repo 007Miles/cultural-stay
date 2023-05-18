@@ -21,7 +21,7 @@ export default function Feedback() {
       created: '2023-05-03T18:25:36.468Z',
       postedBy: 'Eva',
       image_url:
-        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg',
+        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432593/cld-sample.jpg',
       _id: '6452a8448540665498e29f0c',
     },
     {
@@ -29,7 +29,7 @@ export default function Feedback() {
       created: '2023-05-03T19:06:20.807Z',
       postedBy: 'Evelyn',
       image_url:
-        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg',
+        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432577/samples/bike.jpg',
       _id: '6452b1c5f550a3c4c7d30f0b',
     },
     {
@@ -37,7 +37,7 @@ export default function Feedback() {
       created: '2023-05-03T19:06:20.807Z',
       postedBy: 'Alessandra',
       image_url:
-        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg',
+        'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432577/samples/people/boy-snow-hoodie.jpg',
       _id: '6452b1c5f550a3c4c7d30f0b',
     },
   ]
@@ -116,13 +116,19 @@ export default function Feedback() {
                       >
                         {comment.text}
                         <br />
-                        <button className="bg-red-600">Delete</button>
+                        {comment.postedBy === 'Eva' ? (
+                          <button class="bg-transparent hover:bg-red-500 text-black-700 font-semibold hover:text-white mt-2 px-4 border border-red-700 hover:border-transparent rounded">
+                            Delete
+                          </button>
+                        ) : (
+                          ''
+                        )}
                       </Typography>
                     </React.Fragment>
                   }
                 />
               </ListItem>
-              <Divider variant="inset" component="li" />
+              {/* <Divider variant="inset" component="li" /> */}
             </Grid>
           </>
         ))}

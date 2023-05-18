@@ -8,7 +8,7 @@ export default function CommentBox() {
         <div class="flex flex-wrap -mx-3 mb-6">
           <Avatar
             alt="User"
-            src="https://res.cloudinary.com/dtktpemb7/image/upload/v1683432575/samples/people/smiling-man.jpg"
+            src="https://res.cloudinary.com/dtktpemb7/image/upload/v1683432593/cld-sample.jpg"
           />
           <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">
             HI! Eva, What do you think about this place?

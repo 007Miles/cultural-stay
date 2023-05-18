@@ -20,12 +20,16 @@ import CreateAttraction from '../components/Attractions/createAttraction'
 import RecommendAttraction from '../components/Attractions/recommendAttraction'
 import AttractionsList from '../components/Attractions/attractionsList'
 import Footer from '../components/Footer/footer'
+import Login from '../components/login/login'
+import AdminRoutes from './adminRoutes'
 
 const IndexRoutes = () => {
   return (
     <div>
+      <AdminRoutes />
       {/* <div class="bg-gradient-to-t from-cyan-200 to-[#a6c1ee] min-h-screen"> */}
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/attractions" element={<Attractions />} />
@@ -37,6 +41,8 @@ const IndexRoutes = () => {
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/login" element={<Login />} />
+
         <Route path="/accommodationHome" element={<AccommodationHome />} />
         <Route
           path="/accommodationDetails"

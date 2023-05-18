@@ -9,7 +9,7 @@ export default function RatingBox() {
       {' '}
       <div className="max-w-sm md:max-w-sm rounded-xl overflow-hidden shadow-lg bg-white h-[250px] w-[350px] mr-0 ml-16 ">
         <div className="px-6 py-2">
-          <div className="font-bold text-lg mt-4 mb-5  text-center">
+          <div className="font-bold text-xl mt-4 mb-5  text-center">
             Leave us a Rating..
           </div>
 

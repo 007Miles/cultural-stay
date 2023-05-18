@@ -3,6 +3,9 @@ import { FaArrowRight } from 'react-icons/fa'
 import AccommodationOffer from '../../components/Accommodation/AccommodationOffer.js'
 import ReserveForm from '../../components/Accommodation/ReserveForm.js'
 import { FaKey } from 'react-icons/fa'
+import Feedback from '../../components/FeedBack and Review/Feedback.js'
+import RatingBox from '../../components/FeedBack and Review/RatingBox.js'
+import CommentBox from '../../components/FeedBack and Review/CommentBox.js'
 
 const amenitiesData = [
   { name: 'Kitchen', icon: '🍴' },
@@ -220,6 +223,23 @@ const AccommodationDetails = () => {
                 />
                 <h1 className="text-lg font-medium">Hosted by Hettie</h1>
               </div>
+
+              {/* //feedback and review */}
+              <hr className="border-b border-gray-300 my-8" />
+
+              <div className="mb-6">
+                <div className="font-bold text-2xl  text-left">
+                  <Feedback />
+                </div>
+              </div>
+
+              <hr className="border-b border-gray-300 my-8" />
+
+              <div className="mb-6">
+                <div className="font-bold text-2xl  text-left">
+                  <CommentBox />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -274,6 +294,9 @@ const AccommodationDetails = () => {
                   Reserve
                 </button>
               </div>
+            </div>
+            <div className="mt-4">
+              <RatingBox />
             </div>
           </div>
         </div>

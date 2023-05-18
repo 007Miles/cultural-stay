@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react'
 import Video from '../../Assets/v1.mp4'
-import AccommodationHome from '../Home/AccommodationHome'
-import PlacesList from '../../components/Attractions/places'
+import AccommodationHome from '../Accommodation/AccommodationHome'
+import PlacesList from '../../components/Attractions/attractions'
 import { FaArrowRight } from 'react-icons/fa'
+import Rating from '@mui/material/Rating'
 
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -44,50 +45,66 @@ export default function Search() {
 
   const culturalStayHotels = [
     {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
+      name: 'Punchi Doowa',
+      location: 'Kamburugamuwa, Southern Province',
       host: 'Kasun',
       dates: 'April 5-10',
+      rating: 4.3,
       price: 'Rs.2500.00/night',
       image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
+        'https://res.cloudinary.com/itp03/image/upload/v1683406148/afAccommodation/uwleeyo8tbaaohb0r6x9.jpg',
     },
     {
-      name: 'Double Room',
+      name: 'Full house - Kabalana Ahangama',
       location: 'Ahangama, Sri Lanka',
       host: 'Kasun',
       dates: 'April 5-10',
+      rating: 4.5,
       price: 'Rs.2500.00/night',
       image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
+        'https://res.cloudinary.com/itp03/image/upload/v1683444012/afAccommodation/aq5uexkouddy6sfbklxm.jpg',
     },
     {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
+      name: 'Sigiriya Rock Fortress',
+      location: 'Sigiriya, Sri Lanka',
       host: 'Kasun',
       dates: 'April 5-10',
+      rating: 4.8,
       price: 'Rs.2500.00/night',
       image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
+        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683242604/afPlaces/bc9o44xyv2d8dpxjtztw.jpg',
     },
     {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
+      name: 'Milky Way',
+      location: 'Negombo, Sri Lanka',
       host: 'Kasun',
       dates: 'April 5-10',
+      rating: 4.1,
       price: 'Rs.2500.00/night',
       image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
+        'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683387266/afRestaurant/pcgwmxri1lm0fvjesiv5.jpg',
     },
     {
-      name: 'Double Room',
-      location: 'Ahangama, Sri Lanka',
+      name: 'Green Restaurant',
+      location: 'Colombo 03, Sri Lanka',
       host: 'Kasun',
       dates: 'April 5-10',
+      rating: 4.7,
       price: 'Rs.2500.00/night',
       image:
-        'https://res.cloudinary.com/itp03/image/upload/v1683166941/afAccommodation/Pink_Flower_PNG_Transparent_Clipart_b3kppb.png',
+        'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683383718/afRestaurant/ucvfk6bmokrmg4lbr9uf.jpg',
     },
+    {
+      name: 'Bastille Restaurant',
+      location: 'Bastille Restaurant, Sri Lanka',
+      host: 'Kasun',
+      dates: 'April 5-10',
+      rating: 4.5,
+      price: 'Rs.2500.00/night',
+      image:
+        'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683457661/afRestaurant/csj4iakfiwvll5rdfnl4.jpg',
+    },
+
     // Add more hotel objects here
   ]
 
@@ -453,7 +470,7 @@ export default function Search() {
                       {culturalStayHotels.map((hotel, index) => (
                         <div
                           key={index}
-                          className="max-w-sm md:max-w-sm rounded-xl overflow-hidden shadow-lg bg-white h-[320px] w-[350px] mx-2 my-2 md:w-1/4"
+                          className="max-w-sm md:max-w-sm rounded-xl overflow-hidden shadow-lg bg-white h-[350px] w-[350px] mx-2 my-2 md:w-1/4"
                         >
                           <img
                             className="w-full h-32 md:h-48 object-cover"
@@ -467,11 +484,16 @@ export default function Search() {
                             <div className="text-sm text-left">
                               {hotel.location}
                             </div>
-                            <p className="text-gray-700 text-sm text-left">
-                              Stay with {hotel.host}
+                            <p className="text-gray-700 text-sm text-left mt-1">
+                              <span className="inline-block flex">
+                                <Rating defaultValue={1} max={1} />
+                                <span className="ml-2 flex-auto font-semibold">
+                                  {hotel.rating}
+                                </span>
+                              </span>
                             </p>
                           </div>
-                          <div className="px-6 pt-2 pb-2">
+                          <div className="px-6 pb-2">
                             <span className="inline-block flex justify-end ">
                               <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 py-2 rounded-full flex items-center ">
                                 <FaArrowRight />
