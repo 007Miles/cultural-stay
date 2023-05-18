@@ -73,7 +73,7 @@ const SingleFood = () => {
             src={image}
           />
           <div class="border-b border-gray-200 pb-6 mt-[50px]">
-            <h1 class="mt-[30px] lg:text-3xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
+            <h1 class="mt-[30px] mb-[30px] lg:text-3xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
               {name} ({sinhala_name})
             </h1>
             <div class="mt-[20px] text-gray-500 dark:text-white">

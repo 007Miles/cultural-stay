@@ -14,7 +14,18 @@ const RestaurantList = () => {
     return <Loading />
   }
   if (restaurant.length < 1) {
-    return <h2 className="section-title">No Restaurants Available</h2>
+    return (
+      <div>
+        <div className="title">
+          <h2>Sri Lankan Restaurants</h2>
+          <div className="underline"></div>
+        </div>
+        <div class="mt-[50px]">
+          <SearchFormRes />
+        </div>
+        <h2 className="section-title">No Restaurants Available</h2>
+      </div>
+    )
   }
 
   const listItems = restaurant.map((item) => (
