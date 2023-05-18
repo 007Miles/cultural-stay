@@ -104,7 +104,9 @@ const Navbar = () => {
               )
             })}
             <li key={7}>
-              <Link to="/accommodationDetails">test</Link>
+              <Link to="/accommodationDetails/6456bd46925829cfd2eebb02">
+                test
+              </Link>
             </li>
           </ul>
         </div>

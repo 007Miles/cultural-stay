@@ -1,8 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Rating from '@mui/material/Rating'
+import useAuth from '../../hooks/useAuth'
+import axios from 'axios'
 
-export default function RatingBox() {
+export default function RatingBox({ id }) {
   const [value, setValue] = useState(4)
+  const [comments, setComments] = useState([])
+  const { auth } = useAuth()
+  const [rating, setRating] = useState()
+
+  useEffect(() => {
+    async function getComments() {
+      await axios
+        .get(`http://localhost:4000/api/feedback/${id}`)
+        .then((res) => {
+          setComments(res.data.result.ratings_list)
+          console.log(comments)
+          setRating(comments?.find((item) => item.postedBy === auth?.user))
+          // alert(rating)
+          setValue(parseInt(rating?.val))
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+
+    getComments()
+  }, [comments])
 
   return (
     <div>
@@ -26,7 +50,10 @@ export default function RatingBox() {
           </div>
         </div>
         <div className="px-6 pt-2 pb-2 text-left">
-          <button className="w-full p-2 bg-yellow-600 text-white font-semibold rounded hover:bg-yellow-700">
+          <button
+            className="w-full p-2 bg-yellow-600 text-white font-semibold rounded hover:bg-yellow-700"
+            onClick={() => alert(rating.val)}
+          >
             Rate
           </button>
         </div>

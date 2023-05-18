@@ -298,7 +298,11 @@ const AccommodationDetails = () => {
               </div>
             </div>
             <div className="mt-4">
-              {auth?.user ? <RatingBox /> : <div></div>}
+              {auth?.user ? (
+                <RatingBox id={'6456bd46925829cfd2eebb02'} />
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
         </div>
