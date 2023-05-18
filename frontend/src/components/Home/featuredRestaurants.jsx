@@ -5,8 +5,7 @@ const restaurants = [
   {
     id: 1,
     name: 'Milky Way Restaurant',
-    description:
-      'No.01 Restaurant in Sri Lanka',
+    description: 'No.01 Restaurant in Sri Lanka',
     address: 'Gal Oya National Park, Ampara, Sri Lanka',
     images: [
       'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683387266/afRestaurant/pcgwmxri1lm0fvjesiv5.jpg',
@@ -18,8 +17,7 @@ const restaurants = [
   {
     id: 2,
     name: 'Bastille Restaurant',
-    description:
-      'Sothern food seconds to none',
+    description: 'Sothern food seconds to none',
     address: 'Delft Island, Jaffna, Sri Lanka',
     images: [
       'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683457661/afRestaurant/csj4iakfiwvll5rdfnl4.jpg',
@@ -31,8 +29,7 @@ const restaurants = [
   {
     id: 3,
     name: 'Prestige Restaurant',
-    description:
-      'Experience the Sri Lankan magic',
+    description: 'Experience the Sri Lankan magic',
     address: 'Nilaveli, Trincomalee, Sri Lanka',
     images: [
       'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683457897/afRestaurant/fhkr2gnhqnozqi44dl2l.jpg',
@@ -44,8 +41,7 @@ const restaurants = [
   {
     id: 4,
     name: 'Royal Restaurant',
-    description:
-      'Come and enjoy a luxerious meal with us',
+    description: 'Come and enjoy a luxerious meal with us',
     address: 'Ritigala, Anuradhapura, Sri Lanka',
     images: [
       'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683458233/afRestaurant/vxpqcg3bljphupeiqzvx.jpg',
