@@ -1,6 +1,37 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 const EditPersonalInformation = () => {
+  const [hostData, setHostData] = useState(null)
+
+  const hostId = '64525da5476b8cab8b1e6c08'
+
+  const location = useLocation()
+  console.log(location) //testing for function in console getting ID
+  const id = location.pathname.split('/')[2]
+  console.log(id) //testing for function in console and splitting ID
+
+  useEffect(() => {
+    const fetchHostData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/hostLocal/${id}`
+        )
+        console.log('Host data received:', response.data)
+        setHostData(response.data.host)
+      } catch (error) {
+        console.error('Error fetching host data:', error)
+      }
+    }
+
+    fetchHostData()
+  }, [hostId])
+
+  if (!hostData) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -45,7 +76,7 @@ const EditPersonalInformation = () => {
                         type="String"
                         name="Name"
                         readOnly
-                        value={'Hettie'}
+                        value={hostData.name}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -55,7 +86,7 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="email"
-                        value={'Hettie@gmail.com'}
+                        value={hostData.email}
                         placeholder="Email"
                         className="w-full p-2 border border-gray-300 rounded"
                       />
@@ -66,7 +97,7 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="string"
-                        value={'7745214521'}
+                        value={hostData.phone}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -76,7 +107,7 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="string"
-                        value={'Kamburugamuwa, Southern Province, Sri Lanka '}
+                        value={hostData.address}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -86,7 +117,7 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="string"
-                        value={' English,Sinhala'}
+                        value={hostData.languages}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>

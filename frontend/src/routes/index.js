@@ -57,7 +57,7 @@ const IndexRoutes = () => {
           element={<HostDashboardProfile />}
         />
         <Route
-          path="/hostEditPersonalInformation"
+          path="/hostEditPersonalInformation/:id"
           element={<HostEditPersonalInformation />}
         />
         <Route
@@ -65,7 +65,7 @@ const IndexRoutes = () => {
           element={<HostDashboardReservationAll />}
         />
         <Route
-          path="/hostDashboardReservationDetail"
+          path="/hostDashboardReservationDetail/:id"
           element={<HostDashboardReservationDetail />}
         />
         <Route
