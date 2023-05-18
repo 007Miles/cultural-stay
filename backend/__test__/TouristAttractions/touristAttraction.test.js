@@ -1,35 +1,94 @@
 import request from 'supertest'
-import app from '../../app' // Import your Express app
+import app from '../../app.js'
 import TouristAttraction from '../../models/TouristAttraction/TouristAttraction.js'
 
-// You may want to add some seed data for testing purposes
-const attractions = [
-  {
-    name: 'Attraction 1',
-    description: 'Attraction 1 description',
-    address: 'Attraction 1 address',
-    area: 'Attraction 1 area',
-  },
-  {
-    name: 'Attraction 2',
-    description: 'Attraction 2 description',
-    address: 'Attraction 2 address',
-    area: 'Attraction 2 area',
-  },
-]
+// Deleting all the data in the collection before starting test
+beforeEach(async () => {
+  await TouristAttraction.deleteMany({})
+})
+
+// Deleting data added to the collection after test
+afterAll(async () => {
+  await TouristAttraction.deleteMany({})
+})
 
 describe('Tourist Attraction Routes', () => {
-  beforeEach(async () => {
-    // Clean up the collection before each test
-    // await TouristAttraction.deleteMany({});
-    // Add the seed data
-    // await TouristAttraction.insertMany(attractions)
+  // Test for getting all tourist attractions
+  test('GET /api/TASites should return a list of tourist attractions', async () => {
+    const response = await request(app).get('/api/TASites')
+    expect(response.status).toBe(200)
   })
 
-  // Write your test cases here...
-  test('GET / should return a list of tourist attractions', async () => {
-    // const response = await request(app).get('/api/TASites')
-    // expect(response.status).toBe(200)
-    // expect(response.body.length).toBe(attractions.length)
+  // Test for creating a new tourist attraction
+  test('POST /api/TASites should create a new tourist attraction', async () => {
+    const newTouristAttraction = {
+      name: 'Test Attraction',
+      description: 'Test description',
+      address: 'Test address',
+      area: 'Test area',
+    }
+
+    const response = await request(app)
+      .post('/api/TASites')
+      .send(newTouristAttraction)
+
+    expect(response.status).toBe(201)
+    expect(response.body.name).toBe(newTouristAttraction.name)
+  })
+
+  // Test for getting a single tourist attraction by ID
+  test('GET /api/TASites/:id should return a single tourist attraction', async () => {
+    const newTouristAttraction = new TouristAttraction({
+      name: 'Test Attraction',
+      description: 'Test description',
+      address: 'Test address',
+      area: 'Test area',
+    })
+
+    await newTouristAttraction.save()
+
+    const response = await request(app).get(
+      `/api/TASites/${newTouristAttraction._id}`
+    )
+    expect(response.status).toBe(200)
+    expect(response.body.name).toBe(newTouristAttraction.name)
+  })
+
+  // Test for updating a tourist attraction by ID
+  test('PUT /api/TASites/:id should update a tourist attraction', async () => {
+    const newTouristAttraction = new TouristAttraction({
+      name: 'Test Attraction',
+      description: 'Test description',
+      address: 'Test address',
+      area: 'Test area',
+    })
+
+    await newTouristAttraction.save()
+
+    const updatedAttraction = {
+      name: 'Updated Attraction',
+    }
+
+    const response = await request(app)
+      .put(`/api/TASites/${newTouristAttraction._id}`)
+      .send(updatedAttraction)
+
+    expect(response.status).toBe(200)
+    expect(response.body.name).toBe(updatedAttraction.name)
+  })
+
+  // Test for deleting a tourist attraction by ID
+  test('DELETE /api/TASites/:id should delete a tourist attraction', async () => {
+    const newTouristAttraction = new TouristAttraction({
+      name: 'Test Attraction',
+      description: 'Test description',
+      address: 'Test address',
+      area: 'Test area',
+    })
+    await newTouristAttraction.save()
+    const response = await request(app).delete(
+      `/api/TASites/${newTouristAttraction._id}`
+    )
+    expect(response.status).toBe(200)
   })
 })
