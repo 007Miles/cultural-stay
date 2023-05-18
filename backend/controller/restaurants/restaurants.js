@@ -5,9 +5,9 @@ import { createCustomError } from '../../errors/Food/custom-error.js'
 
 // create a new restaurant with checking image file
 export const createRestaurant = asyncWrapper(async (req, res) => {
-  if (!req.files) {
-    return res.status(400).json({ message: 'No image provided' })
-  }
+  // if (!req.files) {
+  //   return res.status(400).json({ message: 'No image provided' })
+  // }
 
   // const result = await cloudinary.uploader.upload(req.file.path, {
   //   folder: 'afRestaurant',
@@ -16,16 +16,21 @@ export const createRestaurant = asyncWrapper(async (req, res) => {
   // req.body.image = result.secure_url
   const image = []
 
-  for (const file of req.files) {
-    const result = await cloudinary.uploader.upload(file.path, {
-      folder: 'afRestaurant',
-    })
+  if (req.file) {
+    for (const file of req.files) {
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'afRestaurant',
+      })
 
-    image.push(result.secure_url)
+      image.push(result.secure_url)
+    }
+
+    req.body.image = image
+  } else {
+    req.body.image = image.length
+      ? image
+      : 'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347351/default-restaurant_iaig5d.jpg'
   }
-
-  req.body.image = image
-
   const restaurant = await Restaurants.create(req.body)
   res.status(201).json({ restaurant })
 })
@@ -153,7 +158,7 @@ export const getAllRestaurants = async (req, res) => {
   }
 
   if (food) {
-    queryObject.food = { $regex: `^${food}$`, $options: 'i' }
+    queryObject.food = { $regex: food, $options: 'i' }
   }
 
   if (numericFilters) {

@@ -30,7 +30,7 @@
 }
 
 .form-container {
-    @apply relative max-w-[900px] w-full bg-white shadow-[0_5px_10px_rgba(0,0,0,0.1)] mx-[15px] my-0 p-[30px] rounded-md;
+    @apply relative max-w-[900px] w-full h-fit bg-white shadow-[0_5px_10px_rgba(0,0,0,0.1)] mx-[15px] my-0 p-[30px] rounded-md;
 }
 
 .form-container header {

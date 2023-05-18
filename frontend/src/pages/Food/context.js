@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useCallback } from 'react'
-import axios from 'axios'
 
 const url = 'http://localhost:4000/api/food'
 const search = 'http://localhost:4000/api/food?name='
