@@ -5,16 +5,32 @@ import { createCustomError } from '../../errors/Food/custom-error.js'
 
 // create a new restaurant with checking image file
 export const createRestaurant = asyncWrapper(async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No image provided' })
+  // if (!req.files) {
+  //   return res.status(400).json({ message: 'No image provided' })
+  // }
+
+  // const result = await cloudinary.uploader.upload(req.file.path, {
+  //   folder: 'afRestaurant',
+  // })
+
+  // req.body.image = result.secure_url
+  const image = []
+
+  if (req.file) {
+    for (const file of req.files) {
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'afRestaurant',
+      })
+
+      image.push(result.secure_url)
+    }
+
+    req.body.image = image
+  } else {
+    req.body.image = image.length
+      ? image
+      : 'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347351/default-restaurant_iaig5d.jpg'
   }
-
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    folder: 'afRestaurant',
-  })
-
-  req.body.image = result.secure_url
-
   const restaurant = await Restaurants.create(req.body)
   res.status(201).json({ restaurant })
 })
@@ -52,26 +68,76 @@ export const updateRestaurant = asyncWrapper(async (req, res, next) => {
   const { id: restaurantID } = req.params
   const newFood = req.body.food // pushing new arrays without overwritting
 
-  if (req.file) {
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: 'afRestaurant',
-    })
-    req.body.image = result.secure_url
+  // Construct the MongoDB update object
+  const updateObj = {}
+  if (newFood) {
+    updateObj.$push = { food: newFood }
   }
-  const restaurant = await Restaurants.findByIdAndUpdate(
-    { _id: restaurantID },
-    { $push: { food: newFood } },
-    req.body,
-    {
-      new: true,
+  if (req.body.name) {
+    updateObj.name = req.body.name
+  }
+  if (req.body.description) {
+    updateObj.description = req.body.description
+  }
+  if (req.body.city) {
+    updateObj.city = req.body.city
+  }
+  if (req.body.address) {
+    updateObj.address = req.body.address
+  }
+  if (req.body.phone) {
+    updateObj.phone = req.body.phone
+  }
+  if (req.body.website) {
+    updateObj.website = req.body.website
+  }
+  if (req.body.area) {
+    updateObj.area = req.body.area
+  }
+
+  if (req.files) {
+    const image = []
+
+    for (const file of req.files) {
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'afRestaurant',
+      })
+
+      image.unshift(result.secure_url)
     }
-  )
-  if (!restaurant) {
-    return next(
-      createCustomError(`No restaurant with id: ${restaurantID}`, 404)
-    )
+
+    // Only update the image array if there are new images
+    if (image.length > 0) {
+      updateObj.$push = { image: { $each: image, $position: 0 } }
+    }
+  } else if (req.body.image) {
+    // Only update the image array if it's explicitly included in the request body
+    updateObj.image = req.body.image
   }
-  res.status(200).json(restaurant)
+
+  // Only update the document if there are fields to update
+  if (Object.keys(updateObj).length > 0) {
+    const restaurant = await Restaurants.findByIdAndUpdate(
+      { _id: restaurantID },
+      updateObj,
+      { new: true }
+    )
+    if (!restaurant) {
+      return next(
+        createCustomError(`No restaurant with id: ${restaurantID}`, 404)
+      )
+    }
+    res.status(200).json(restaurant)
+  } else {
+    // If there are no fields to update, just return the current document
+    const restaurant = await Restaurants.findById(restaurantID)
+    if (!restaurant) {
+      return next(
+        createCustomError(`No restaurant with id: ${restaurantID}`, 404)
+      )
+    }
+    res.status(200).json(restaurant)
+  }
 })
 
 // get all restaurants with search and sort options passed as a query in the req
@@ -92,7 +158,7 @@ export const getAllRestaurants = async (req, res) => {
   }
 
   if (food) {
-    queryObject.food = { $regex: `^${food}$`, $options: 'i' }
+    queryObject.food = { $regex: food, $options: 'i' }
   }
 
   if (numericFilters) {

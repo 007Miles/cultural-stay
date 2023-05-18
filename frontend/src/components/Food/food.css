@@ -1,0 +1,83 @@
+* {
+    @apply box-border m-0 p-0;
+  }
+  :root {
+    --roboto: "Roboto";
+    --cursive-font: "Satisfy";
+    --round: "Varela Round";
+    --cta: #fe8033;
+    --bg: #d7d6d6;
+    --bgg: #272b34;
+    --light_bg: #3f4552; /* #272b34 */
+    --light: rgb(122, 205, 122);
+    --text: #2d343e;
+    --white: #fff;
+  }
+  
+  .dFlex,
+  .main_content,
+  .main_content .card,
+  .main_content .card .card_header,
+  .btn {
+    @apply flex justify-center items-center;
+  }
+  /* .container {
+    @apply flex flex-col w-full h-full box-border bg-[color:var(--bg)] pt-[30px] pb-5 px-[50px];
+  } */
+  .main_content {
+    @apply relative w-[70%] h-full box-border justify-between flex-wrap mx-auto my-[50px] pt-[50px] pb-0 px-0;
+  }
+  .main_content .h3 {
+    @apply absolute text-[color:var(--text)] text-[10.5vw] left-0 top-0;
+  }
+  .main_content .card {
+    @apply w-[30%] flex-col relative transition-all duration-[0.3s] ease-[ease-in-out] mb-[50px] rounded-[15px] scale-[0.8] bg-[color:var(--bgg)] hover:bg-[color:var(--light\_bg)] hover:cursor-pointer hover:scale-110 hover:shadow-[0px_0px_10px_5px_#03dac5];
+  }
+  .main_content .card .card_img {
+    @apply mt-[-5vw];
+  }
+  .main_content .card .card_img .img {
+    @apply w-[200px];
+  }
+  .main_content .card .card_header {
+    @apply flex-col text-[color:var(--white)] mx-0 my-[25px];
+  }
+  .main_content .card .card_header .h2 {
+    @apply text-lg text-center;
+  }
+  .main_content .card .card_header .p {
+    @apply text-[15px] text-center text-[rgba(var(--white),0.3)] mx-0 my-2;
+  }
+  .main_content .card .card_header .price {
+    @apply text-[25px] text-[color:var(--cta)];
+  }
+  .main_content .card .card_header .price .span {
+    @apply text-[15px] inline-block align-top;
+  }
+  .main_content .card:hover .btn {
+    @apply bg-[color:var(--cta)] text-[color:var(--white)];
+  }
+  .btn {
+    @apply w-[130px] h-[35px] text-sm bg-[color:var(--text)] text-[rgba(var(--white),0.5)] cursor-pointer relative transition-[background-color] duration-[0.3s] ease-[ease] overflow-hidden rounded-[35px];
+  }
+  
+  @media screen and (min-width: 576px) {
+    .main_content {
+      @apply grid-cols-[repeat(auto-fill,minmax(338.8px,1fr))];
+    }
+  }
+
+.newcard .h3btn {
+  @apply top-[-30px] opacity-0 w-full h-full flex text-[#0092FB] text-3xl absolute justify-center items-center bg-[rgb(0,0,0,0.7)] transition-opacity duration-[0.3s] ease-[ease-in] left-0;
+}
+.newcard:hover .h3btn {
+  @apply opacity-100;
+}
+
+.title {
+  @apply  mt-[60px] text-4xl text-center mb-8 capitalize text-[color:var(--clr-grey-3)] mb-3 ;
+}
+.underline {
+  @apply w-20 h-1 mb-5 mx-auto;
+  background: rgb(0, 146, 251);
+}
