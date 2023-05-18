@@ -98,3 +98,16 @@ export const getPendingReservationsByHostId = async (req, res, next) => {
       .json({ message: 'Error fetching pending reservations' })
   }
 }
+
+//get a accommodation by id
+export const getReservationByID = asyncWrapper(async (req, res, next) => {
+  const { id: reservationID } = req.params
+  const reservation = await AccommodationReserve.findOne({ _id: reservationID })
+
+  if (!reservation) {
+    return next(
+      createCustomError(`No reservation with this id: ${reservationID}`, 404)
+    )
+  }
+  res.status(200).json({ reservation })
+})

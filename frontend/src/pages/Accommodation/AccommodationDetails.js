@@ -4,6 +4,7 @@ import AccommodationOffer from '../../components/Accommodation/AccommodationOffe
 import ReserveForm from '../../components/Accommodation/ReserveForm.js'
 import { FaKey } from 'react-icons/fa'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const amenitiesData = [
   { name: 'Kitchen', icon: '🍴' },
