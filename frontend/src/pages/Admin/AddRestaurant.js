@@ -1,67 +1,47 @@
 import React, { useState } from 'react'
 import './form.css'
-// import axios from 'axios'
-// import Navbar from '../../components/navbar'
+import axios from 'axios'
 
-// const productUrl = 'http://localhost:3008/api/v1/products'
+const resUrl = 'http://localhost:4000/api/restaurants'
 
 const AddRestaurant = () => {
-  //   const [product_name, setProduct_name] = useState('')
-  //   const [manufacturer, setManufacturer] = useState('')
-  //   const [price, setPrice] = useState('')
-  //   const [package_quantity, setPackage_quantity] = useState('')
-  //   const [shipping_weight, setShipping_weight] = useState('')
-  //   const [category, setCategory] = useState('')
-  //   const [mfd, setMfd] = useState('')
-  //   const [exp, setExp] = useState('')
-  //   const [image, setImage] = useState('')
-  //   const [description, setDescription] = useState('')
+  const [name, setName] = useState('')
+  const [city, setCity] = useState('')
+  const [description, setDescription] = useState('')
+  const [image, setImage] = useState([])
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
+  const [website, setWebsite] = useState('')
+  const [area, setArea] = useState('')
+  const [food, setFood] = useState([])
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault()
-  //     console.log(image)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log(image)
 
-  //     const formData = new FormData()
-  //     formData.append('product_name', product_name)
-  //     formData.append('manufacturer', manufacturer)
-  //     formData.append('price', price)
-  //     formData.append('package_quantity', package_quantity)
-  //     formData.append('shipping_weight', shipping_weight)
-  //     formData.append('category', category)
-  //     formData.append('mfd', mfd)
-  //     formData.append('exp', exp)
-  //     formData.append('description', description)
-  //     formData.append('image', image)
-  //     try {
-  //       const resp = await axios.post(
-  //         productUrl,
-  //         formData,
-  //         // {
-  //         //   product_name: product_name,
-  //         //   manufacturer: manufacturer,
-  //         //   price: price,
-  //         //   package_quantity: package_quantity,
-  //         //   shipping_weight: shipping_weight,
-  //         //   category: category,
-  //         //   mfd: mfd,
-  //         //   exp: exp,
-  //         //   image: image,
-  //         //   description: description,
-  //         // },
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDM5OWRmNDBmMDhjYjYyNjg5MmQ3ZGQiLCJuYW1lIjoiIiwiaWF0IjoxNjgyODY3Mzg4LCJleHAiOjE2ODU0NTkzODh9.oAAzQNJhV9Oh32BV_hiU1zFoxYlBpa_4W2qJSSotTdw`,
-  //             'Content-Type': 'multipart/form-data',
-  //           },
-  //         }
-  //       )
-  //       alert('Product Added Successfully')
-  //       console.log(resp.data)
-  //     } catch (error) {
-  //       alert('Sorry! Product Creation Failed...')
-  //       console.log(error.response)
-  //     }
-  //   }
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('city', city)
+    formData.append('description', description)
+    formData.append('image', image)
+    formData.append('address', address)
+    formData.append('phone', phone)
+    formData.append('website', website)
+    formData.append('area', area)
+    formData.append('food', food)
+    try {
+      const resp = await axios.post(resUrl, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      alert('Restaurant Added Successfully')
+      console.log(resp.data)
+    } catch (error) {
+      alert('Sorry! Restaurant Creation Failed...')
+      console.log(error.response)
+    }
+  }
 
   function generateFileName(originalName) {
     const timestamp = new Date().getTime()
@@ -78,75 +58,71 @@ const AddRestaurant = () => {
       <div className="main-form">
         <div className="form-body">
           <div className="form-container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form first">
                 <div className="details-personal">
                   <div className="fields">
                     <div className="input-field">
-                      <label htmlFor="product_name">Restaurant Name</label>
+                      <label htmlFor="name">Restaurant Name</label>
                       <input
                         type="text"
-                        name="product_name"
-                        id="product_name"
-                        // value={product_name}
-                        // onChange={(e) => setProduct_name(e.target.value)}
+                        name="name"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         placeholder="Enter Restaurant Name"
                         required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">
-                        City of the Restaurant
-                      </label>
+                      <label htmlFor="city">City of the Restaurant</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="city"
+                        id="city"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                         placeholder="Enter Main City of the Restaurant"
                         required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Restaurant Address</label>
+                      <label htmlFor="address">Restaurant Address</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="address"
+                        id="address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                         placeholder="Enter Restaurant Address"
                         required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">
-                        Restaurant Contact Number
-                      </label>
+                      <label htmlFor="phone">Restaurant Contact Number</label>
                       <input
                         type="tel"
-                        name="manufacturer"
-                        id="manufacturer"
-                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{3}"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="phone"
+                        id="phone"
+                        // pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{3}"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         placeholder="Enter Contact Number"
                         required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Restaurant Website</label>
+                      <label htmlFor="website">Restaurant Website</label>
                       <input
                         type="url"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="website"
+                        id="website"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
                         placeholder="Enter Restaurant Website"
                         required
                       ></input>
@@ -157,102 +133,121 @@ const AddRestaurant = () => {
                       <input
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
+                        multiple
                         name="image"
                         id="image"
-                        // value={image}
-                        // onChange={(e) => setImage(e.target.value)}
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
                         placeholder="Upload Upto 4 Images"
                         required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="category">
-                        Province of the Restaurant
-                      </label>
+                      <label htmlFor="area">Province of the Restaurant</label>
                       <select
-                        name="category"
-                        id="category"
-                        // value={category}
-                        // onChange={(e) => setCategory(e.target.value)}
+                        name="area"
+                        id="area"
+                        value={area}
+                        onChange={(e) => setArea(e.target.value)}
                         required
                       >
-                        <option value="Supplements & Herbs">Western</option>
-                        <option value="Sports Nutrition">Northern</option>
-                        <option value="Beauty">North Central</option>
-                        <option value="Bath & Personal Care">
-                          North Western
+                        <option
+                          class="text-gray-400"
+                          value=""
+                          defaultValue={'Choose a Category'}
+                        >
+                          Choose a Province
                         </option>
-                        <option value="Grocery">Central</option>
-                        <option value="Home">Eastern</option>
-                        <option value="Pets">Uva</option>
-                        <option value="Babies & Kids">Sabaragamuwa</option>
-                        <option value="Pets">Southern</option>
+                        <option value="Western">Western</option>
+                        <option value="Northern">Northern</option>
+                        <option value="North Central">North Central</option>
+                        <option value="North Western">North Western</option>
+                        <option value="Central">Central</option>
+                        <option value="Eastern">Eastern</option>
+                        <option value="Uva">Uva</option>
+                        <option value="Sabaragamuwa">Sabaragamuwa</option>
+                        <option value="Southern">Southern</option>
                       </select>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Main Food Items</label>
+                      <label htmlFor="food1">Main Food Items</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="food1"
+                        id="food1"
+                        value={food[0] || ''}
+                        onChange={(e) => {
+                          const newfood = [...food]
+                          newfood[0] = e.target.value
+                          setFood(newfood)
+                        }}
                         placeholder="Enter Main Food Items"
-                        required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Main Food Items</label>
+                      <label htmlFor="food2">Main Food Items</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="food2"
+                        id="food2"
+                        value={food[1] || ''}
+                        onChange={(e) => {
+                          const newfood = [...food]
+                          newfood[1] = e.target.value
+                          setFood(newfood)
+                        }}
                         placeholder="Enter Main Food Items"
-                        required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Main Food Items</label>
+                      <label htmlFor="food3">Main Food Items</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="food3"
+                        id="food3"
+                        value={food[2] || ''}
+                        onChange={(e) => {
+                          const newfood = [...food]
+                          newfood[2] = e.target.value
+                          setFood(newfood)
+                        }}
                         placeholder="Enter Main Food Items"
-                        required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Main Food Items</label>
+                      <label htmlFor="food4">Main Food Items</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="food4"
+                        id="food4"
+                        value={food[3] || ''}
+                        onChange={(e) => {
+                          const newfood = [...food]
+                          newfood[3] = e.target.value
+                          setFood(newfood)
+                        }}
                         placeholder="Enter Main Food Items"
-                        required
                       ></input>
                     </div>
 
                     <div className="input-field">
-                      <label htmlFor="manufacturer">Main Food Items</label>
+                      <label htmlFor="food5">Main Food Items</label>
                       <input
                         type="text"
-                        name="manufacturer"
-                        id="manufacturer"
-                        // value={manufacturer}
-                        // onChange={(e) => setManufacturer(e.target.value)}
+                        name="food5"
+                        id="food5"
+                        value={food[4] || ''}
+                        onChange={(e) => {
+                          const newfood = [...food]
+                          newfood[4] = e.target.value
+                          setFood(newfood)
+                        }}
                         placeholder="Enter Main Food Items"
-                        required
                       ></input>
                     </div>
 
@@ -263,8 +258,8 @@ const AddRestaurant = () => {
                         type="text"
                         name="description"
                         id="description"
-                        // value={description}
-                        // onChange={(e) => setDescription(e.target.value)}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                         placeholder="Enter Food Item Description"
                         required
                       ></textarea>

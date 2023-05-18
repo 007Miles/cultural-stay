@@ -3,6 +3,7 @@ import Restaurant from './Restaurant'
 import Loading from '../Food/Loading'
 import { useGlobalContext } from '../../pages/Restaurants/context'
 import '../../components/Food/food.css'
+import SearchFormRes from './SearchFormRes'
 
 const RestaurantList = () => {
   const { restaurant, loading } = useGlobalContext()
@@ -25,6 +26,9 @@ const RestaurantList = () => {
       <div className="title">
         <h2>Sri Lankan Restaurants</h2>
         <div className="underline"></div>
+      </div>
+      <div class="mt-[50px]">
+        <SearchFormRes />
       </div>
       <div className="main_content">{listItems}</div>
     </div>
