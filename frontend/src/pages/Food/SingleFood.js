@@ -1,17 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Loading from '../../components/Food/Loading'
 import { useParams, Link } from 'react-router-dom'
-import { Grid, Button, Container, Typography, Input } from '@mui/material'
-import './sinFood.css'
-import { useGlobalContext } from '../Restaurants/contextResByFood'
-import axios from 'axios'
 
 const url = 'http://localhost:4000/api/food/'
 const resUrl = 'http://localhost:4000/api/restaurants?food='
-
-const createMarkup = (text) => {
-  return { __html: text }
-}
 
 const SingleFood = () => {
   // const { setSearchTerm } = useGlobalContext()
@@ -71,76 +63,54 @@ const SingleFood = () => {
     max: 5,
   }
 
-  // const sortRes = () => {
-  //   setSearchTerm(name)
-  // }
-
   return (
     <div>
-      <Container className="product-view">
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={8} className="image-wrapper">
-            <img
-              onLoad={() => {
-                setLoading(false)
-              }}
-              crossOrigin="anonymous"
-              src={image}
-              alt={name}
-            />
-          </Grid>
-          <Grid item xs={12} md={4} className="text">
-            <Typography variant="h2">
+      <div class="md:flex items-center justify-center py-12 2xl:px-20 md:px-6 px-4">
+        <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+          <img
+            class="mt-[30px] w-full h-full block mx-auto"
+            alt={name}
+            src={image}
+          />
+          <div class="border-b border-gray-200 pb-6 mt-[50px]">
+            <h1 class="mt-[30px] lg:text-3xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
               {name} ({sinhala_name})
-            </Typography>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography class="font-bold" variant="h4">
-                  {description}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  <u>Ingrediants</u>
-                </Typography>
-                <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
-                  {ingrediants.map((ingrediant, index) => (
-                    <li key={index}>{ingrediant}</li>
-                  ))}
-                </ul>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  <u>Method</u>
-                </Typography>
-                <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
-                  {method.map((step, index) => (
-                    <li key={index}>{step}</li>
-                  ))}
-                </ul>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Link to={`/restaurants/by-food/${name}`} state={{ food }}>
-                  <Button
-                    size="small"
-                    color="primary"
-                    variant="contained"
-                    // onClick={sortRes}
-                  >
-                    Find Restaurants to taste {name}
-                  </Button>
-                </Link>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Container>
+            </h1>
+            <div class="mt-[20px] text-gray-500 dark:text-white">
+              <p>{description}</p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-gray-200 flex items-center justify-between">
+            <b class=" text-base leading-4 text-gray-800 dark:text-gray-300">
+              <u class="ml-[75px]">Ingredients</u>
+            </b>
+            <b class=" text-base leading-4 text-gray-800 dark:text-gray-300">
+              <u class="mr-[130px]">Method</u>
+            </b>
+          </div>
+          <div class="py-4 border-b border-gray-200 flex justify-between">
+            <div class="w-1/2">
+              <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
+                {ingrediants.map((ingrediant, index) => (
+                  <li key={index}>{ingrediant}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="w-1/2">
+              <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
+                {method.map((step, index) => (
+                  <li key={index}>{step}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <Link to={`/restaurants/by-food/${name}`} state={{ food }}>
+            <button class="dark:bg-white dark:text-gray-900 dark:hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-[#0092FB] w-full py-4 hover:bg-blue-500 focus:outline-none">
+              Find Restaurants to taste {name}
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
