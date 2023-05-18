@@ -151,7 +151,7 @@ const SingleRestaurant = () => {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={12}>
-                <Link to={`/food/by-restaurant/${name}`}>
+                <Link to={`/food/by-restaurant/${name}`} state={{ name }}>
                   <Button size="small" color="primary" variant="contained">
                     Find Sri Lankan Food made by {name}
                   </Button>
