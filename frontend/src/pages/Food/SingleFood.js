@@ -89,14 +89,14 @@ const SingleFood = () => {
             </b>
           </div>
           <div class="py-4 border-b border-gray-200 flex justify-between">
-            <div class="w-1/2">
+            <div class="w-1/2 mr-[10px]">
               <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
                 {ingrediants.map((ingrediant, index) => (
                   <li key={index}>{ingrediant}</li>
                 ))}
               </ul>
             </div>
-            <div class="w-1/2">
+            <div class="w-1/2 ml-[10px]">
               <ul style={{ textAlign: 'left', listStyleType: 'disc' }}>
                 {method.map((step, index) => (
                   <li key={index}>{step}</li>
