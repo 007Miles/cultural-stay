@@ -1,55 +1,34 @@
-import React, { useState } from 'react'
-
-const reservations = [
-  {
-    id: 1,
-    name: 'John Doe',
-    dateFrom: '2023-05-10',
-    dateTo: '2023-05-15',
-    languages: 'English, French',
-    country: 'UN',
-    passengers: '2',
-    status: 'pending',
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    dateFrom: '2023-06-01',
-    dateTo: '2023-06-07',
-    languages: 'Spanish',
-    country: 'Spain',
-    passengers: '4',
-    status: 'pending',
-  },
-]
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const HostDashboardReservationAll = () => {
-  // const [reservationDetails, setreservationDetails] = useState([])
+  const [reservationDetails, setReservationDetails] = useState([])
 
-  // useEffect(() => {
-  //   function fetchData() {
-  //     axios
-  //       .get('http://localhost:4000/api/accommodation')
-  //       .then((res) => {
-  //         if (Array.isArray(res.data.accommodation)) {
-  //           setCulturalStayHotels(res.data.accommodation)
-  //         } else {
-  //           console.error(
-  //             'Received data is not an array:',
-  //             res.data.accommodation
-  //           )
-  //         }
-  //         console.log('your data has been received')
-  //         console.log(res.data.accommodation)
+  useEffect(() => {
+    function fetchData() {
+      axios
+        .get('http://localhost:4000/api/accommodationReserve')
+        .then((res) => {
+          if (Array.isArray(res.data.reservation)) {
+            setReservationDetails(res.data.reservation)
+          } else {
+            console.error('Received data is not an array:', res.data)
+          }
+          console.log('your data has been received')
+          console.log(res.data.reservation)
 
-  //         setCulturalStayHotels(res.data.accommodation) //using set function to retrieve data and display on website
-  //       })
-  //       .catch((err) => {
-  //         alert(err.message)
-  //       })
-  //   }
-  //   fetchData()
-  // }, [culturalStayHotels])
+          setReservationDetails(res.data.reservation) //using set function to retrieve data and display on website
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+    fetchData()
+  }, [reservationDetails])
+
+  if (!reservationDetails) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -140,36 +119,40 @@ const HostDashboardReservationAll = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {reservations.map((reservation) => (
+                  {reservationDetails.map((reservation) => (
                     <tr key={reservation.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
-                          {reservation.name}
+                          {reservation.rp_name}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.dateFrom}
+                          {new Date(reservation.reserve_from)
+                            .toISOString()
+                            .substring(0, 10)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.dateTo}
+                          {new Date(reservation.reserve_to)
+                            .toISOString()
+                            .substring(0, 10)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.languages}
+                          {reservation.rp_languages}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.country}
+                          {reservation.rp_country}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.passengers}
+                          {reservation.rp_noofPassengers}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -183,7 +166,7 @@ const HostDashboardReservationAll = () => {
                         <button className=" p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
                           <a
                             class="nav-link"
-                            href="/hostDashboardReservationDetail"
+                            href={`/hostDashboardReservationDetail/${reservation._id}`}
                           >
                             View
                           </a>

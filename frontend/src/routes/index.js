@@ -25,6 +25,7 @@ import HostDashboardReservationDetail from '../pages/Host/HostDashboardReservati
 import HostDashboardPlaceUpdate from '../pages/Host/HostDashboardPlaceUpdate.js'
 import HostDashboardReservationHistory from '../pages/Host/HostDashboardReservationHistory.js'
 import AttractionView from '../components/Attractions/attractionView'
+import Search from '../pages/Search/Search'
 import CreateAttraction from '../components/Attractions/createAttraction'
 import RecommendAttraction from '../components/Attractions/recommendAttraction'
 import AttractionsList from '../components/Attractions/attractionsList'
@@ -32,12 +33,16 @@ import Footer from '../components/Footer/footer'
 import FoodByRestaurants from '../pages/Food/FoodByRestaurants'
 import AdminFoods from '../pages/Admin/AdminFoods'
 import AdminRestaurants from '../pages/Admin/AdminRestaurants'
+import Login from '../components/login/login'
+import AdminRoutes from './adminRoutes'
 
 const IndexRoutes = () => {
   return (
     <div>
+      <AdminRoutes />
       {/* <div class="bg-gradient-to-t from-cyan-200 to-[#a6c1ee] min-h-screen"> */}
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/attractions" element={<Attractions />} />
@@ -48,6 +53,9 @@ const IndexRoutes = () => {
         <Route path="/AttractionsList" element={<AttractionsList />} />
 
         <Route path="feedback" element={<Feedback />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/login" element={<Login />} />
+
         <Route path="/accommodationHome" element={<AccommodationHome />} />
         <Route
           path="/accommodationDetails/:id"
@@ -60,7 +68,7 @@ const IndexRoutes = () => {
           element={<HostDashboardProfile />}
         />
         <Route
-          path="/hostEditPersonalInformation"
+          path="/hostEditPersonalInformation/:id"
           element={<HostEditPersonalInformation />}
         />
         <Route
@@ -68,7 +76,7 @@ const IndexRoutes = () => {
           element={<HostDashboardReservationAll />}
         />
         <Route
-          path="/hostDashboardReservationDetail"
+          path="/hostDashboardReservationDetail/:id"
           element={<HostDashboardReservationDetail />}
         />
         <Route

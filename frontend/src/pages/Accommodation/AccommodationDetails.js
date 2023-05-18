@@ -3,7 +3,13 @@ import { FaArrowRight } from 'react-icons/fa'
 import AccommodationOffer from '../../components/Accommodation/AccommodationOffer.js'
 import ReserveForm from '../../components/Accommodation/ReserveForm.js'
 import { FaKey } from 'react-icons/fa'
+import Feedback from '../../components/FeedBack and Review/Feedback.js'
+import RatingBox from '../../components/FeedBack and Review/RatingBox.js'
+import CommentBox from '../../components/FeedBack and Review/CommentBox.js'
+import ratingLayout from '../../components/FeedBack and Review/ratingLayout.js'
+import useAuth from '../../hooks/useAuth.js'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const amenitiesData = [
   { name: 'Kitchen', icon: '🍴' },
@@ -22,6 +28,7 @@ const AmenityItem = ({ name, icon }) => (
 const AccommodationDetails = () => {
   const [accommodation, setAccommodation] = useState(null)
   const [showModal, setShowModal] = useState(false)
+  const { auth } = useAuth()
 
   const location = useLocation()
   console.log(location) //testing for function in console getting ID
@@ -55,7 +62,7 @@ const AccommodationDetails = () => {
           <div className="font-bold text-2xl  text-left">
             {accommodation.name}
           </div>
-          <p className="text-sm text-left underline">{accommodation.address}</p>
+          <p className="text-sm text-left ">{accommodation.address}</p>
         </div>
         {/* -------------------------------------------------------------------------Images----------------------------------------------------------------------------- */}
         <div className="flex flex-wrap">
@@ -201,6 +208,30 @@ const AccommodationDetails = () => {
                 />
                 <h1 className="text-lg font-medium">Hosted by Hettie</h1>
               </div>
+
+              {/* //feedback and review */}
+              {/* <div className="mb-6">
+                <ratingLayout />
+              </div> */}
+
+              <hr className="border-b border-gray-300 my-8" />
+
+              <div className="mb-6">
+                <div className="font-bold text-2xl  text-left">
+                  <Feedback id={'6456bd46925829cfd2eebb02'} />
+                </div>
+              </div>
+
+              <hr className="border-b border-gray-300 my-8" />
+              {auth?.user ? (
+                <div className="mb-6">
+                  <div className="font-bold text-2xl  text-left">
+                    <CommentBox id={'6456bd46925829cfd2eebb02'} />
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
 
@@ -265,6 +296,9 @@ const AccommodationDetails = () => {
                   Reserve
                 </button>
               </div>
+            </div>
+            <div className="mt-4">
+              {auth?.user ? <RatingBox /> : <div></div>}
             </div>
           </div>
         </div>

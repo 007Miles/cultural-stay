@@ -1,57 +1,35 @@
-import React, { useState } from 'react'
-
-const reservations = [
-  {
-    id: 1,
-    name: 'John Wick',
-    dateFrom: '2023-06-10',
-    dateTo: '2023-06-15',
-    phoneNo: '64052145214',
-    languages: 'English,Spanish',
-    country: 'Spain',
-    passengers: '2',
-    email: 'john@gmail.com',
-    status: 'Declined',
-  },
-  {
-    id: 2,
-    name: 'Shalone',
-    dateFrom: '2023-06-01',
-    dateTo: '2023-06-07',
-    phoneNo: '8521421215',
-    languages: 'English',
-    country: 'China',
-    passengers: '1',
-    email: 'shali@gmail.com',
-    status: 'Accepted',
-  },
-  {
-    id: 3,
-    name: 'Karol',
-    dateFrom: '2023-05-25',
-    dateTo: '2023-05-28',
-    phoneNo: '7541241245',
-    languages: 'English',
-    country: 'UK',
-    passengers: '1',
-    email: 'k55@gmail.com',
-    status: 'Declined ',
-  },
-  {
-    id: 4,
-    name: 'Kris',
-    dateFrom: '2023-01-15',
-    dateTo: '2023-01-28',
-    phoneNo: '5521424125',
-    languages: 'English',
-    country: 'Australia',
-    passengers: '4',
-    email: 'kris@gmail.com',
-    status: 'Accepted ',
-  },
-]
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const HostDashboardReservationHistory = () => {
+  const [reservationDetails, setReservationDetails] = useState([])
+
+  useEffect(() => {
+    function fetchData() {
+      axios
+        .get('http://localhost:4000/api/accommodationReserve')
+        .then((res) => {
+          if (Array.isArray(res.data.reservation)) {
+            setReservationDetails(res.data.reservation)
+          } else {
+            console.error('Received data is not an array:', res.data)
+          }
+          console.log('your data has been received')
+          console.log(res.data.reservation)
+
+          setReservationDetails(res.data.reservation) //using set function to retrieve data and display on website
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+    fetchData()
+  }, [reservationDetails])
+
+  if (!reservationDetails) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -147,41 +125,47 @@ const HostDashboardReservationHistory = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {reservations.map((reservation) => (
+                  {reservationDetails.map((reservation) => (
                     <tr key={reservation.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
-                          {reservation.name}
+                          {reservation.rp_name}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.dateFrom} - {reservation.dateTo}
+                          {new Date(reservation.reserve_from)
+                            .toISOString()
+                            .substring(0, 10)}{' '}
+                          -{' '}
+                          {new Date(reservation.reserve_to)
+                            .toISOString()
+                            .substring(0, 10)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.phoneNo}
+                          {reservation.rp_phone}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.languages}
+                          {reservation.rp_languages}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.country}
+                          {reservation.rp_country}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.passengers}
+                          {reservation.rp_noofPassengers}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {reservation.email}
+                          {reservation.rp_email}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
