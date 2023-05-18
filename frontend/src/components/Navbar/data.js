@@ -26,11 +26,6 @@ export const links = [
     url: '/attractions',
     text: 'attractions',
   },
-  {
-    id: 6,
-    url: '/search',
-    text: 'search',
-  },
 ]
 
 export const social = [

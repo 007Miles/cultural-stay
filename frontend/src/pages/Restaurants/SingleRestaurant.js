@@ -93,22 +93,22 @@ const SingleRestaurant = () => {
         <img class="w-full" alt={name} src={image[0]} />
         <div class="flex items-center justify-between mt-3 space-x-4 md:space-x-0">
           <img
-            alt="image-tag-one"
+            alt={image[0]}
             class="md:w-48 md:h-48 w-[130px] h-[130px]"
             src={image[1]}
           />
           <img
-            alt="image-tag-one"
+            alt={image[0]}
             class="md:w-48 md:h-48 w-[130px] h-[130px]"
             src={image[2]}
           />
           <img
-            alt="image-tag-one"
+            alt={image[0]}
             class="md:w-48 md:h-48 w-[130px] h-[130px]"
             src={image[3]}
           />
           <img
-            alt="image-tag-one"
+            alt={image[0]}
             class="md:w-48 md:h-48 w-[130px] h-[130px]"
             src={image[0]}
           />
@@ -173,7 +173,7 @@ const SingleRestaurant = () => {
           </p>
           <div class="flex items-center justify-center">
             <p class="text-sm leading-none text-gray-600 dark:text-gray-300">
-              {rating}/{rate_count}
+              {rating}/5 ({rate_count})
             </p>
           </div>
         </div>
