@@ -38,8 +38,8 @@ const RestaurantSchema = new mongoose.Schema(
       trim: true,
     },
     image: {
-      type: String,
-      required: [true, 'Please provide png or jpg restaurant images'],
+      type: [String],
+      default: [],
     },
     area: {
       type: String,

@@ -2,11 +2,12 @@ import request from 'supertest'
 import app from '../../app.js'
 import TouristAttraction from '../../models/TouristAttraction/TouristAttraction.js'
 
-// Cleanup database before and after each test
+// Deleting all the data in the collection before starting test
 beforeEach(async () => {
   await TouristAttraction.deleteMany({})
 })
 
+// Deleting data added to the collection after test
 afterAll(async () => {
   await TouristAttraction.deleteMany({})
 })
