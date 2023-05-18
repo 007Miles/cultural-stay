@@ -1,0 +1,134 @@
+.main-form {
+    background: #ffffff;
+}
+
+.form-section {
+    @apply w-[90vw] max-w-[1170px] mx-auto my-20;
+  }
+  @media screen and (min-width: 992px) {
+    .form-section {
+      @apply w-[95vw];
+    }
+  }
+
+  .form-title {
+    @apply text-center mb-8 capitalize text-[color:#324D67] mb-3;
+}
+
+.form-underline {
+    @apply w-20 h-1 mb-5 mx-auto;
+    background: rgb(33, 190, 33);
+  }
+
+  .form-h2 {
+    @apply flex items-center justify-center font-medium;
+  }
+
+.form-body {
+    @apply min-h-screen flex justify-center;
+    background: #ffffff;
+}
+
+.form-container {
+    @apply relative max-w-[900px] w-full bg-white shadow-[0_5px_10px_rgba(0,0,0,0.1)] mx-[15px] my-0 p-[30px] rounded-md;
+}
+
+.form-container header {
+    @apply text-xl font-semibold text-[#333];
+  }
+
+  .form-container form {
+    @apply relative min-h-[490px] bg-[#fff] mt-4;
+  }
+ 
+  .form-container header::before {
+    @apply content-[""] absolute h-[3px] w-[27px] bg-[rgb(33,190,33)] rounded-lg left-0 -bottom-0.5;
+  }  
+ 
+  .form-container form .details-personal {
+    @apply mt-[30px];
+  }
+  
+  .form-container form .title {
+    @apply block mb-2 text-base font-medium text-[#333] mx-0 my-1.5;
+  }
+
+  .form-container form .fields {
+    @apply flex items-center justify-between flex-wrap;
+  }
+
+  form .fields .input-field {
+    @apply flex w-[calc(100%_/3_-_15px)] flex-col mx-0 my-1;
+  }  
+
+  .input-field label {
+    @apply text-xs font-medium text-[#2e2e2e];
+  }
+  .input-field input {
+    @apply text-sm font-normal text-[#333] border h-[42px] mx-0 my-2 px-[15px] py-0 rounded-[5px] border-solid border-[#aaa];
+    outline: none;
+  }
+  
+  .input-field input:is(:focus, :valid) {
+    @apply shadow-[0_3px_6px_rgba(0,0,0,0.13)];
+  }
+  .input-field input[type="date"] {
+    @apply text-[#707070] valid:text-[#333];
+  }
+  
+  .input-field select {
+    @apply text-sm font-normal text-[#333] border h-[42px] mx-0 my-2 px-[15px] py-0 rounded-[5px] border-solid border-[#aaa];
+    outline: none;
+  }
+  
+  .input-field select:is(:focus, :valid) {
+    @apply shadow-[0_3px_6px_rgba(0,0,0,0.13)];
+  }
+  
+
+
+  form .fields .input-field-desc {
+    @apply flex w-[100%] flex-col mx-0 my-1;
+  }  
+
+  .input-field-desc label {
+    @apply text-xs font-medium text-[#2e2e2e];
+  }
+  .input-field-desc textarea {
+    @apply text-sm font-normal text-[#333] border h-[95px] mx-0 my-2 px-[15px] py-0 rounded-[5px] border-solid border-[#aaa];
+    outline: none;
+  }
+  
+  .input-field-desc textarea:is(:focus, :valid) {
+    @apply shadow-[0_3px_6px_rgba(0,0,0,0.13)];
+  }
+  .input-field-desc textarea[type="date"] {
+    @apply text-[#707070] valid:text-[#333];
+  }
+  
+  @media (max-width: 750px) {
+    .form-container form {
+      @apply overflow-y-scroll;
+    }
+    .form-container form ::-webkit-scrollbar {
+      @apply hidden;
+    }
+    form .fields .input-field {
+      @apply w-[calc(100%_/_2_-_15px)];
+    }
+  }
+  @media (max-width: 550px) {
+    form .fields .input-field {
+      @apply w-full;
+    }
+  }
+  
+  .title {
+    @apply  mt-[60px] text-4xl text-center mb-8 capitalize text-[color:var(--clr-grey-3)] mb-3 ;
+  }
+  .underline {
+    @apply w-20 h-1 mb-5 mx-auto;
+    background: rgb(0, 146, 251);
+  }
+  
+  

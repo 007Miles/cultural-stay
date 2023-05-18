@@ -1,0 +1,188 @@
+/*
+=============== 
+Variables
+===============
+*/
+:root {
+    /* dark shades of primary color*/
+    --clr-primary-1: hsl(21, 91%, 17%);
+    --clr-primary-2: hsl(21, 84%, 25%);
+    --clr-primary-3: hsl(21, 81%, 29%);
+    --clr-primary-4: hsl(21, 77%, 34%);
+    --clr-primary-5: hsl(21, 62%, 45%);
+    --clr-primary-6: hsl(21, 57%, 50%);
+    --clr-primary-7: hsl(21, 65%, 59%);
+    --clr-primary-8: hsl(21, 80%, 74%);
+    --clr-primary-9: hsl(21, 94%, 87%);
+    --clr-primary-10: hsl(21, 100%, 94%); /* darkest grey - used for headings */
+    --clr-grey-1: hsl(209, 61%, 16%);
+    --clr-grey-2: hsl(211, 39%, 23%);
+    --clr-grey-3: hsl(209, 34%, 30%);
+    --clr-grey-4: hsl(209, 28%, 39%); /* grey used for paragraphs */
+    --clr-grey-5: hsl(210, 22%, 49%);
+    --clr-grey-6: hsl(209, 23%, 60%);
+    --clr-grey-7: hsl(211, 27%, 70%);
+    --clr-grey-8: hsl(210, 31%, 80%);
+    --clr-grey-9: hsl(212, 33%, 89%);
+    --clr-grey-10: hsl(210, 36%, 96%);
+    --clr-white: #fff;
+    --clr-red-dark: hsl(360, 67%, 44%);
+    --clr-red-light: hsl(360, 71%, 66%);
+    --clr-green-dark: hsl(125, 67%, 44%);
+    --clr-green-light: hsl(125, 71%, 66%);
+    --clr-black: #222;
+    --transition: all 0.3s linear;
+    --spacing: 0.1rem;
+    --radius: 0.25rem;
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --max-width: 1170px;
+    --fixed-width: 620px;
+  }
+  /*
+  =============== 
+  Global Styles
+  ===============
+  */
+  *,
+  ::after,
+  ::before {
+    @apply box-border m-0 p-0;
+  }
+  body {
+    @apply text-[color:var(--clr-grey-1)] leading-normal text-sm;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: var(--clr-grey-10);
+  }
+  ul {
+    @apply list-none;
+  }
+  a {
+    @apply no-underline;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-[var(--spacing)] capitalize leading-tight mb-3;
+  }
+  h1 {
+    @apply text-5xl;
+  }
+  h2 {
+    @apply text-[2rem];
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4 {
+    @apply text-sm;
+  }
+  p {
+    @apply text-[color:var(--clr-grey-5)] mb-5;
+  }
+  @media screen and (min-width: 800px) {
+    h1 {
+      @apply text-[4rem];
+    }
+    h2 {
+      @apply text-[2.5rem];
+    }
+    h3 {
+      @apply text-[1.75rem];
+    }
+    h4 {
+      @apply text-base;
+    }
+    body {
+      @apply text-base;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+      @apply leading-none;
+    }
+  }
+  /*  global classes */
+  
+  /* section */
+  .section {
+    @apply w-[90vw] max-w-[var(--max-width)] mx-auto mt-10;
+  }
+  @media screen and (min-width: 992px) {
+    .section {
+      @apply w-[95vw];
+    }
+  }
+  /*
+  =============== 
+  Slider
+  ===============
+  */
+  .title {
+    @apply text-center mb-8 capitalize text-[color:var(--clr-grey-3)] mb-3;
+  }
+  .title h2 {
+    @apply flex items-center justify-center font-medium;
+  }
+  .title span {
+    @apply text-[0.85em] text-[rgb(33,190,33)] font-bold mr-4;
+  }
+  .section-center {
+    @apply w-[80vw] h-[450px] max-w-[800px] text-center relative flex overflow-hidden mt-16 mx-auto my-0; /* have to have a height */
+  }
+  .person-img {
+    @apply w-[150px] h-[150px] object-cover border-[color:var(--clr-grey-8)] shadow-[var(--dark-shadow)] m-auto mb-4 rounded-[50%] border-4 ;
+  }
+  article .h4style {
+    @apply uppercase text-[color:var(--clr-primary-5)] mb-1;
+  }
+  .text {
+    @apply max-w-[35em] leading-loose text-[color:var(--clr-grey-5)] mt-8 mx-auto my-0;
+  }
+  .icon {
+    @apply text-5xl text-[rgb(0,146,251)] mt-4 m-auto;
+  }
+  .prev,
+  .next {
+    @apply absolute -translate-y-2/4 text-[color:var(--clr-white)] w-5 h-5 grid place-items-center text-base rounded-[var(--radius)] cursor-pointer transition-[var(--transition)] border-transparent top-[200px];
+    background: var(--clr-grey-5);
+  }
+  .prev:hover,
+  .next:hover {
+    background: rgb(0, 146, 251);
+  }
+  .prev {
+    @apply left-0;
+  }
+  .next {
+    @apply right-0;
+  }
+  .underline {
+    @apply w-20 h-1 mb-5 mx-auto;
+    background: rgb(0, 146, 251);
+  }
+  @media (min-width: 800px) {
+    .text {
+      @apply max-w-[45em];
+    }
+    .prev,
+    .next {
+      @apply w-8 h-8 text-2xl;
+    }
+  }
+  article {
+    @apply absolute w-full h-full opacity-0 transition-[var(--transition)] left-0 top-0;
+  }
+  article.activeSlide {
+    @apply opacity-100 translate-x-0;
+  }
+  article.lastSlide {
+    @apply -translate-x-full;
+  }
+  article.nextSlide {
+    @apply translate-x-full;
+  }
+  

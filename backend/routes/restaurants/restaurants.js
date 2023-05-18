@@ -18,11 +18,11 @@ import upload from '../../middleware/cloudinary.js'
 router
   .route('/')
   .get(getAllRestaurants)
-  .post(upload.single('image'), createRestaurant)
+  .post(upload.array('image'), createRestaurant)
 router
   .route('/:id')
   .get(getRestaurant)
-  .patch(upload.single('image'), updateRestaurant)
+  .patch(upload.array('image'), updateRestaurant)
   .delete(deleteRestaurant)
 // router.route('/restaurantRating/:id').patch(changeRestaurantRatingByID)
 

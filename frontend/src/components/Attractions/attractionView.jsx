@@ -77,9 +77,11 @@ const AttractionView = () => {
     <div className="container mx-auto mt-10">
       <div className="w-full px-4 py-5 bg-white mx-auto mt-20 rounded-lg shadow-xl">
         <div className="flex flex-col items-start space-y-5">
-          <h2 className="text-3xl font-bold text-gray-700 mx-auto">
+          <h2 className="text-4xl font-bold text-gray-700 mx-auto">
             {place.name}
           </h2>
+
+          <p className="text-xl text-gray-700 mx-auto ">{place.area}</p>
           {/* {place.images && <Slideshow />} */}
           <div class="mx-auto w-2/3">
             <ImageGallery
