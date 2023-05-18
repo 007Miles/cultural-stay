@@ -56,7 +56,7 @@ const AccommodationDetails = () => {
           <div className="font-bold text-2xl  text-left">
             {accommodation.name}
           </div>
-          <p className="text-sm text-left underline">{accommodation.address}</p>
+          <p className="text-sm text-left ">{accommodation.address}</p>
         </div>
         {/* -------------------------------------------------------------------------Images----------------------------------------------------------------------------- */}
         <div className="flex flex-wrap">
