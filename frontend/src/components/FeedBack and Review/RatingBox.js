@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Rating from '@mui/material/Rating'
 
 export default function RatingBox() {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(4)
 
   return (
     <div>
@@ -18,6 +18,7 @@ export default function RatingBox() {
               size="large"
               name="simple-controlled"
               value={value}
+              precision={'0.2'}
               onChange={(event, newValue) => {
                 setValue(newValue)
               }}

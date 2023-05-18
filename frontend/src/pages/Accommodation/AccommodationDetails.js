@@ -6,6 +6,8 @@ import { FaKey } from 'react-icons/fa'
 import Feedback from '../../components/FeedBack and Review/Feedback.js'
 import RatingBox from '../../components/FeedBack and Review/RatingBox.js'
 import CommentBox from '../../components/FeedBack and Review/CommentBox.js'
+import ratingLayout from '../../components/FeedBack and Review/ratingLayout.js'
+import useAuth from '../../hooks/useAuth.js'
 
 const amenitiesData = [
   { name: 'Kitchen', icon: '🍴' },
@@ -23,6 +25,7 @@ const AmenityItem = ({ name, icon }) => (
 
 const AccommodationDetails = () => {
   const [showModal, setShowModal] = useState(false)
+  const { auth } = useAuth()
 
   const openModal = () => {
     setShowModal(true)
@@ -225,21 +228,28 @@ const AccommodationDetails = () => {
               </div>
 
               {/* //feedback and review */}
-              <hr className="border-b border-gray-300 my-8" />
-
-              <div className="mb-6">
-                <div className="font-bold text-2xl  text-left">
-                  <Feedback />
-                </div>
-              </div>
+              {/* <div className="mb-6">
+                <ratingLayout />
+              </div> */}
 
               <hr className="border-b border-gray-300 my-8" />
 
               <div className="mb-6">
                 <div className="font-bold text-2xl  text-left">
-                  <CommentBox />
+                  <Feedback id={'6456bd46925829cfd2eebb02'} />
                 </div>
               </div>
+
+              <hr className="border-b border-gray-300 my-8" />
+              {auth?.user ? (
+                <div className="mb-6">
+                  <div className="font-bold text-2xl  text-left">
+                    <CommentBox id={'6456bd46925829cfd2eebb02'} />
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
 
@@ -296,7 +306,7 @@ const AccommodationDetails = () => {
               </div>
             </div>
             <div className="mt-4">
-              <RatingBox />
+              {auth?.user ? <RatingBox /> : <div></div>}
             </div>
           </div>
         </div>

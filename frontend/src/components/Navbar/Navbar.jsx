@@ -103,6 +103,9 @@ const Navbar = () => {
                 </li>
               )
             })}
+            <li key={7}>
+              <Link to="/accommodationDetails">test</Link>
+            </li>
           </ul>
         </div>
         <div className="login-icon">

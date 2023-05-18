@@ -1,8 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import bgImg from '../../Assets/loginImg.jpg'
 import altbgImg from '../../Assets/bgImg.jpg'
+import useAuth from '../../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Login() {
+  const navigate = useNavigate()
+  const { setAuth } = useAuth()
+  const [user, setUser] = useState('')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (user.split('@')[0] === pwd) {
+      setAuth({ user })
+      setUser('')
+      setPwd('')
+      navigate('/')
+    } else {
+      setErrMsg('Invalid username or password')
+    }
+
+    // try {
+    //   const response = await axios.post(
+    //     'http://localhost:3001/api/v1/auth/login',
+    //     JSON.stringify({ user, pwd }),
+    //     {
+    //       headers: { 'Content-Type': 'application/json' },
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   console.log(JSON.stringify(response?.data))
+
+    //   const accessToken = response?.data?.accessToken
+    //   const role = response?.data?.role
+    //   console.log(role)
+    //   setAuth({ user, pwd, role, accessToken })
+    //   setUser('')
+    //   setPwd('')
+    //   navigate('/admin')
+    // } catch (err) {
+    //   if (!err?.response) {
+    //     setErrMsg('Server Error')
+    //   } else if (err.response?.status === 400) {
+    //     setErrMsg('Username or password required')
+    //   } else if (err.response?.status === 401) {
+    //     setErrMsg('Invalid username or password')
+    //   } else {
+    //     setErrMsg('Login Failed')
+    //   }
+    // }
+  }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
       <div className="hidden sm:block">
@@ -15,17 +66,17 @@ export default function Login() {
       >
         <form
           className="max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-8 px-8"
-          //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
-          {/* <p
+          <p
             className={
               errMsg
                 ? 'bg-pink-700 text-red-100 font-bold p-0.5 mb-2 text-2xl'
                 : 'absolute -left-full'
             }
           >
-            {/* {errMsg} */}
-          {/* </p>  */}
+            {errMsg}
+          </p>
           <h2 className="text-4xl dark:text-white font-bold text-center">
             SIGN IN
           </h2>
@@ -39,8 +90,8 @@ export default function Login() {
               type="text"
               id="username"
               autoComplete="off"
-              //   onChange={(e) => setUser(e.target.value)}
-              //   value={user}
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
               required
             />
           </div>
@@ -50,8 +101,8 @@ export default function Login() {
               className="p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none"
               type="password"
               id="password"
-              //   onChange={(e) => setPwd(e.target.value)}
-              //   value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
               required
             />
           </div>

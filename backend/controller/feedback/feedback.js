@@ -62,7 +62,7 @@ export const deleteFeedback = asyncWrapper(async (req, res) => {
 
   const result = await FeedBack.findOneAndUpdate(
     { loc_id: locID },
-    { $pull: { comments: { _id: comment._id } } },
+    { $pull: { comments: { _id: comment } } },
     { new: true, returnOriginal: false }
   )
 

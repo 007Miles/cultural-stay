@@ -9,17 +9,20 @@ import Typography from '@mui/material/Typography'
 import axios from 'axios'
 import Rating from '@mui/material/Rating'
 import Grid from '@mui/material/Grid'
+import useAuth from '../../hooks/useAuth'
 
-export default function Feedback() {
+export default function Feedback({ id }) {
   const [comments, setComments] = useState([])
+  const { auth } = useAuth()
+  const [rating, setRating] = useState(0)
 
   //dummy data
-  const rating = 4.7
+  // const rating = 4.7
   const ratings_list = [
     {
       text: 'Kasun is an amazing host! We had such a great time with her!',
       created: '2023-05-03T18:25:36.468Z',
-      postedBy: 'Eva',
+      postedBy: 'eva@g',
       image_url:
         'https://res.cloudinary.com/dtktpemb7/image/upload/v1683432593/cld-sample.jpg',
       _id: '6452a8448540665498e29f0c',
@@ -42,25 +45,52 @@ export default function Feedback() {
     },
   ]
 
+  // useEffect(() => {
+  //   setComments(ratings_list)
+  // }, [comments])
+
   useEffect(() => {
-    setComments(ratings_list)
+    function getComments() {
+      axios
+        .get(`http://localhost:4000/api/feedback/${id}`)
+        .then((res) => {
+          console.log(res.data)
+          setComments(res.data.result.comments)
+          setRating(res.data.result.rating)
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+
+    getComments()
   }, [comments])
 
-  // useEffect(() => {
-  //   function getComments() {
-  //     axios
-  //       .get('http://localhost:4000/api/feedback/644feb454ae98832d6797b9b')
-  //       .then((res) => {
-  //         console.log(res.data)
-  //         setComments(res.data.result.comments)
-  //       })
-  //       .catch((err) => {
-  //         alert(err.message)
-  //       })
-  //   }
+  async function handleDelete(cid) {
+    // alert(cid)
+    // const comment = {}
 
-  //   getComments()
-  // }, [comments])
+    try {
+      const response = await axios.delete(
+        `http://localhost:4000/api/feedback/${id}`,
+        { data: { comment: cid } }
+      )
+
+      if (response) {
+        alert('success')
+      }
+      //   setText('')
+      //   // const accessToken = response?.data?.accessToken
+      //   // const role = response?.data?.role
+      //   // console.log(role)
+      //   // setAuth({ user, pwd, role, accessToken })
+      //   // setUser('')
+      //   // setPwd('')
+      //   // navigate('/admin')
+    } catch (err) {
+      console.log(err.response.message)
+    }
+  }
 
   return (
     <div class="flex items-center justify-center">
@@ -75,7 +105,7 @@ export default function Feedback() {
             <Rating name="read-only" value={rating} precision={0.5} readOnly />
             {/* <span>{rating}</span> */}
             <span className="inline-block align-text-top mx-3"> . </span>
-            <span>{ratings_list.length + ' Reviews'}</span>
+            <span>{comments.length + ' Reviews'}</span>
           </div>
           <hr className="border-b border-gray-300 my-2" />
         </Grid>
@@ -85,7 +115,7 @@ export default function Feedback() {
             <Grid item xs={6} key={comment._id}>
               <ListItem alignItems="flex-start" key={comment._id}>
                 <ListItemAvatar>
-                  <Avatar alt="User" src={comment.image_url}>
+                  <Avatar alt="User" src={comment?.image_url}>
                     {/* {comment.postedBy[0].toUpperCase()} */}
                   </Avatar>
                 </ListItemAvatar>
@@ -102,7 +132,11 @@ export default function Feedback() {
                         variant="body2"
                         color="text.primary"
                       >
-                        {comment.postedBy}
+                        {comment.postedBy
+                          .split('@')[0]
+                          .charAt(0)
+                          .toUpperCase() +
+                          comment.postedBy.split('@')[0].slice(1)}
                       </Typography>
                     </React.Fragment>
                   }
@@ -116,8 +150,11 @@ export default function Feedback() {
                       >
                         {comment.text}
                         <br />
-                        {comment.postedBy === 'Eva' ? (
-                          <button class="bg-transparent hover:bg-red-500 text-black-700 font-semibold hover:text-white mt-2 px-4 border border-red-700 hover:border-transparent rounded">
+                        {comment.postedBy === auth?.user ? (
+                          <button
+                            class="bg-transparent hover:bg-red-500 text-black-700 font-semibold hover:text-white mt-2 px-4 border border-red-700 hover:border-transparent rounded"
+                            onClick={() => handleDelete(comment._id)}
+                          >
                             Delete
                           </button>
                         ) : (
