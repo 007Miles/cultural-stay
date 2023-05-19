@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const HostDashboardReservationDetail = () => {
   const [reservation, setReservation] = useState(null)
@@ -22,12 +24,14 @@ const HostDashboardReservationDetail = () => {
           setAcceptStatus('Accepted')
           console.log(response.data)
           window.alert('Reservation Accepted')
+          toast.success('Reservation Accepted')
           window.location.href = '/hostDashboardReservationAll'
         })
         .catch((error) => {
           setAcceptStatus('Error')
           console.error(error)
           window.alert('Something Went Wrong....')
+          toast.error('Something Went Wrong....')
         })
     }
   }
@@ -42,12 +46,14 @@ const HostDashboardReservationDetail = () => {
           setDeclineStatus('Declined')
           console.log(response.data)
           window.alert('Reservation Declined')
+          toast.success('Reservation Declined')
           window.location.href = '/hostDashboardReservationAll' // Redirect to the specified page
         })
         .catch((error) => {
           setDeclineStatus('Error')
           console.error(error)
           window.alert('Something Went Wrong....')
+          toast.error('Something Went Wrong....')
         })
     }
   }
@@ -204,6 +210,7 @@ const HostDashboardReservationDetail = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }
