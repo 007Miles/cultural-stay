@@ -22,7 +22,7 @@ const HostDashboardReservationDetail = () => {
           setAcceptStatus('Accepted')
           console.log(response.data)
           window.alert('Reservation Accepted')
-          window.location.href = '/hostDashboardReservationAll' // Redirect to the specified page
+          window.location.href = '/hostDashboardReservationAll'
         })
         .catch((error) => {
           setAcceptStatus('Error')
