@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import './form.css'
 import axios from 'axios'
 
-const foodUrl = 'http://localhost:4000/api/food'
+// const foodUrl = 'http://localhost:4000/api/food'
+const foodUrl = 'https://cultural-stay.onrender.com/api/food'
 
 const AddFood = () => {
   const [name, setName] = useState('')
   const [sinhala_name, setSinhala_name] = useState('')
   const [description, setDescription] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(null)
   const [ingrediants, setIngrediants] = useState([])
   const [method, setMethod] = useState([])
   const [restaurants, setRestaurants] = useState([])
@@ -61,6 +62,10 @@ const AddFood = () => {
     return `${timestamp}.${extension}`
   }
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0])
+  }
+
   return (
     <div>
       <div className="title">
@@ -109,8 +114,7 @@ const AddFood = () => {
                         accept="image/png, image/jpg, image/jpeg"
                         name="image"
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         placeholder="Upload the Food Image"
                         required
                       ></input>

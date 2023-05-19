@@ -35,6 +35,7 @@ import AdminFoods from '../pages/Admin/AdminFoods'
 import AdminRestaurants from '../pages/Admin/AdminRestaurants'
 import Login from '../components/login/login'
 import AdminRoutes from './adminRoutes'
+import RecommendationList from '../components/Attractions/recommendationList'
 
 const IndexRoutes = () => {
   return (
@@ -49,8 +50,12 @@ const IndexRoutes = () => {
         <Route path="/registration" element={<Registration />} />
         <Route path="/attractionView/:id" element={<AttractionView />} />
         <Route path="/createAttraction" element={<CreateAttraction />} />
-        <Route path="/suggestion" element={<RecommendAttraction />} />
-        <Route path="/AttractionsList" element={<AttractionsList />} />
+        <Route path="/recommendation" element={<RecommendAttraction />} />
+        <Route path="/admin/attractionsList" element={<AttractionsList />} />
+        <Route
+          path="/admin/recommendationsList"
+          element={<RecommendationList />}
+        />
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/search" element={<Search />} />
