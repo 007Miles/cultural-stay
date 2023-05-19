@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './form.css'
 import axios from 'axios'
 
-const resUrl = 'http://localhost:4000/api/restaurants'
+// const resUrl = 'http://localhost:4000/api/restaurants'
+const resUrl = 'https://cultural-stay.onrender.com/api/restaurants'
 
 const AddRestaurant = () => {
   const [name, setName] = useState('')
