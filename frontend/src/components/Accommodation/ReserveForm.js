@@ -2,31 +2,33 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const ReserveForm = () => {
-  const [Name, setName] = useState('')
-  const [Email, setEmail] = useState('')
-  const [PhoneNumber, setPhoneNumber] = useState('')
-  const [Laguagesspeak, setLaguagesspeak] = useState('')
-  const [Country, setCountry] = useState('')
-  const [StartDate, setStartDate] = useState('')
-  const [EndDate, setEndDate] = useState('')
-  const [Description, setDescription] = useState('')
-  const [NoPassengers, setNoPassengers] = useState('')
-  const [HostID, setHostID] = useState('02')
+  const [rp_name, setRp_name] = useState('')
+  const [rp_email, setRp_email] = useState('')
+  const [rp_phone, setRp_phone] = useState('')
+  const [rp_languages, setRp_languages] = useState('')
+  const [rp_country, setRp_country] = useState('')
+  const [reserve_from, setReserve_from] = useState('')
+  const [reserve_to, setReserve_to] = useState('')
+  const [description, setDescription] = useState('')
+  const [rp_noofPassengers, setRp_noofPassengers] = useState('')
+  const [hostId, setHostId] = useState('02')
+
+  const currentDate = new Date().toISOString().split('T')[0]
 
   function sendData(e) {
     e.preventDefault() // to execute only the function "sendData" without submitting data.
 
     const newReservation = {
-      Name,
-      Email,
-      PhoneNumber,
-      Laguagesspeak,
-      Country,
-      StartDate,
-      EndDate,
-      Description,
-      NoPassengers,
-      HostID,
+      rp_name,
+      rp_email,
+      rp_phone,
+      rp_languages,
+      rp_country,
+      reserve_from,
+      reserve_to,
+      description,
+      rp_noofPassengers,
+      hostId,
     }
 
     axios
@@ -34,6 +36,17 @@ const ReserveForm = () => {
       .then(() => {
         console.log('Success', newReservation)
         window.alert('Reservation Complete')
+        window.location.reload()
+        // Reset the form values
+        setRp_name('')
+        setRp_email('')
+        setRp_phone('')
+        setRp_languages('')
+        setRp_country('')
+        setReserve_from('')
+        setReserve_to('')
+        setDescription('')
+        setRp_noofPassengers('')
       })
       .catch((err) => {
         console.log('error')
@@ -50,7 +63,7 @@ const ReserveForm = () => {
           name="name"
           required
           onChange={(e) => {
-            setName(e.target.value)
+            setRp_name(e.target.value)
           }}
           placeholder="Name"
           className="w-full p-2 border border-gray-300 rounded"
@@ -60,7 +73,7 @@ const ReserveForm = () => {
           name="email"
           required
           onChange={(e) => {
-            setEmail(e.target.value)
+            setRp_email(e.target.value)
           }}
           placeholder="Email"
           className="w-full p-2 border border-gray-300 rounded"
@@ -71,7 +84,7 @@ const ReserveForm = () => {
           name="phoneNumber"
           required
           onChange={(e) => {
-            setPhoneNumber(e.target.value)
+            setRp_phone(e.target.value)
           }}
           placeholder="Phone Number"
           className="w-full p-2 border border-gray-300 rounded"
@@ -80,7 +93,7 @@ const ReserveForm = () => {
           type="String"
           name="laguagesspeak"
           onChange={(e) => {
-            setLaguagesspeak(e.target.value)
+            setRp_languages(e.target.value)
           }}
           placeholder="Languages Speakable"
           className="w-full p-2 border border-gray-300 rounded"
@@ -89,7 +102,7 @@ const ReserveForm = () => {
           type="String"
           name="country"
           onChange={(e) => {
-            setCountry(e.target.value)
+            setRp_country(e.target.value)
           }}
           placeholder="Country"
           className="w-full p-2 border border-gray-300 rounded"
@@ -100,8 +113,9 @@ const ReserveForm = () => {
             type="date"
             name="startDate"
             required
+            min={currentDate}
             onChange={(e) => {
-              setStartDate(e.target.value)
+              setReserve_from(e.target.value)
             }}
             className="w-full p-2 border border-gray-300 rounded"
           />
@@ -110,8 +124,9 @@ const ReserveForm = () => {
             type="date"
             name="endDate"
             required
+            min={reserve_from || currentDate}
             onChange={(e) => {
-              setEndDate(e.target.value)
+              setReserve_to(e.target.value)
             }}
             className="w-full p-2 border border-gray-300 rounded"
           />
@@ -132,7 +147,7 @@ const ReserveForm = () => {
           name="passengers"
           required
           onChange={(e) => {
-            setNoPassengers(e.target.value)
+            setRp_noofPassengers(e.target.value)
           }}
           placeholder="Number of Passengers"
           className="w-full p-2 border border-gray-300 rounded"

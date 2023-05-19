@@ -4,6 +4,11 @@ import { useLocation } from 'react-router-dom'
 
 const EditPersonalInformation = () => {
   const [hostData, setHostData] = useState(null)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
+  const [languages, setLanguages] = useState('')
 
   const hostId = '64525da5476b8cab8b1e6c08'
 
@@ -19,6 +24,7 @@ const EditPersonalInformation = () => {
           `http://localhost:4000/api/hostLocal/${id}`
         )
         console.log('Host data received:', response.data)
+
         setHostData(response.data.host)
       } catch (error) {
         console.error('Error fetching host data:', error)
@@ -27,6 +33,36 @@ const EditPersonalInformation = () => {
 
     fetchHostData()
   }, [hostId])
+
+  useEffect(() => {
+    if (hostData) {
+      setName(hostData.name)
+      setEmail(hostData.email)
+      setPhone(hostData.phone)
+      setAddress(hostData.address)
+      setLanguages(hostData.languages)
+    }
+  }, [hostData])
+
+  const updateProfile = async () => {
+    const updatedData = {
+      name,
+      email,
+      address,
+      phone,
+      languages,
+    }
+
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/api/hostLocal/${id}`,
+        updatedData
+      )
+      console.log('Profile updated successfully:', response.data)
+    } catch (error) {
+      console.error('Error updating profile:', error)
+    }
+  }
 
   if (!hostData) {
     return <div>Loading...</div>
@@ -75,8 +111,8 @@ const EditPersonalInformation = () => {
                       <input
                         type="String"
                         name="Name"
-                        readOnly
-                        value={hostData.name}
+                        defaultValue={hostData.name}
+                        onChange={(e) => setName(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -86,7 +122,8 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="email"
-                        value={hostData.email}
+                        defaultValue={hostData.email}
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
                         className="w-full p-2 border border-gray-300 rounded"
                       />
@@ -97,7 +134,8 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="string"
-                        value={hostData.phone}
+                        defaultValue={hostData.phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -107,7 +145,8 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="string"
-                        value={hostData.address}
+                        defaultValue={hostData.address}
+                        onChange={(e) => setAddress(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -117,7 +156,8 @@ const EditPersonalInformation = () => {
                       </dt>
                       <input
                         type="string"
-                        value={hostData.languages}
+                        defaultValue={hostData.languages}
+                        onChange={(e) => setLanguages(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>
@@ -130,7 +170,10 @@ const EditPersonalInformation = () => {
                     Cancel
                   </a>
                 </button>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={updateProfile}
+                >
                   Update Profile
                 </button>
               </div>
