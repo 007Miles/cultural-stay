@@ -108,6 +108,28 @@ export const createTouristAttraction = async (req, res) => {
   }
 }
 
+// Create a new tourits attraction site from the user suggessions
+export const createTARecommendation = async (req, res) => {
+  const { name, description, address, images, area } = req.body
+  // console.log('test')
+  // console.log(req.body)
+
+  try {
+    const newTouristAttraction = new TouristAttraction({
+      name,
+      description,
+      address,
+      images,
+      area,
+    })
+    await newTouristAttraction.save()
+    res.json(newTouristAttraction)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Server error')
+  }
+}
+
 // Update a tourist attractions by Id
 export const updateTouristAttraction = async (req, res) => {
   const { id } = req.params
