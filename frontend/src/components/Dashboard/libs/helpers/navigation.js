@@ -11,6 +11,8 @@ import {
   HiOfficeBuilding,
 } from 'react-icons/hi'
 import { IoFastFoodSharp } from 'react-icons/io5'
+import { MdRecommend } from 'react-icons/md'
+import { GiMountainRoad } from 'react-icons/gi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -35,13 +37,13 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     key: 'Tourist Sites',
     label: 'Tourist Sites',
     path: '/admin/attractionsList',
-    icon: <HiLibrary />,
+    icon: <GiMountainRoad />,
   },
   {
     key: 'Site Recommendations',
     label: 'Site Recommendations',
     path: '/admin/recommendationsList',
-    icon: <HiLibrary />,
+    icon: <MdRecommend />,
   },
   {
     key: 'Users',
