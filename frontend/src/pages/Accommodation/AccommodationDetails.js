@@ -270,6 +270,10 @@ const AccommodationDetails = () => {
                             {new Date(accommodation.availability_to)
                               .toISOString()
                               .substring(0, 10)}
+                            {/* {new Date(accommodation.availability_to)
+                              .toISOString()
+                              .substring(0, 10)} */}
+                            {/* 2023-05-25 */}
                           </div>
                         </td>
                       </tr>

@@ -15,6 +15,7 @@ const AccommodationForm = () => {
   const [welcome_type, setWelcome_type] = useState('')
   const [description, setDescription] = useState('')
   const [facilities, setFacilities] = useState('')
+  const [createdBy, setCreatedBy] = useState('64525da5476b8cab8b1e6c04')
   const [images, setImages] = useState([])
 
   const [error, setError] = useState('')
@@ -73,6 +74,7 @@ const AccommodationForm = () => {
       formData.append('welcome_type', welcome_type)
       formData.append('description', description)
       formData.append('facilities', facilities)
+      formData.append('createdBy', createdBy)
 
       images.forEach((image) => {
         formData.append('images', image)
@@ -94,22 +96,23 @@ const AccommodationForm = () => {
       setSuccess('Accommodation Added Successfully!')
       window.location.href = '/hostDashboardProfile'
 
-      setName('')
-      setAddress('')
-      setArea('')
-      setAvailability_from('')
-      setAvailability_to('')
-      setNo_of_guests_welcome('')
-      no_of_bedrooms('')
-      no_of_beds('')
-      no_of_washrooms('')
-      setPrice_per_night('')
-      setWelcome_type('')
-      setDescription('')
-      setFacilities('')
-      setImages([])
+      // setName('')
+      // setAddress('')
+      // setArea('')
+      // setAvailability_from('')
+      // setAvailability_to('')
+      // setNo_of_guests_welcome('')
+      // no_of_bedrooms('')
+      // no_of_beds('')
+      // no_of_washrooms('')
+      // setPrice_per_night('')
+      // setWelcome_type('')
+      // setDescription('')
+      // setFacilities('')
+      // createdBy('64525da5476b8cab8b1e6c04')
+      // setImages([])
 
-      setError('')
+      // setError('')
       // Redirect to the specified page
     } catch (err) {
       console.error(err)
