@@ -1,8 +1,10 @@
 import React from 'react'
 import pic from '../Navbar/cultural-stay1.png'
+import useAuth from '../../hooks/useAuth'
 
 const Footer = () => {
-  return (
+  const { auth } = useAuth()
+  return auth?.role != 'admin' ? (
     <footer
       aria-label="Site Footer"
       className="bg-white border border-gray-200 mt-20"
@@ -223,6 +225,8 @@ const Footer = () => {
         </p>
       </div>
     </footer>
+  ) : (
+    ''
   )
 }
 

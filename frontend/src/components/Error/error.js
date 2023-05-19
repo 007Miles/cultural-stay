@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './error.css'
+import useAuth from '../../hooks/useAuth'
 
 const Error = () => {
-  return (
+  const { auth } = useAuth()
+  return auth?.role != 'admin' ? (
     <section
       class="flex justify-center items-center mt-[70px]"
       className="page-404"
@@ -36,6 +38,8 @@ const Error = () => {
         </div>
       </div>
     </section>
+  ) : (
+    ''
   )
 }
 

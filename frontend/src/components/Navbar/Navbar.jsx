@@ -32,7 +32,7 @@ const Navbar = () => {
     window.location.href = '/'
   }
 
-  return (
+  return auth?.role != 'admin' ? (
     <nav className="nav">
       <div className="nav-center">
         <div className="nav-header">
@@ -112,6 +112,8 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+  ) : (
+    ''
   )
 }
 
