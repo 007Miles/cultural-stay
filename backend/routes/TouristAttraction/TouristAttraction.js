@@ -15,7 +15,7 @@ import {
 router.get('/', getAllTouristAttractions)
 
 //create new tourist attraction site
-router.post('/', upload.single('image'), createTouristAttraction)
+router.post('/', upload.array('images'), createTouristAttraction)
 // router.route('/').post(upload.single('image'), createTouristAttraction)
 
 // Update single tourists attractions by Id
