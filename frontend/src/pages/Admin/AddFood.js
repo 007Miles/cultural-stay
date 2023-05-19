@@ -61,6 +61,10 @@ const AddFood = () => {
     return `${timestamp}.${extension}`
   }
 
+  const handleImageChange = (e) => {
+    setImage([...image, ...e.target.files])
+  }
+
   return (
     <div>
       <div className="title">
@@ -109,8 +113,7 @@ const AddFood = () => {
                         accept="image/png, image/jpg, image/jpeg"
                         name="image"
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         placeholder="Upload the Food Image"
                         required
                       ></input>

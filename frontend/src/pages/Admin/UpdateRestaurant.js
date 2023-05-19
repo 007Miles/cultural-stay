@@ -17,17 +17,30 @@ const UpdateRestaurant = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('description', description)
+    // formData.append('image', image)
+    formData.append('phone', phone)
+    formData.append('website', website)
+    formData.append('food', food)
+
+    image.forEach((image) => {
+      formData.append('image', image)
+    })
+
     try {
       const resp = await axios.patch(
         `${resUrl}/${id}`,
-        {
-          name: name,
-          image: image,
-          description: description,
-          phone: phone,
-          website: website,
-          food: food,
-        },
+        formData,
+        // {
+        //   name: name,
+        //   image: image,
+        //   description: description,
+        //   phone: phone,
+        //   website: website,
+        //   food: food,
+        // },
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -47,6 +60,10 @@ const UpdateRestaurant = () => {
     const timestamp = new Date().getTime()
     const extension = originalName.split('.').pop()
     return `${timestamp}.${extension}`
+  }
+
+  const handleImageChange = (e) => {
+    setImage([...image, ...e.target.files])
   }
 
   return (
@@ -105,9 +122,9 @@ const UpdateRestaurant = () => {
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
                         name="image"
+                        multiple
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         placeholder="Upload Upto 4 Images"
                       ></input>
                     </div>

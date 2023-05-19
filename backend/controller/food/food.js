@@ -6,10 +6,9 @@ import { createCustomError } from '../../errors/Food/custom-error.js'
 // create a new product with checking image file
 export const createFood = asyncWrapper(async (req, res) => {
   if (req.file) {
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    const result = await cloudinary.uploader.upload(file.path, {
       folder: 'afFood',
     })
-
     req.body.image = result.secure_url
   } else {
     req.body.image =
