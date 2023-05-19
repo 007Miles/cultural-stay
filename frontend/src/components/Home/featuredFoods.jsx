@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const foods = [
   {
-    id: 1,
+    id: '644f9cce5acb21d2374651db',
     name: 'Milk Rice (කිරි බත්)',
     description:
       'A true Sri Lankan classic, “Kiribath” or Milk Rice as the Westerners call it, is a traditional breakfast dish as well as a celebratory treat for special occasions.',
@@ -16,7 +16,7 @@ const foods = [
     area: 'Ampara',
   },
   {
-    id: 2,
+    id: '64578ca97252c4c337b9ddb4',
     name: 'Kottu (කොත්තු)',
     description:
       'Kottu roti is made from Gothamba roti and vegetables, eggs, or meat and various Spices. It is a delicious meal generally eaten at dinner time.',
@@ -29,7 +29,7 @@ const foods = [
     area: 'Jaffna',
   },
   {
-    id: 3,
+    id: '64525ec961a93e2c77a0139e',
     name: 'Rice & Curry (බත් සහ කරි)',
     description:
       'Rice is considered as the staple Food of Sri Lanka while there are over 10 varieties of this cereal grain which is widely consumed on a daily basis in many households.',
@@ -42,7 +42,7 @@ const foods = [
     area: 'Trincomalee',
   },
   {
-    id: 4,
+    id: '64578f6c7252c4c337b9ddc0',
     name: 'Pittu (පිට්ටු)',
     description:
       'Enjoyed by the Sinhalese and Tamil communities alike “Pittu” is a traditional Sri Lankan dish that is quite frequented in many homes.',
@@ -62,12 +62,12 @@ const FoodCard = ({ food }) => {
   return (
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-xl hover:shadow-slate-400">
       {/* <a href=`/{food.id}`> */}
-      <Link to={`/attractionView/${food.id}`}>
+      <Link to={`/food/${food.id}`}>
         <img class="rounded-t-lg" src={food.images[0]} alt={food.name} />
       </Link>
       {/* </a> */}
       <div class="p-5">
-        <Link to={`/attractionView/${food.id}`}>
+        <Link to={`/food/${food.id}`}>
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-600">
             {food.name}
           </h5>
@@ -81,9 +81,10 @@ const FoodCard = ({ food }) => {
 const FoodsList = () => {
   return (
     <div className="mt-10">
-      <h1 className="text-3xl font-bold mb-6 text-gray-700">
-        Popular Local Cuisines
-      </h1>
+      <div className="mt-[60px] text-4xl text-center mb-8 capitalize text-[color:#324d67] mb-3 font-semibold">
+        <h2>Popular Local Cuisines</h2>
+        <div className="w-20 h-1 mb-5 mx-auto bg-[#0092FB]"></div>
+      </div>
       <div className="flex flex-wrap justify-center gap-6">
         {foods.map((food) => (
           <FoodCard key={food.id} food={food} />

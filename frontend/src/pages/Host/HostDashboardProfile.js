@@ -114,11 +114,11 @@ const HostDashboardProfile = () => {
               </div>
             </div>
             <div className="flex justify-end mb-4 mt-5">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                href="/hostEditPersonalInformation"
-              >
-                <a class="nav-link" href="/hostEditPersonalInformation">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <a
+                  class="nav-link"
+                  href={`/hostEditPersonalInformation/${hostData._id}`}
+                >
                   Edit Profile
                 </a>
               </button>

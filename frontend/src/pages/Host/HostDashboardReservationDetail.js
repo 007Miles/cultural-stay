@@ -1,6 +1,72 @@
-import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const HostDashboardReservationDetail = () => {
+  const [reservation, setReservation] = useState(null)
+  const [acceptStatus, setAcceptStatus] = useState('')
+  const [declineStatus, setDeclineStatus] = useState('')
+
+  const location = useLocation()
+  console.log(location) //testing for function in console getting ID
+  const id = location.pathname.split('/')[2]
+  console.log(id) //testing for function in console and splitting ID
+
+  const handleAcceptClick = () => {
+    const data = { status: 'Accepted' }
+
+    const confirmAccept = window.confirm('Are you sure you want to Accept?')
+    if (confirmAccept) {
+      axios
+        .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
+        .then((response) => {
+          // Handle the success response
+          setAcceptStatus('Accepted') // Update the accept status state variable
+          console.log(response.data) // Log the response if needed
+          window.alert('Reservation Accepted')
+        })
+        .catch((error) => {
+          // Handle the error response
+          setAcceptStatus('Error') // Update the accept status state variable
+          console.error(error)
+          window.alert('Somethig Went Wrong....')
+        })
+    }
+  }
+
+  const handleDeclineClick = () => {
+    const data2 = { status: 'Declined' }
+    const confirmDecline = window.confirm('Are you sure you want to Decline?')
+    if (confirmDecline) {
+      axios
+        .post(`http://localhost:4000/api/declineReservation/${id}`, data2)
+        .then((response) => {
+          // Handle the success response
+          setDeclineStatus('Declined') // Update the decline status state variable
+          console.log(response.data) // Log the response if needed
+          window.alert('Reservation Declined')
+        })
+        .catch((error) => {
+          // Handle the error response
+          setDeclineStatus('Error') // Update the decline status state variable
+          console.error(error)
+          window.alert('Somethig Went Wrong....')
+        })
+    }
+  }
+
+  useEffect(() => {
+    // Fetch accommodation details from the API
+    fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
+      .then((response) => response.json())
+      .then((data) => setReservation(data.reservation))
+      .catch((error) => console.error(error.reservation))
+  }, [reservation])
+
+  if (!reservation) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -49,7 +115,7 @@ const HostDashboardReservationDetail = () => {
                       Reserver Name :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      John Doe
+                      {reservation.rp_name}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -57,7 +123,7 @@ const HostDashboardReservationDetail = () => {
                       Reserver Email :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      john@gmail.com
+                      {reservation.rp_email}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -65,7 +131,7 @@ const HostDashboardReservationDetail = () => {
                       Reserver Phone Number :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      64825412541
+                      {reservation.rp_phone}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -73,7 +139,9 @@ const HostDashboardReservationDetail = () => {
                       Reserve Date From :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      2023-05-10
+                      {new Date(reservation.reserve_from)
+                        .toISOString()
+                        .substring(0, 10)}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -81,7 +149,9 @@ const HostDashboardReservationDetail = () => {
                       Reserve Date To :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      2023-05-15
+                      {new Date(reservation.reserve_to)
+                        .toISOString()
+                        .substring(0, 10)}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -89,7 +159,7 @@ const HostDashboardReservationDetail = () => {
                       Languages :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      English, French
+                      {reservation.rp_languages}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -97,8 +167,7 @@ const HostDashboardReservationDetail = () => {
                       Description :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      Discover the authentic charm of Sri Lanka with a unique
-                      village home stay experience.
+                      {reservation.description}
                     </dd>
                   </div>
 
@@ -107,7 +176,7 @@ const HostDashboardReservationDetail = () => {
                       No of Passengers :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      4
+                      {reservation.rp_noofPassengers}
                     </dd>
                   </div>
                   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -115,17 +184,23 @@ const HostDashboardReservationDetail = () => {
                       Country :
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 text-left">
-                      UK
+                      {reservation.rp_country}
                     </dd>
                   </div>
                 </dl>
               </div>
             </div>
             <div className="flex justify-end mt-4">
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">
+              <button
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+                onClick={handleAcceptClick}
+              >
                 Accept
               </button>
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              <button
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handleDeclineClick}
+              >
                 Decline
               </button>
             </div>

@@ -75,7 +75,7 @@
 }
 
 .title {
-  @apply  mt-[60px] text-4xl text-center mb-8 capitalize text-[color:var(--clr-grey-3)] mb-3 ;
+  @apply  mt-[60px] text-4xl text-center mb-8 capitalize text-[color:#324d67] mb-3 ;
 }
 .underline {
   @apply w-20 h-1 mb-5 mx-auto;

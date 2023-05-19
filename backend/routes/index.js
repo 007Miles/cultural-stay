@@ -9,6 +9,7 @@ import restaurantRouter from './restaurants/restaurants.js'
 import TouristAttractionRouter from './TouristAttraction/TouristAttraction.js'
 import suggestionRouter from './TouristAttraction/suggestions.js'
 import FeedBackRouter from './feedback/feedback.js'
+import UserRouter from './Tourists/user.js'
 
 const router = express.Router()
 
@@ -21,5 +22,6 @@ router.use('/restaurants', restaurantRouter)
 router.use('/TASites', TouristAttractionRouter)
 router.use('/suggestion', suggestionRouter)
 router.use('/feedback', FeedBackRouter)
+router.use('/user', UserRouter)
 
 export default router
