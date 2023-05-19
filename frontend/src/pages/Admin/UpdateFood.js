@@ -10,7 +10,7 @@ const UpdateFood = () => {
   const [name, setName] = useState('')
   const [sinhala_name, setSinhala_name] = useState('')
   const [description, setDescription] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(null)
   const [restaurants, setRestaurants] = useState('')
 
   const handleUpdateSubmit = async (e) => {
@@ -57,7 +57,7 @@ const UpdateFood = () => {
   }
 
   const handleImageChange = (e) => {
-    setImage([...image, ...e.target.files])
+    setImage(e.target.files[0])
   }
 
   return (
