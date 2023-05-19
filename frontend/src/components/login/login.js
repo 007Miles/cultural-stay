@@ -15,44 +15,56 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (user.split('@')[0] === pwd) {
-      setAuth({ user })
-      setUser('')
-      setPwd('')
-      navigate('/')
-    } else {
-      setErrMsg('Invalid username or password')
-    }
-
-    // try {
-    //   const response = await axios.post(
-    //     'http://localhost:3001/api/v1/auth/login',
-    //     JSON.stringify({ user, pwd }),
-    //     {
-    //       headers: { 'Content-Type': 'application/json' },
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   console.log(JSON.stringify(response?.data))
-
-    //   const accessToken = response?.data?.accessToken
-    //   const role = response?.data?.role
-    //   console.log(role)
-    //   setAuth({ user, pwd, role, accessToken })
+    // if (user.split('@')[0] === pwd) {
+    //   setAuth({ user })
     //   setUser('')
     //   setPwd('')
-    //   navigate('/admin')
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     setErrMsg('Server Error')
-    //   } else if (err.response?.status === 400) {
-    //     setErrMsg('Username or password required')
-    //   } else if (err.response?.status === 401) {
-    //     setErrMsg('Invalid username or password')
-    //   } else {
-    //     setErrMsg('Login Failed')
-    //   }
+    //   navigate('/')
+    // } else {
+    //   setErrMsg('Invalid username or password')
     // }
+
+    try {
+      const response = await axios.post(
+        'http://localhost:4000/api/user/login',
+        { user: user, pwd: pwd }
+      )
+
+      console.log(response)
+      // console.log(JSON.stringify(response?.data))
+      const userName = response?.data?.username
+      console.log(userName)
+      // const userName = response?.data?.username
+      const role = response?.data?.role
+      console.log(role)
+      setAuth({ user, role, userName })
+      setUser('')
+      setPwd('')
+
+      switch (role) {
+        case 'admin':
+          navigate('/admin')
+          break
+        case 'tourist':
+          navigate('/')
+          break
+        case 'host':
+          navigate('/hostDashboardProfile')
+          break
+        default:
+          navigate('/')
+      }
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg('Server Error')
+      } else if (err.response?.status === 400) {
+        setErrMsg('Username or password required')
+      } else if (err.response?.status === 401) {
+        setErrMsg('Invalid username or password')
+      } else {
+        setErrMsg('Login Failed')
+      }
+    }
   }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">

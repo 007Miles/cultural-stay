@@ -297,7 +297,7 @@ const AddFood = () => {
                     </div>
 
                     <button
-                      class="m-auto bg-green-500 mt-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
+                      class="m-auto bg-[#0092FB] mt-[20px] hover:bg-blue-500 text-white font-bold py-2 px-4 border border-green-700 rounded"
                       type="submit"
                       name="submit"
                     >
