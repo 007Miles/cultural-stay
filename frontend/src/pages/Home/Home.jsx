@@ -3,6 +3,7 @@ import Video from '../../Assets/v1.mp4'
 import PlacesList from '../../components/Home/popularPlaces'
 import FoodsList from '../../components/Home/featuredFoods'
 import RestaurantsList from '../../components/Home/featuredRestaurants'
+import HomeReview from '../../components/HomeReview/HomeReview.js'
 // import './home.css'
 
 export const Home = () => {
@@ -27,9 +28,10 @@ export const Home = () => {
         </div>
       </div>
       <div className="">
-        <h1 className="text-3xl font-bold mb-6 text-gray-700 mt-20">
-          Welcome to Cultural Stay!{' '}
-        </h1>
+        <div className="mt-[60px] text-4xl text-center mb-8 capitalize text-[color:#324d67] mb-3 font-semibold">
+          <h2>Welcome to Cultural Stay!</h2>
+          <div className="w-20 h-1 mb-5 mx-auto bg-[#0092FB]"></div>
+        </div>
         <p className="text-lg font-medium text-gray-700 mt-2 w-1/2 m-auto mb-20">
           Our platform is designed to help travelers who are eager to experience
           Sri Lanka's rich cultural heritage and traditions while enjoying
@@ -45,6 +47,9 @@ export const Home = () => {
         </div>
         <div className="">
           <RestaurantsList />
+        </div>
+        <div className="">
+          <HomeReview />
         </div>
       </div>
     </div>

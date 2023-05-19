@@ -33,6 +33,7 @@ const ReserveForm = () => {
       .post('http://localhost:4000/api/accommodationReserve', newReservation)
       .then(() => {
         console.log('Success', newReservation)
+        window.alert('Reservation Complete')
       })
       .catch((err) => {
         console.log('error')
@@ -47,6 +48,7 @@ const ReserveForm = () => {
         <input
           type="text"
           name="name"
+          required
           onChange={(e) => {
             setName(e.target.value)
           }}
@@ -56,6 +58,7 @@ const ReserveForm = () => {
         <input
           type="email"
           name="email"
+          required
           onChange={(e) => {
             setEmail(e.target.value)
           }}
@@ -66,6 +69,7 @@ const ReserveForm = () => {
         <input
           type="tel"
           name="phoneNumber"
+          required
           onChange={(e) => {
             setPhoneNumber(e.target.value)
           }}
@@ -95,6 +99,7 @@ const ReserveForm = () => {
           <input
             type="date"
             name="startDate"
+            required
             onChange={(e) => {
               setStartDate(e.target.value)
             }}
@@ -104,6 +109,7 @@ const ReserveForm = () => {
           <input
             type="date"
             name="endDate"
+            required
             onChange={(e) => {
               setEndDate(e.target.value)
             }}
@@ -124,6 +130,7 @@ const ReserveForm = () => {
         <input
           type="number"
           name="passengers"
+          required
           onChange={(e) => {
             setNoPassengers(e.target.value)
           }}

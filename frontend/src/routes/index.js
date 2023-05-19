@@ -30,6 +30,9 @@ import CreateAttraction from '../components/Attractions/createAttraction'
 import RecommendAttraction from '../components/Attractions/recommendAttraction'
 import AttractionsList from '../components/Attractions/attractionsList'
 import Footer from '../components/Footer/footer'
+import FoodByRestaurants from '../pages/Food/FoodByRestaurants'
+import AdminFoods from '../pages/Admin/AdminFoods'
+import AdminRestaurants from '../pages/Admin/AdminRestaurants'
 import Login from '../components/login/login'
 import AdminRoutes from './adminRoutes'
 
@@ -87,6 +90,7 @@ const IndexRoutes = () => {
 
         <Route path="/food" element={<Foods />} />
         <Route path="/food/:id" element={<SingleFood />} />
+        <Route path="/food/by-restaurant/:id" element={<FoodByRestaurants />} />
 
         <Route path="/restaurants" element={<Restaurants />} />
         <Route path="/restaurants/:id" element={<SingleRestaurant />} />
@@ -95,6 +99,8 @@ const IndexRoutes = () => {
           element={<RestaurantsByFood />}
         />
 
+        <Route path="/admin/food" element={<AdminFoods />} />
+        <Route path="/admin/restaurants" element={<AdminRestaurants />} />
         <Route path="/admin/add-food" element={<AddFood />} />
         <Route path="/admin/update-food/:id" element={<UpdateFood />} />
         <Route path="/admin/add-restaurant" element={<AddRestaurant />} />
@@ -103,7 +109,6 @@ const IndexRoutes = () => {
           element={<UpdateRestaurant />}
         />
 
-        
         {/* insert all routes above the error route */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>

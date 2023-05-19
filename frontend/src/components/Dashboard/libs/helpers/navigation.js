@@ -10,6 +10,7 @@ import {
   HiLibrary,
   HiOfficeBuilding,
 } from 'react-icons/hi'
+import { IoFastFoodSharp } from 'react-icons/io5'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -21,8 +22,14 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'Restuarants',
     label: 'Restuarants',
-    path: '/sellers',
+    path: '/admin/restaurants',
     icon: <HiOfficeBuilding />,
+  },
+  {
+    key: 'Food',
+    label: 'Food',
+    path: '/admin/food',
+    icon: <IoFastFoodSharp />,
   },
   {
     key: 'Tourist Sites',
