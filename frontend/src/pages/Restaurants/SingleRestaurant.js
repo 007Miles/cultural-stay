@@ -86,7 +86,7 @@ const SingleRestaurant = () => {
   return (
     <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
       <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-        <img class="mt-[30px] w-[400px] h-[250px]" alt={name} src={image[0]} />
+        <img class="mt-[80px] w-[400px] h-[250px]" alt={name} src={image[0]} />
         <img class="mt-6 w-[400px] h-[250px]" alt={name} src={image[1]} />
       </div>
       <div class="md:hidden">
@@ -116,7 +116,7 @@ const SingleRestaurant = () => {
       </div>
       <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
         <div class="border-b border-gray-200 pb-6 mt-[100px]">
-          <h1 class="mt-[30px] lg:text-3xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
+          <h1 class="mt-[20px] lg:text-3xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
             {name} - {city}
           </h1>
           <div class="mt-[20px] text-gray-500 dark:text-white">

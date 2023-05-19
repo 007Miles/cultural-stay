@@ -63,7 +63,7 @@ const PlaceCard = ({ place }) => {
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-xl hover:shadow-slate-400">
       {/* <a href=`/{place.id}`> */}
       <Link to={`/attractionView/${place.id}`}>
-        <img class="rounded-t-lg" src={place.images[0]} alt={place.name} />
+        <img class="w-full h-[270px] rounded-t-lg" src={place.images[0]} alt={place.name} />
       </Link>
       {/* </a> */}
       <div class="p-5">

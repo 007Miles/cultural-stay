@@ -60,7 +60,7 @@ const RestaurantCard = ({ restaurant }) => {
       {/* <a href=`/{restaurant.id}`> */}
       <Link to={`/restaurants/${restaurant.id}`}>
         <img
-          class="rounded-t-lg"
+          class="w-full h-[270px] rounded-t-lg"
           src={restaurant.images[0]}
           alt={restaurant.name}
         />

@@ -63,7 +63,7 @@ const FoodCard = ({ food }) => {
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-xl hover:shadow-slate-400">
       {/* <a href=`/{food.id}`> */}
       <Link to={`/food/${food.id}`}>
-        <img class="rounded-t-lg" src={food.images[0]} alt={food.name} />
+        <img class="w-full h-[270px] rounded-t-lg" src={food.images[0]} alt={food.name} />
       </Link>
       {/* </a> */}
       <div class="p-5">
