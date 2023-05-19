@@ -49,8 +49,8 @@ const IndexRoutes = () => {
         <Route path="/registration" element={<Registration />} />
         <Route path="/attractionView/:id" element={<AttractionView />} />
         <Route path="/createAttraction" element={<CreateAttraction />} />
-        <Route path="/suggestion" element={<RecommendAttraction />} />
-        <Route path="/AttractionsList" element={<AttractionsList />} />
+        <Route path="/recommendation" element={<RecommendAttraction />} />
+        <Route path="/admin/attractionsList" element={<AttractionsList />} />
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/search" element={<Search />} />

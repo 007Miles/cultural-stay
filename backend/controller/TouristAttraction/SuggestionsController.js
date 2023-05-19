@@ -58,19 +58,24 @@ export const getSuggestionsById = async (req, res) => {
 
 // Create a new tourits attraction Suggestion site with uploading an image
 export const createSuggestions = async (req, res) => {
-  const { name, description, address, image, status, area } = req.body
+  const { name, description, address, status, area } = req.body
 
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    folder: 'afSuggestionForm',
-  })
-  // req.body.image = result.secure_url
+  const files = req.files
+  let imagesArray = []
+
+  for (let i = 0; i < files.length; i++) {
+    const result = await cloudinary.uploader.upload(files[i].path, {
+      folder: 'afSuggestionForm',
+    })
+    imagesArray.push(result.secure_url)
+  }
   try {
     const newSuggestions = new Suggestions({
       name,
       description,
       address,
-      image: result.secure_url,
-      status,
+      images: imagesArray,
+      status: false,
       area,
     })
     await newSuggestions.save()

@@ -169,6 +169,14 @@ const Footer = () => {
                       Important Notices
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="/recommendation"
+                      className="text-gray-700 transition hover:opacity-75"
+                    >
+                      Recommend Attractions
+                    </a>
+                  </li>
                 </ul>
               </nav>
             </div>
