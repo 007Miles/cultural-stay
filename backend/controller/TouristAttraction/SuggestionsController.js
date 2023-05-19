@@ -39,9 +39,9 @@ export const getAllSuggestions = async (req, res) => {
     result = result.select(fieldList)
   }
 
-  const Suggestions = await result
+  const suggestions = await result
 
-  res.status(200).json({ Suggestions, nbHits: Suggestions.length })
+  res.status(200).json({ suggestions, nbHits: suggestions.length })
 }
 
 // Get single tourists attraction Suggestions by Id

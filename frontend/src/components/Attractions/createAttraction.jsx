@@ -29,7 +29,7 @@ const TouristAttractionForm = () => {
       images.forEach((image) => {
         formData.append('images', image)
       })
-
+      console.log(formData)
       const response = await axios.post(
         'http://localhost:4000/api/TASites/',
         formData,
