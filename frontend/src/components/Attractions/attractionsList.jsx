@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import TouristAttractionUpdateForm from './attractionUpdate'
+import { Link } from 'react-router-dom'
 
 const AttractionsList = () => {
   const [attractions, setAttractions] = useState([])
@@ -83,6 +84,27 @@ const AttractionsList = () => {
 
   return (
     <div className="container mx-auto mt-10 w-2/3">
+      <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <h5 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
+          Welcome to Cultural Stay Admin Dashboard
+        </h5>
+        <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
+          You can manage any Tourist Attraction & You can create a new Tourist
+          Attraction.
+        </p>
+        <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+          <Link
+            to={`/createAttraction`}
+            class="w-[170px] sm:w-auto bg-[#0092FB] hover:bg-blue-700 hover:no-underline focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+          >
+            <div class="text-left">
+              <div class="-mt-1 font-sans text-sm font-semibold">
+                Add New Tourist Attraction
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
       <h1 className="text-3xl font-bold mb-6 text-gray-600">
         Tourist Attractions
       </h1>
