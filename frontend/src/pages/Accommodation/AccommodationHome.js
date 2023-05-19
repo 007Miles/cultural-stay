@@ -62,12 +62,14 @@ const AccommodationHome = () => {
                   : <t>{accommodation.availability_to}</t>
                 </p>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded-full flex items-center">
-                  <a
+                  {/* <a
                     class="nav-link"
                     href={`/accommodationDetails/${accommodation._id}`}
-                  >
+                  > */}
+                  <Link to={`/accommodationDetails/${accommodation._id}`}>
                     <FaArrowRight />
-                  </a>
+                  </Link>
+                  {/* </a> */}
                   {/* 
                   <Link // Use Link instead of <a> tag
                     className="nav-link"

@@ -4,7 +4,10 @@ import './error.css'
 
 const Error = () => {
   return (
-    <section className="page-404">
+    <section
+      class="flex justify-center items-center mt-[70px]"
+      className="page-404"
+    >
       <div className="container">
         <div className="row">
           <div className="col-sm-12">

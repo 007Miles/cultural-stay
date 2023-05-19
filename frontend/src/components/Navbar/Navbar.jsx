@@ -1,73 +1,17 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-
-// const Navbar = () => {
-//   return (
-//     <div>
-//       <div class="bg-white">
-//         <nav class="flex justify-between items-center w-[92%]  mx-auto">
-//           <div>
-//             <a href="/">
-//               <h1 className="w-auto py-4 font-bold  cursor-pointer font-sigmar text-3xl">
-//                 Cultural Stay
-//               </h1>
-//             </a>
-//           </div>
-//           <div class="nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-20 top-[-100%] md:w-auto  w-full flex items-center px-5">
-//             <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 text-lg font-poppins">
-//               <li>
-//                 <a class="text-gray-500 hover:text-black" href="#">
-//                   Hosts
-//                 </a>
-//               </li>
-//               <li>
-//                 <a class="text-gray-500 hover:text-black" href="#">
-//                   Restaurants
-//                 </a>
-//               </li>
-//               <li>
-//                 <a class="text-gray-500 hover:text-black" href="#">
-//                   Food
-//                 </a>
-//               </li>
-//               <li>
-//                 <a class="text-gray-500 hover:text-black" href="/attractions">
-//                   Attractions
-//                 </a>
-//               </li>
-//               <li>
-//                 <a class="text-gray-500 hover:text-black" href="#">
-//                   Search
-//                 </a>
-//               </li>
-//             </ul>
-//           </div>
-//           <div class="flex items-center gap-6">
-//             <Link to="/registration">
-//               <button class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
-//                 Sign in
-//               </button>
-//             </Link>
-//           </div>
-//         </nav>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Navbar
-
 import React, { useState, useRef, useEffect } from 'react'
 import { FaBars } from 'react-icons/fa'
 import { links } from './data'
 import { Link } from 'react-router-dom'
 import './navbar.css'
 import pic from './cultural-stay1.png'
+import useAuth from '../../hooks/useAuth'
+import { FaRegUser } from 'react-icons/fa'
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false)
   const linksContainerRef = useRef(null)
   const linksRef = useRef(null)
+  const { auth } = useAuth()
 
   useEffect(() => {
     const linksHeight = linksRef.current.getBoundingClientRect().height
@@ -99,16 +43,32 @@ const Navbar = () => {
               const { id, url, text } = link
               return (
                 <li key={id}>
-                  <a href={url}>{text}</a>
+                  {/* <a href={url}>{text}</a> */}
+                  <Link to={url}> {text}</Link>
                 </li>
               )
             })}
+            {/* <li key={7}>
+              <Link to="/accommodationDetails/6456bd46925829cfd2eebb02">
+                test
+              </Link>
+            </li> */}
           </ul>
         </div>
-        <div className="login-icon">
-          <Link to="/login">
-            <button>Sign in</button>
-          </Link>
+        <div className="login-icon ">
+          {auth?.user ? (
+            <span className="flex justify-center shadow-md p-4 rounded-lg">
+              <FaRegUser size={28} />{' '}
+              <span className="ml-2 text-xl font-bold">
+                {auth.user.split('@')[0].charAt(0).toUpperCase() +
+                  auth.user.split('@')[0].slice(1)}
+              </span>
+            </span>
+          ) : (
+            <Link to="/login">
+              <button>Sign in</button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

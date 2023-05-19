@@ -22,6 +22,7 @@
 .background-404
 {
     background: url('./404-error.gif');
+    background-repeat: no-repeat;
     height: 400px;
     background-position: center;
     margin: auto;
@@ -51,7 +52,7 @@
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
-    background: rgb(33,190,33);
+    background: rgb(0, 146, 251);
     display: inline-block;
     border-radius: 4px;
     border: none;
@@ -62,10 +63,10 @@
     
 }
 
-.buttonx:hover {background-color: #3e8e41}
+.buttonx:hover {background-color: #0474b5}
 
 .buttonx:active {
-  background-color: #3e8e41;
+  background-color: #056f99;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
