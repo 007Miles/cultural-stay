@@ -87,12 +87,26 @@ export const getAllFeedbackforLoc = asyncWrapper(async (req, res) => {
 
 //get all the feedbacks
 export const getAllFeedback = asyncWrapper(async (req, res) => {
-  const result = await FeedBack.find()
+  const results = await FeedBack.find()
     .populate('loc_id', 'name address price_per_night images image')
     .select('-ratings_list -comments')
-    .select({ images: { $slice: 1 }, image: { $slice: 1 } })
 
-  if (result) {
-    res.status(201).json({ result })
+  const modifiedResults = results.map((result) => {
+    const modifiedResult = result.toObject()
+    if (modifiedResult.loc_id.hasOwnProperty('images')) {
+      modifiedResult.loc_id.mainImage = modifiedResult.loc_id.images[0]
+      delete modifiedResult.loc_id.images
+    } else if (modifiedResult.loc_id.hasOwnProperty('image')) {
+      modifiedResult.loc_id.mainImage = modifiedResult.loc_id.image[0]
+      delete modifiedResult.loc_id.image
+    }
+    if (!modifiedResult.loc_id.hasOwnProperty('price_per_night')) {
+      modifiedResult.loc_id.price_per_night = 0
+    }
+    return modifiedResult
+  })
+
+  if (modifiedResults) {
+    res.status(201).json({ modifiedResults })
   }
 })
