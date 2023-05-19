@@ -36,6 +36,7 @@ const AccommodationSchema = new mongoose.Schema(
     no_of_guests_welcome: {
       type: Number,
       required: [false, 'must provide no of guests welcome'],
+      default: 1,
       min: [1, 'Welcome at least 1 guests'],
     },
     no_of_bedrooms: {
@@ -57,6 +58,7 @@ const AccommodationSchema = new mongoose.Schema(
       type: Number,
       required: [false, 'must provide Accommodation price'],
       min: [0, 'product price should be more than 0'],
+      default: 2500,
     },
     welcome_type: {
       type: String,

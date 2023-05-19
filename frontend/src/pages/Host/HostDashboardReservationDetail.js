@@ -15,6 +15,7 @@ const HostDashboardReservationDetail = () => {
 
   const handleAcceptClick = () => {
     const data = { status: 'Accepted' }
+    const hostId = '6457ab81e8c48e0e8863313d'
 
     const confirmAccept = window.confirm('Are you sure you want to Accept?')
     if (confirmAccept) {
@@ -25,7 +26,22 @@ const HostDashboardReservationDetail = () => {
           console.log(response.data)
           window.alert('Reservation Accepted')
           toast.success('Reservation Accepted')
-          window.location.href = '/hostDashboardReservationAll'
+
+          // Call the API to change availability
+          axios
+            .post(`http://localhost:4000/api/accommodation/${hostId}`, {
+              availability: 'Unavailable',
+            })
+            .then((availabilityResponse) => {
+              console.log(availabilityResponse.data)
+              // Redirect to the specified page
+              window.location.href = '/hostDashboardReservationAll'
+            })
+            .catch((error) => {
+              console.error(error)
+              window.alert('Something Went Wrong....')
+              toast.error('Something Went Wrong....')
+            })
         })
         .catch((error) => {
           setAcceptStatus('Error')
