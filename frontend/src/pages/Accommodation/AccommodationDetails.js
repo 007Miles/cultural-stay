@@ -224,7 +224,7 @@ const AccommodationDetails = () => {
               </div>
 
               <hr className="border-b border-gray-300 my-8" />
-              {auth?.user ? (
+              {auth?.user && auth?.role === 'tourist' ? (
                 <div className="mb-6">
                   <div className="font-bold text-2xl  text-left">
                     {/* <CommentBox id={'6456bd46925829cfd2eebb02'} /> */}
@@ -300,7 +300,7 @@ const AccommodationDetails = () => {
               </div>
             </div>
             <div className="mt-4">
-              {auth?.user ? (
+              {auth?.user && auth?.role === 'tourist' ? (
                 <RatingBox id={'6456bd46925829cfd2eebb02'} />
               ) : (
                 <div></div>
