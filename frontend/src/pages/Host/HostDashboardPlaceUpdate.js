@@ -2,30 +2,140 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const HostDashboardPlaceUpdate = () => {
-  const [accommodationData, setAccommodationData] = useState(null)
+  const [accommodation, setAccommodation] = useState(null)
 
-  const hostId = '64525da5476b8cab8b1e6c08'
+  const hostId = '6457ab81e8c48e0e8863313d'
 
-  useEffect(() => {
-    const fetchAccommodationData = async () => {
+  // useEffect(() => {
+  //   const fetchAccommodationData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:4000/api/accommodation/${hostId}`
+  //       )
+  //       console.log('Host data received:', response.data.accommodation)
+  //       setAccommodationData(response.data.accommodation)
+  //     } catch (error) {
+  //       console.error('Error fetching accommodation data:', error)
+  //     }
+  //   }
+
+  //   fetchAccommodationData()
+  // }, [])
+
+  // if (!accommodationData) {
+  //   return <div>Loading...</div>
+  // }
+
+  // useEffect(() => {
+  //   // Fetch accommodation details from the API
+  //   fetch(`http://localhost:4000/api/accommodation/${hostId}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setAccommodation(data.accommodation))
+  //   console.log(data.accommodation).catch((error) => console.error(error))
+  // }, [accommodation])
+
+  // useEffect(() => {
+  //   function fetchData() {
+  //     axios
+  //       .get(`http://localhost:4000/api/accommodation/${hostId}`)
+  //       .then((res) => {
+  //         console.log('your data has been received')
+  //         console.log(res.data.accommodation)
+
+  //         setAccommodation(res.data.accommodation) //using set function to retrieve data and display on website
+  //         console.log(res.data.accommodation.address)
+  //       })
+  //       .catch((err) => {
+  //         alert(err.message)
+  //       })
+  //   }
+  //   fetchData()
+  // }, [accommodation])
+
+  // if (!accommodation) {
+  //   return <div>Loading...</div>
+  // }
+
+  React.useEffect(() => {
+    async function getAccommodation() {
       try {
-        const response = await axios.get(
+        const response = await fetch(
           `http://localhost:4000/api/accommodation/${hostId}`
         )
-        console.log('Host data received:', response.data.accommodation)
-        setAccommodationData(response.data.accommodation)
+
+        const data = await response.json()
+
+        console.log(data.accommodation)
+
+        if (data.accommodation) {
+          const {
+            name: name,
+            address: address,
+            area: area,
+            availability_from: availability_from,
+            availability_to: availability_to,
+            no_of_guests_welcome: no_of_guests_welcome,
+            no_of_bedrooms: no_of_bedrooms,
+            no_of_beds: no_of_beds,
+            no_of_washrooms: no_of_washrooms,
+            price_per_night: price_per_night,
+            welcome_type: welcome_type,
+            description: description,
+            facilities: facilities,
+            images: images,
+          } = data.accommodation
+
+          const newAccommodation = {
+            name,
+            address,
+            area,
+            availability_from,
+            availability_to,
+            no_of_guests_welcome,
+            no_of_bedrooms,
+            no_of_beds,
+            no_of_washrooms,
+            price_per_night,
+            welcome_type,
+            description,
+            facilities,
+            images,
+          }
+
+          setAccommodation(newAccommodation)
+        } else {
+          setAccommodation(null)
+        }
       } catch (error) {
-        console.error('Error fetching accommodation data:', error)
+        console.log(error)
       }
     }
 
-    fetchAccommodationData()
-  }, [])
+    getAccommodation()
+  }, [hostId])
 
-  if (!accommodationData) {
-    return <div>Loading...</div>
+  if (!accommodation) {
+    return <h2>No accommodation item to display</h2>
   }
 
+  const {
+    name,
+    address,
+    area,
+    availability_from,
+    availability_to,
+    no_of_guests_welcome,
+    no_of_bedrooms,
+    no_of_beds,
+    no_of_washrooms,
+    price_per_night,
+    welcome_type,
+    description,
+    facilities,
+    images,
+  } = accommodation
+
+  console.log(accommodation)
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -65,19 +175,18 @@ const HostDashboardPlaceUpdate = () => {
               <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
                   <h3 className="text-lg leading-6 font-medium text-gray-900 text-center uppercase font-bold">
-                    Accommodation Details
+                    Accommodation Details {name}
                   </h3>
                 </div>
                 <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
                   <dl className="sm:divide-y sm:divide-gray-200">
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                       <dt className="text-base font-medium text-gray-500">
-                        Accommodation Name{accommodationData.area}
+                        Accommodation Name
                       </dt>
                       <input
                         type="String"
-                        readOnly
-                        value={accommodationData.name}
+                        value={name}
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                     </div>

@@ -17,11 +17,11 @@ const AccommodationSchema = new mongoose.Schema(
       required: [false, 'must provide accommodation location'],
       trim: true,
     },
-    location_maplink: {
-      type: String,
-      required: [false, 'must provide accommodation location link'],
-      trim: true,
-    },
+    // location_maplink: {
+    //   type: String,
+    //   required: [false, 'must provide accommodation location link'],
+    //   trim: true,
+    // },
     availability: {
       type: String,
       default: 'Available',
@@ -62,10 +62,10 @@ const AccommodationSchema = new mongoose.Schema(
       type: String,
       required: false,
 
-      enum: {
-        values: ['Couple', 'Family', 'Solo', 'Student'],
-        message: '{VALUE} is not a valid Type',
-      },
+      // enum: {
+      //   values: ['Couple', 'Family', 'Solo', 'Student'],
+      //   message: '{VALUE} is not a valid Type',
+      // },
     },
     description: {
       type: String,
