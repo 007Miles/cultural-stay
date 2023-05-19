@@ -2,8 +2,9 @@ import React from 'react'
 import Loading from '../../components/Food/Loading'
 import { useParams, Link } from 'react-router-dom'
 
-const url = 'http://localhost:4000/api/restaurants/'
+// const url = 'http://localhost:4000/api/restaurants/'
 const resUrl = 'http://localhost:4000/api/restaurants?food='
+const url = 'https://cultural-stay.onrender.com/api/restaurants/'
 
 const createMarkup = (text) => {
   return { __html: text }
