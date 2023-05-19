@@ -68,9 +68,17 @@ export default function RatingBox({ id }) {
               size="large"
               name="read-only"
               value={value}
-              precision={0.2}
+              precision={0.5}
               readOnly
             />
+            {/* <br></br>
+            <Rating
+              size="large"
+              name="read-only"
+              defaultValue={value}
+              precision={0.1}
+              readOnly
+            /> */}
             {/* <Rating
               size="large"
               name="simple-controlled"

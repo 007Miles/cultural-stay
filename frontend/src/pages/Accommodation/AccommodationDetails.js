@@ -218,7 +218,8 @@ const AccommodationDetails = () => {
 
               <div className="mb-6">
                 <div className="font-bold text-2xl  text-left">
-                  <Feedback id={'6456bd46925829cfd2eebb02'} />
+                  {/* <Feedback id={'6456bd46925829cfd2eebb02'} /> */}
+                  <Feedback id={id} />
                 </div>
               </div>
 
@@ -226,7 +227,8 @@ const AccommodationDetails = () => {
               {auth?.user ? (
                 <div className="mb-6">
                   <div className="font-bold text-2xl  text-left">
-                    <CommentBox id={'6456bd46925829cfd2eebb02'} />
+                    {/* <CommentBox id={'6456bd46925829cfd2eebb02'} /> */}
+                    <CommentBox id={id} />
                   </div>
                 </div>
               ) : (
