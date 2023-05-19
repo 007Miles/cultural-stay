@@ -72,12 +72,12 @@ const PlaceCard = ({ place }) => {
   return (
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-xl hover:shadow-slate-400">
       {/* <a href=`/{place.id}`> */}
-      <Link to={`/attractionView/${place.id}`}>
+      <Link to={`/attractionView/${place._id}`}>
         <img class="rounded-t-lg" src={place.images[0]} alt={place.name} />
       </Link>
       {/* </a> */}
       <div class="p-5">
-        <Link to={`/attractionView/${place.id}`}>
+        <Link to={`/attractionView/${place._id}`}>
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-600">
             {place.name}
           </h5>
