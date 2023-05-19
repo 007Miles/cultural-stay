@@ -2,145 +2,98 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import TouristAttractionUpdateForm from './attractionUpdate'
 import { Link } from 'react-router-dom'
+import Sidebar from '../Dashboard/Sidebar'
 
 const AttractionsList = () => {
   const [attractions, setAttractions] = useState([])
-
-  const attractionsData = [
-    {
-      name: 'Gal Oya National Park',
-      description:
-        'A beautiful national park in Sri Lanka that is home to various wildlife and bird species.',
-      address: 'Gal Oya National Park, Ampara, Sri Lanka',
-      images: [
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449390/afPlaces/g1_meld5b.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449392/afPlaces/g2_l4sl38.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449554/afPlaces/g3_ibexum.jpg',
-      ],
-      area: 'Ampara',
-    },
-    {
-      name: 'Delft Island',
-      description:
-        'A small island located in the Jaffna district with beautiful scenery and wild horses.',
-      address: 'Delft Island, Jaffna, Sri Lanka',
-      images: [
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d1_fzuohi.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d3_nvpwuv.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d2_elkug0.jpg',
-      ],
-      area: 'Jaffna',
-    },
-    {
-      name: 'Pigeon Island',
-      description:
-        'A beautiful island with clear blue waters and white sandy beaches located in Trincomalee.',
-      address: 'Nilaveli, Trincomalee, Sri Lanka',
-      images: [
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p1_z2xtsw.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
-      ],
-      area: 'Trincomalee',
-    },
-    {
-      name: 'Ritigala',
-      description:
-        'A beautiful forest monastery located in the Anuradhapura district with ruins of ancient buildings and a scenic hiking trail.',
-      address: 'Ritigala, Anuradhapura, Sri Lanka',
-      images: [
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r1_quumb5.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
-        'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
-      ],
-      area: 'Anuradhapura',
-    },
-  ]
 
   useEffect(() => {
     fetchAttractions()
   }, [])
 
   const fetchAttractions = async () => {
-    //     try {
-    //       const response = await axios.get('http://localhost:4000/api/TASites/')
-    //       setAttractions(response.data.touristAttractions)
-    //       console.log(response.data.touristAttractions)
-    //       console.log(attractions)
-    //     } catch (error) {
-    //       console.error(error)
-    //     }
-    setAttractions(attractionsData)
+    try {
+      const response = await axios.get('http://localhost:4000/api/TASites/')
+      setAttractions(response.data.touristAttractions)
+      console.log(response.data.touristAttractions)
+      console.log(attractions)
+    } catch (error) {
+      console.error(error)
+    }
+    //setAttractions(attractionsData)
   }
 
   const handleDelete = async (id) => {
-    // try {
-    //   await axios.delete(`/api/tourist-attractions/${id}`)
-    //   fetchAttractions()
-    // } catch (error) {
-    //   console.error(error)
-    // }
+    try {
+      await axios.delete(`http://localhost:4000/api/TASites/${id}`)
+      fetchAttractions()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
-    <div className="container mx-auto mt-10 w-2/3">
-      <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <h5 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
-          Welcome to Cultural Stay Admin Dashboard
-        </h5>
-        <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
-          You can manage any Tourist Attraction & You can create a new Tourist
-          Attraction.
-        </p>
-        <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-          <Link
-            to={`/createAttraction`}
-            class="w-[170px] sm:w-auto bg-[#0092FB] hover:bg-blue-700 hover:no-underline focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-          >
-            <div class="text-left">
-              <div class="-mt-1 font-sans text-sm font-semibold">
-                Add New Tourist Attraction
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-      <h1 className="text-3xl font-bold mb-6 text-gray-600">
-        Tourist Attractions
-      </h1>
-      {attractions.map((attraction) => (
-        <div
-          key={attraction._id}
-          className="bg-white border p-4 mb-8 shadow-lg rounded-xl"
-        >
-          <h2 className="text-2xl font-bold mb-4">{attraction.name}</h2>
-          <p>{attraction.description}</p>
-          <p>{attraction.address}</p>
-          <p>{attraction.area}</p>
-          <div className="flex justify-center space-x-4 mt-4">
-            {attraction.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`${attraction.name} - ${index}`}
-                className="w-64"
-              />
-            ))}
-          </div>
-          <div className="flex justify-center space-x-4 mt-6">
-            <TouristAttractionUpdateForm
-              attraction={attraction}
-              onUpdate={() => {}}
-            />
-            <button
-              className="inline-block px-6 py-2 mt-4 border-2 border-red-500 bg-red-500 text-white leading-tight uppercase rounded-full hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-              onClick={() => handleDelete(attraction._id)}
+    <div className="flex">
+      <Sidebar />
+      <div className="container mx-auto mt-10 w-2/3">
+        <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
+            Welcome to Cultural Stay Admin Dashboard
+          </h5>
+          <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
+            You can manage any Tourist Attraction & You can create a new Tourist
+            Attraction.
+          </p>
+          <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+            <Link
+              to={`/createAttraction`}
+              class="w-[170px] sm:w-auto bg-[#0092FB] hover:bg-blue-700 hover:no-underline focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
-              Delete
-            </button>
+              <div class="text-left">
+                <div class="-mt-1 font-sans text-sm font-semibold">
+                  Add New Tourist Attraction
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
-      ))}
+        <h1 className="text-3xl font-bold mb-6 mt-10 text-gray-600">
+          Tourist Attractions
+        </h1>
+        {attractions.map((attraction) => (
+          <div
+            key={attraction._id}
+            className="bg-white border p-4 mb-8 shadow-lg rounded-xl"
+          >
+            <h2 className="text-2xl font-bold mb-4">{attraction.name}</h2>
+            <p>{attraction.description}</p>
+            <p>{attraction.address}</p>
+            <p>{attraction.area}</p>
+            <div className="flex justify-center space-x-4 mt-4">
+              {attraction.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`${attraction.name} - ${index}`}
+                  className="w-64"
+                />
+              ))}
+            </div>
+            <div className="flex justify-center space-x-4 mt-6">
+              <TouristAttractionUpdateForm
+                attraction={attraction}
+                onUpdate={() => {}}
+              />
+              <button
+                className="inline-block px-6 py-2 mt-4 border-2 border-red-500 bg-red-500 text-white leading-tight uppercase rounded-full hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                onClick={() => handleDelete(attraction._id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

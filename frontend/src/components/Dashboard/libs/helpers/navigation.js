@@ -38,6 +38,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     icon: <HiLibrary />,
   },
   {
+    key: 'Site Recommendations',
+    label: 'Site Recommendations',
+    path: '/admin/recommendationsList',
+    icon: <HiLibrary />,
+  },
+  {
     key: 'Users',
     label: 'Users',
     path: '/customers',
