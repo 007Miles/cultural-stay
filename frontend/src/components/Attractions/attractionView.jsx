@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import axios from 'axios'
 import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/css/image-gallery.css'
 
@@ -7,70 +8,27 @@ const AttractionView = () => {
   const { id } = useParams()
   const [place, setPlace] = useState(null)
 
-  // Hardcoded data for preview
-  const placeData = {
-    id: '4',
-    name: 'Ritigala',
-    description:
-      'Ritigala mountain consists of four peaks which rise steeply from the surrounding plain. The mountain is 6.5 km in length, and divided into northern and southern blocks by Maha-Degala Gorge. The highest peak is Ritigala Kanda in the southern block.At 766 m (2,513 ft) above sea level, and 600 m (2,000 ft) above the surrounding plains, Ritigala is the highest mountain in northern Sri Lanka. The modern name Ritigala is derived from the ancient name Ariṭṭha Pabbata (Dreadful Mountain), mentioned in the Mahavamsa.Its elevation is higher than the other main tourist attractions of the north central plains, namely Sigiriya, Dambulla, and Mihintale. The significance of this topographical feature lies in the abrupt sheerness of the massif, its wooded slopes, and the wet microclimate at the summit. ',
-    address: 'Ritigala, Anuradhapura, Sri Lanka',
-    images: [
-      {
-        original:
-          'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r1_quumb5.jpg',
-        thumbnail:
-          'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r1_quumb5.jpg',
-      },
-      {
-        original:
-          'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
-        thumbnail:
-          'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
-      },
-      {
-        original:
-          'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
-        thumbnail:
-          'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
-      },
-    ],
-    area: 'Anuradhapura',
-  }
-
   useEffect(() => {
-    // Simulate an API call with hardcoded data
-    const fetchPlace = () => {
-      setPlace(placeData)
+    const fetchPlace = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/TASites/${id}`
+        )
+        // Map images to the format required by ImageGallery
+        const images = response.data.images.map((image) => ({
+          original: image,
+          thumbnail: image,
+        }))
+        setPlace({ ...response.data, images })
+      } catch (error) {
+        console.error(error)
+      }
     }
-
     fetchPlace()
-  }, [])
+  }, [id])
 
   if (!place) {
     return <div>Loading...</div>
-  }
-
-  const Slideshow = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentImageIndex(
-          (prevIndex) => (prevIndex + 1) % place.images.length
-        )
-      }, 3000) // 3 seconds
-
-      return () => clearInterval(interval)
-    }, [place.images])
-
-    return (
-      <img
-        className="w-full object-contain object-center rounded-lg"
-        style={{ height: '750px' }}
-        src={place.images[currentImageIndex]}
-        alt={`Slide ${currentImageIndex + 1}`}
-      />
-    )
   }
 
   return (
@@ -82,7 +40,7 @@ const AttractionView = () => {
           </h2>
 
           <p className="text-xl text-gray-700 mx-auto ">{place.area}</p>
-          {/* {place.images && <Slideshow />} */}
+
           <div class="mx-auto w-2/3">
             <ImageGallery
               items={place.images}

@@ -14,7 +14,7 @@ import {
 router.get('/', getAllSuggestions)
 
 //create new tourist attraction site
-router.post('/', upload.single('image'), createSuggestions)
+router.post('/', upload.array('images'), createSuggestions)
 
 // Delete single tourists attractions by Id
 router.delete('/:id', deleteSuggestions)

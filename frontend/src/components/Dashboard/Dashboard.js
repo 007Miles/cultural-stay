@@ -5,7 +5,7 @@ import altbgImg from '../../Assets/bgImg.jpg'
 export default function Dashboard() {
   return (
     <div className="flex flex-col gap-4">
-      <DashboardStatGrid />
+      {/* <DashboardStatGrid /> */}
       <div className="flex flex-row gap-4 w-full">
         <div class="h-screen w-full bg-gray-50 flex items-center ">
           <section
