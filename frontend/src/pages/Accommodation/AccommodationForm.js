@@ -2,77 +2,155 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const AccommodationForm = () => {
-  const [Name, setName] = useState('')
-  const [Address, setAddress] = useState('')
-  const [Province, setProvince] = useState('')
-  const [Googlelink, setGooglelink] = useState('')
-  const [AvailabilityFrom, setAvailabilityFrom] = useState('')
-  const [AvailabilityTo, setAvailabilityTo] = useState('')
-  const [Guests, setGuests] = useState('')
-  const [Bedrooms, setBedrooms] = useState('')
-  const [Beds, setBeds] = useState('')
-  const [Washrooms, setWashrooms] = useState('')
-  const [Price, setPrice] = useState('')
-  const [WelcomeType, setWelcomeType] = useState('')
-  const [Description, setDescription] = useState('')
-  const [Facilities, setFacilities] = useState('')
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [area, setArea] = useState('')
+  const [availability_from, setAvailability_from] = useState('')
+  const [availability_to, setAvailability_to] = useState('')
+  const [no_of_guests_welcome, setNo_of_guests_welcome] = useState('')
+  const [no_of_bedrooms, setNo_of_bedrooms] = useState('')
+  const [no_of_beds, setNo_of_beds] = useState('')
+  const [no_of_washrooms, setNo_of_washrooms] = useState('')
+  const [price_per_night, setPrice_per_night] = useState('')
+  const [welcome_type, setWelcome_type] = useState('')
+  const [description, setDescription] = useState('')
+  const [facilities, setFacilities] = useState('')
+  const [images, setImages] = useState([])
 
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
 
+  const handleAvailabilityFromChange = (e) => {
+    const selectedDate = e.target.value
+    const today = new Date().toISOString().split('T')[0]
+
+    if (selectedDate < today) {
+      // Selected date is in the past
+      setError('Please select a future date for Availability From')
+    } else {
+      // Selected date is valid
+      setError('')
+      setAvailability_from(selectedDate)
+    }
+  }
+
+  const handleAvailabilityToChange = (e) => {
+    const selectedDate = e.target.value
+    const today = new Date().toISOString().split('T')[0]
+
+    if (selectedDate < today) {
+      // Selected date is in the past
+      setError('Please select a future date for Availability To')
+    } else {
+      // Selected date is valid
+      setError('')
+      setAvailability_to(selectedDate)
+    }
+  }
+
+  const currentDate = new Date().toISOString().split('T')[0]
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Add your form validation logic here, for example:
-    if (
-      !Name ||
-      !Address ||
-      !Province ||
-      !Googlelink ||
-      !AvailabilityFrom ||
-      !AvailabilityTo
-    ) {
+    if (!name || !description || !address || !area) {
       setError('All fields are required')
       return
     }
 
-    // Add your API call to submit the form data here, for example:
     try {
+      const formData = new FormData()
+      formData.append('name', name)
+      formData.append('address', address)
+      formData.append('area', area)
+      formData.append('availability_from', availability_from)
+      formData.append('availability_to', availability_to)
+      formData.append('no_of_guests_welcome', no_of_guests_welcome)
+      formData.append('no_of_bedrooms', no_of_bedrooms)
+      formData.append('no_of_beds', no_of_beds)
+      formData.append('no_of_washrooms', no_of_washrooms)
+      formData.append('price_per_night', price_per_night)
+      formData.append('welcome_type', welcome_type)
+      formData.append('description', description)
+      formData.append('facilities', facilities)
+
+      images.forEach((image) => {
+        formData.append('images', image)
+      })
+
       const response = await axios.post(
         'http://localhost:4000/api/accommodation',
+        formData,
         {
-          Name,
-          Address,
-          Province,
-          Googlelink,
-          AvailabilityFrom,
-          AvailabilityTo,
-          Guests,
-          Bedrooms,
-          Beds,
-          Washrooms,
-          Price,
-          WelcomeType,
-          Description,
-          Facilities,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         }
       )
+
       console.log(response.data)
-      // Redirect the user to the login page or do something else here
+
+      // Add a success message
+      setSuccess('Accommodation Added Successfully!')
+      window.location.href = '/hostDashboardProfile'
+
+      setName('')
+      setAddress('')
+      setArea('')
+      setAvailability_from('')
+      setAvailability_to('')
+      setNo_of_guests_welcome('')
+      no_of_bedrooms('')
+      no_of_beds('')
+      no_of_washrooms('')
+      setPrice_per_night('')
+      setWelcome_type('')
+      setDescription('')
+      setFacilities('')
+      setImages([])
+
+      setError('')
+      // Redirect to the specified page
     } catch (err) {
       console.error(err)
       setError('An error occurred, please try again later')
     }
   }
 
-  // const handleImageChange = (e) => {
-  //   const files = e.target.files
-  //   let images = []
-  //   for (let i = 0; i < files.length; i++) {
-  //     images.push(files[i])
+  // function sendData(e) {
+  //   e.preventDefault() // to execute only the function "sendData" without submitting data.
+
+  //   const newAccommodation = {
+  //     name,
+  //     address,
+  //     area,
+  //     availability_from,
+  //     availability_to,
+  //     no_of_guests_welcome,
+  //     no_of_bedrooms,
+  //     no_of_beds,
+  //     no_of_washrooms,
+  //     price_per_night,
+  //     welcome_type,
+  //     description,
+  //     facilities,
   //   }
-  //   setFormData({ ...formData, images })
+
+  //   axios
+  //     .post('http://localhost:4000/api/accommodation', newAccommodation)
+  //     .then(() => {
+  //       console.log('Success', newAccommodation)
+  //       window.alert('Accommodation Added Successfully')
+  //       window.location.reload()
+  //     })
+  //     .catch((err) => {
+  //       console.log('error')
+  //     })
   // }
+
+  const handleImageChange = (e) => {
+    setImages([...images, ...e.target.files])
+  }
 
   return (
     <div className="w-full max-w-md mx-auto mt-20">
@@ -101,8 +179,9 @@ const AccommodationForm = () => {
             name="name"
             type="text"
             placeholder="Accommodation Name"
-            value={Name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(e) => {
+              setName(e.target.value)
+            }}
           />
         </div>
         <div className="mb-4">
@@ -112,8 +191,9 @@ const AccommodationForm = () => {
             name="address"
             type="text"
             placeholder="Accommodation Address"
-            value={Address}
-            onChange={(event) => setAddress(event.target.value)}
+            onChange={(e) => {
+              setAddress(e.target.value)
+            }}
           />
         </div>
         <div className="mb-4">
@@ -123,11 +203,12 @@ const AccommodationForm = () => {
             name="area"
             type="text"
             placeholder="Province"
-            value={Province}
-            onChange={(event) => setProvince(event.target.value)}
+            onChange={(e) => {
+              setArea(e.target.value)
+            }}
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="location_maplink"
@@ -137,7 +218,7 @@ const AccommodationForm = () => {
             value={Googlelink}
             onChange={(event) => setGooglelink(event.target.value)}
           />
-        </div>
+        </div> */}
 
         {/* Availability From */}
         <div className="mb-4">
@@ -151,9 +232,10 @@ const AccommodationForm = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="availability_from"
             name="availability_from"
+            min={currentDate}
             type="date"
-            value={AvailabilityFrom}
-            onChange={(event) => setAvailabilityFrom(event.target.value)}
+            onChange={handleAvailabilityFromChange}
+            // onChange={(event) => setAvailabilityFrom(event.target.value)}
           />
         </div>
 
@@ -169,9 +251,9 @@ const AccommodationForm = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="availability_to"
             name="availability_to"
+            min={availability_from || currentDate}
             type="date"
-            value={AvailabilityTo}
-            onChange={(event) => setAvailabilityTo(event.target.value)}
+            onChange={handleAvailabilityToChange}
           />
         </div>
 
@@ -183,8 +265,9 @@ const AccommodationForm = () => {
             name="no_of_guests_welcome"
             placeholder="No of guests welcome"
             type="number"
-            value={Guests}
-            onChange={(event) => setGuests(event.target.value)}
+            onChange={(e) => {
+              setNo_of_guests_welcome(e.target.value)
+            }}
           />
         </div>
 
@@ -196,8 +279,9 @@ const AccommodationForm = () => {
             name="no_of_bedrooms"
             placeholder="No of Bedrooms"
             type="number"
-            value={Bedrooms}
-            onChange={(event) => setBedrooms(event.target.value)}
+            onChange={(e) => {
+              setNo_of_bedrooms(e.target.value)
+            }}
           />
         </div>
 
@@ -209,8 +293,9 @@ const AccommodationForm = () => {
             name="no_of_beds"
             placeholder="No of Beds"
             type="number"
-            value={Beds}
-            onChange={(event) => setBeds(event.target.value)}
+            onChange={(e) => {
+              setNo_of_beds(e.target.value)
+            }}
           />
         </div>
 
@@ -222,8 +307,9 @@ const AccommodationForm = () => {
             name="no_of_washrooms"
             placeholder="No of Washrooms"
             type="number"
-            value={Washrooms}
-            onChange={(event) => setWashrooms(event.target.value)}
+            onChange={(e) => {
+              setNo_of_washrooms(e.target.value)
+            }}
           />
         </div>
 
@@ -235,8 +321,9 @@ const AccommodationForm = () => {
             name="price_per_night"
             placeholder="Price per Night"
             type="number"
-            value={Price}
-            onChange={(event) => setPrice(event.target.value)}
+            onChange={(e) => {
+              setPrice_per_night(e.target.value)
+            }}
           />
         </div>
 
@@ -248,8 +335,9 @@ const AccommodationForm = () => {
             name="welcome_type"
             placeholder="Welcome Parties"
             type="String"
-            value={WelcomeType}
-            onChange={(event) => setWelcomeType(event.target.value)}
+            onChange={(e) => {
+              setWelcome_type(e.target.value)
+            }}
           />
         </div>
 
@@ -261,8 +349,9 @@ const AccommodationForm = () => {
             rows="3"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter a description"
-            value={Description}
-            onChange={(event) => setDescription(event.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value)
+            }}
           ></textarea>
         </div>
 
@@ -274,8 +363,9 @@ const AccommodationForm = () => {
             rows="3"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Facilities Provide"
-            value={Facilities}
-            onChange={(event) => setFacilities(event.target.value)}
+            onChange={(e) => {
+              setFacilities(e.target.value)
+            }}
           ></textarea>
         </div>
 
@@ -291,10 +381,11 @@ const AccommodationForm = () => {
             id="images"
             name="images"
             type="file"
+            crossOrigin="annonymous"
             multiple
             accept="image/*"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            // onChange={handleImageChange}
+            onChange={handleImageChange}
           />
         </div>
 
@@ -306,10 +397,11 @@ const AccommodationForm = () => {
             Submit
           </button>
           <button
-            type="button"
+            type="back"
+            name="back"
             class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
           >
-            Close
+            Back
           </button>
         </div>
       </form>

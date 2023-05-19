@@ -8,9 +8,8 @@ const HostDashboardReservationDetail = () => {
   const [declineStatus, setDeclineStatus] = useState('')
 
   const location = useLocation()
-  console.log(location) //testing for function in console getting ID
+
   const id = location.pathname.split('/')[2]
-  console.log(id) //testing for function in console and splitting ID
 
   const handleAcceptClick = () => {
     const data = { status: 'Accepted' }
@@ -20,48 +19,45 @@ const HostDashboardReservationDetail = () => {
       axios
         .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
         .then((response) => {
-          // Handle the success response
-          setAcceptStatus('Accepted') // Update the accept status state variable
-          console.log(response.data) // Log the response if needed
+          setAcceptStatus('Accepted')
+          console.log(response.data)
           window.alert('Reservation Accepted')
+          window.location.href = '/hostDashboardReservationAll'
         })
         .catch((error) => {
-          // Handle the error response
-          setAcceptStatus('Error') // Update the accept status state variable
+          setAcceptStatus('Error')
           console.error(error)
-          window.alert('Somethig Went Wrong....')
+          window.alert('Something Went Wrong....')
         })
     }
   }
 
   const handleDeclineClick = () => {
-    const data2 = { status: 'Declined' }
+    const data = { status: 'Declined' }
     const confirmDecline = window.confirm('Are you sure you want to Decline?')
     if (confirmDecline) {
       axios
-        .post(`http://localhost:4000/api/declineReservation/${id}`, data2)
+        .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
         .then((response) => {
-          // Handle the success response
-          setDeclineStatus('Declined') // Update the decline status state variable
-          console.log(response.data) // Log the response if needed
+          setDeclineStatus('Declined')
+          console.log(response.data)
           window.alert('Reservation Declined')
+          window.location.href = '/hostDashboardReservationAll' // Redirect to the specified page
         })
         .catch((error) => {
-          // Handle the error response
-          setDeclineStatus('Error') // Update the decline status state variable
+          setDeclineStatus('Error')
           console.error(error)
-          window.alert('Somethig Went Wrong....')
+          window.alert('Something Went Wrong....')
         })
     }
   }
 
   useEffect(() => {
-    // Fetch accommodation details from the API
     fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
       .then((response) => response.json())
       .then((data) => setReservation(data.reservation))
       .catch((error) => console.error(error.reservation))
-  }, [reservation])
+  }, [])
 
   if (!reservation) {
     return <div>Loading...</div>
@@ -103,6 +99,7 @@ const HostDashboardReservationDetail = () => {
         <div className="min-h-screen bg-gray-100">
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+              {/* Reservation details */}
               <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-lg leading-6 font-medium text-gray-900 text-center uppercase font-bold">
                   Detail View

@@ -1,6 +1,7 @@
 import AccommodationReserve from '../../models/Accommodation/AccommodationReserve.js'
 import asyncWrapper from '../../middleware/Host/async.js'
 import { createCustomError } from '../../errors/Host/custom-error.js'
+import cloudinary from '../../config/cloudinary.js'
 
 // This is used to retriew all reservations-----------------------------------------------------
 export const getAllReservation = asyncWrapper(async (req, res) => {
@@ -15,6 +16,16 @@ export const addReserve = asyncWrapper(async (req, res) => {
   res.status(201).json({ reservation })
 })
 // -------------------------------------------------------------------------------------------
+
+// This is used to get reservatio that equals to hostid--------------------------------------------------
+export const getReservationsByHostId = asyncWrapper(async (req, res) => {
+  const { hostId } = req.params
+
+  const reservations = await AccommodationReserve.find({ hostId })
+
+  res.status(200).json({ reservations })
+})
+// ----------------------------------------------------------------------------------------------------
 
 // export const updatehost = asyncWrapper(async (req, res) => {
 //   const { id: hostID } = req.params
