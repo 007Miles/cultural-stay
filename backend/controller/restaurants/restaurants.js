@@ -5,34 +5,57 @@ import { createCustomError } from '../../errors/Food/custom-error.js'
 
 // create a new restaurant with checking image file
 export const createRestaurant = asyncWrapper(async (req, res) => {
-  // if (!req.files) {
-  //   return res.status(400).json({ message: 'No image provided' })
+  // const image = []
+
+  // if (req.file) {
+  //   for (const file of req.files) {
+  //     const result = await cloudinary.uploader.upload(file.path, {
+  //       folder: 'afRestaurant',
+  //     })
+
+  //     image.push(result.secure_url)
+  //   }
+
+  //   req.body.image = image
+  // } else {
+  //   req.body.image = image.length
+  //     ? image
+  //     : 'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347351/default-restaurant_iaig5d.jpg'
   // }
+  // const restaurant = await Restaurants.create(req.body)
+  // res.status(201).json({ restaurant })
 
-  // const result = await cloudinary.uploader.upload(req.file.path, {
-  //   folder: 'afRestaurant',
-  // })
+  const { name, description, city, address, phone, area, website, food } =
+    req.body
 
-  // req.body.image = result.secure_url
-  const image = []
+  const files = req.files
+  let imagesArray = []
 
-  if (req.file) {
-    for (const file of req.files) {
-      const result = await cloudinary.uploader.upload(file.path, {
-        folder: 'afRestaurant',
-      })
-
-      image.push(result.secure_url)
-    }
-
-    req.body.image = image
-  } else {
-    req.body.image = image.length
-      ? image
-      : 'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347351/default-restaurant_iaig5d.jpg'
+  for (let i = 0; i < files.length; i++) {
+    const result = await cloudinary.uploader.upload(files[i].path, {
+      folder: 'afRestaurant',
+    })
+    imagesArray.push(result.secure_url)
   }
-  const restaurant = await Restaurants.create(req.body)
-  res.status(201).json({ restaurant })
+
+  try {
+    const newRestaurant = new Restaurants({
+      name,
+      description,
+      city,
+      address,
+      phone,
+      area,
+      website,
+      food,
+      image: imagesArray,
+    })
+    await newRestaurant.save()
+    res.json(newRestaurant)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Server error')
+  }
 })
 
 //using errors custom-error.js for createCustomError
