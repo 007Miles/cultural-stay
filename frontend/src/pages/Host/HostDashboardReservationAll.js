@@ -4,6 +4,14 @@ import axios from 'axios'
 const HostDashboardReservationAll = () => {
   const [reservationDetails, setReservationDetails] = useState([])
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    const year = date.getFullYear()
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const day = date.getDate().toString().padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   useEffect(() => {
     function fetchData() {
       axios
@@ -14,19 +22,22 @@ const HostDashboardReservationAll = () => {
           } else {
             console.error('Received data is not an array:', res.data)
           }
-          console.log('your data has been received')
+          console.log('Your data has been received')
           console.log(res.data.reservation)
-
-          setReservationDetails(res.data.reservation) //using set function to retrieve data and display on website
         })
         .catch((err) => {
           alert(err.message)
         })
     }
     fetchData()
-  }, [reservationDetails])
+  }, [])
 
-  if (!reservationDetails) {
+  // Filter reservations based on status
+  const pendingReservations = reservationDetails.filter(
+    (reservation) => reservation.status === 'pending'
+  )
+
+  if (!pendingReservations) {
     return <div>Loading...</div>
   }
 
@@ -61,8 +72,6 @@ const HostDashboardReservationAll = () => {
           </a>
         </button>
       </div>
-
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8"></div>
 
       <div className="flex flex-col px-8 py-8">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -119,7 +128,7 @@ const HostDashboardReservationAll = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {reservationDetails.map((reservation) => (
+                  {pendingReservations.map((reservation) => (
                     <tr key={reservation.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
@@ -128,16 +137,12 @@ const HostDashboardReservationAll = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {new Date(reservation.reserve_from)
-                            .toISOString()
-                            .substring(0, 10)}
+                          {formatDate(reservation.reserve_from)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          {new Date(reservation.reserve_to)
-                            .toISOString()
-                            .substring(0, 10)}
+                          {formatDate(reservation.reserve_to)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -157,15 +162,15 @@ const HostDashboardReservationAll = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-500">
-                          <span class="inline-block bg-orange-400 rounded-full px-3 py-1 text-sm font-semibold text-white">
+                          <span className="inline-block bg-orange-400 rounded-full px-3 py-1 text-sm font-semibold text-white">
                             {reservation.status}
                           </span>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button className=" p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
+                        <button className="p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
                           <a
-                            class="nav-link"
+                            className="nav-link"
                             href={`/hostDashboardReservationDetail/${reservation._id}`}
                           >
                             View

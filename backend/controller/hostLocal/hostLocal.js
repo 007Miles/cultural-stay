@@ -25,7 +25,6 @@ export const updatehost = asyncWrapper(async (req, res) => {
 
   const hosts = await Host.findOneAndUpdate({ _id: hostID }, req.body, {
     new: true,
-    runValidators: true,
   })
 
   if (!hosts) {
