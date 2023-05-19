@@ -5,25 +5,50 @@ import { createCustomError } from '../../errors/Host/custom-error.js'
 
 // Register a new accommodation
 export const createaccommodation = asyncWrapper(async (req, res) => {
-  if (!req.files) {
-    return res.status(400).json({ message: 'No images provided' })
-  }
+  // const images = []
+  // if (req.files) {
+  //   for (const file of req.files) {
+  //     const result = await cloudinary.uploader.upload(file.path, {
+  //       folder: 'afAccommodation',
+  //     })
 
-  const images = []
+  //     images.push(result.secure_url)
+  //   }
+  //   req.body.images = images
+  // } else {
+  //   req.body.images =
+  //     'https://res.cloudinary.com/itp03/image/upload/v1683405533/afAccommodation/cne6ckbce79pw54t2qfw.jpg'
+  // }
 
-  for (const file of req.files) {
-    const result = await cloudinary.uploader.upload(file.path, {
+  const { name, description, address, area } = req.body
+  const files = req.files
+  let imagesArray = []
+
+  for (let i = 0; i < files.length; i++) {
+    const result = await cloudinary.uploader.upload(files[i].path, {
       folder: 'afAccommodation',
     })
-
-    images.push(result.secure_url)
+    imagesArray.push(result.secure_url)
   }
 
-  req.body.images = images
+  try {
+    const newAccommodation = new Accommodation({
+      name,
+      description,
+      address,
+      images: imagesArray,
+      area,
+    })
+    await newAccommodation.save()
+    res.json(newAccommodation)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Server error')
+  }
 
-  const accommodation = await Accommodation.create(req.body)
+  // const accommodation = await Accommodation.create(req.body)
 
-  res.status(201).json({ accommodation })
+  // res.status(201).json({ accommodation })
 })
 
 //using errors custom-error.js for createCustomError

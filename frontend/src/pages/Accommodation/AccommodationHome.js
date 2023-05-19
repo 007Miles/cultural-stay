@@ -55,22 +55,21 @@ const AccommodationHome = () => {
                   Stay with
                   {/* {accommodation.createdBy} */}
                   <br />
-                  Available :{' '}
-                  {new Date(accommodation.availability_from)
-                    .toISOString()
-                    .substring(0, 10)}{' '}
-                  -{' '}
-                  {new Date(accommodation.availability_to)
-                    .toISOString()
-                    .substring(0, 10)}
+                  Available :{accommodation.availability_from.substring(
+                    0,
+                    10
+                  )}{' '}
+                  : <t>{accommodation.availability_to}</t>
                 </p>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded-full flex items-center">
-                  <a
+                  {/* <a
                     class="nav-link"
                     href={`/accommodationDetails/${accommodation._id}`}
-                  >
+                  > */}
+                  <Link to={`/accommodationDetails/${accommodation._id}`}>
                     <FaArrowRight />
-                  </a>
+                  </Link>
+                  {/* </a> */}
                   {/* 
                   <Link // Use Link instead of <a> tag
                     className="nav-link"

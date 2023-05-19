@@ -16,9 +16,19 @@ import {
 } from '@heroicons/react/20/solid'
 
 const sortOptions = [
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Best Rating', href: '#', current: false, value: 'bestRating' },
+  {
+    name: 'Price: Low to High',
+    href: '#',
+    current: false,
+    value: 'priceLowToHigh',
+  },
+  {
+    name: 'Price: High to Low',
+    href: '#',
+    current: false,
+    value: 'priceHighToLow',
+  },
 ]
 const subCategories = [
   { name: 'Accomadations', href: '#' },
@@ -30,9 +40,9 @@ const filters = [
     id: 'Rating',
     name: 'Rating',
     options: [
-      { value: '5 star', label: '5 star', checked: false },
-      { value: '4 star', label: '4 star', checked: false },
-      { value: '3 star', label: '3 star', checked: true },
+      { value: 5, label: '5 star', checked: false },
+      { value: 4, label: '4 star', checked: false },
+      { value: 3, label: '3 star', checked: false },
     ],
   },
 ]
@@ -42,6 +52,9 @@ function classNames(...classes) {
 }
 export default function Search() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [searchType, setSearchType] = useState([])
+  const [sortOption, setSortOption] = useState('bestRating')
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([])
 
   const culturalStayHotels = [
     {
@@ -51,6 +64,7 @@ export default function Search() {
       dates: 'April 5-10',
       rating: 4.3,
       price: 'Rs.2500.00/night',
+      type: 'Accomadations',
       image:
         'https://res.cloudinary.com/itp03/image/upload/v1683406148/afAccommodation/uwleeyo8tbaaohb0r6x9.jpg',
     },
@@ -61,6 +75,7 @@ export default function Search() {
       dates: 'April 5-10',
       rating: 4.5,
       price: 'Rs.2500.00/night',
+      type: 'Accomadations',
       image:
         'https://res.cloudinary.com/itp03/image/upload/v1683444012/afAccommodation/aq5uexkouddy6sfbklxm.jpg',
     },
@@ -71,6 +86,7 @@ export default function Search() {
       dates: 'April 5-10',
       rating: 4.8,
       price: 'Rs.2500.00/night',
+      type: 'Tourist Sites',
       image:
         'https://res.cloudinary.com/ddcutbnra/image/upload/v1683242604/afPlaces/bc9o44xyv2d8dpxjtztw.jpg',
     },
@@ -79,8 +95,9 @@ export default function Search() {
       location: 'Negombo, Sri Lanka',
       host: 'Kasun',
       dates: 'April 5-10',
-      rating: 4.1,
+      rating: 3.6,
       price: 'Rs.2500.00/night',
+      type: 'Restuarants',
       image:
         'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683387266/afRestaurant/pcgwmxri1lm0fvjesiv5.jpg',
     },
@@ -91,6 +108,7 @@ export default function Search() {
       dates: 'April 5-10',
       rating: 4.7,
       price: 'Rs.2500.00/night',
+      type: 'Restuarants',
       image:
         'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683383718/afRestaurant/ucvfk6bmokrmg4lbr9uf.jpg',
     },
@@ -101,6 +119,7 @@ export default function Search() {
       dates: 'April 5-10',
       rating: 4.5,
       price: 'Rs.2500.00/night',
+      type: 'Restuarants',
       image:
         'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683457661/afRestaurant/csj4iakfiwvll5rdfnl4.jpg',
     },
@@ -114,6 +133,32 @@ export default function Search() {
   // Create a function to handle the search input changes
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value)
+  }
+
+  // Function to handle dropdown option change
+  const handleSortOptionChange = (selectedOption) => {
+    setSortOption(selectedOption)
+  }
+
+  const handleCategoryClick = (categoryName) => {
+    if (searchType.includes(categoryName)) {
+      // Category already exists in the array, so remove it
+      setSearchType(searchType.filter((category) => category !== categoryName))
+    } else {
+      // Category doesn't exist in the array, so add it
+      setSearchType([...searchType, categoryName])
+    }
+  }
+
+  const handleCheckboxChange = (checkboxValue) => {
+    alert(checkboxValue)
+    if (selectedCheckboxes.includes(checkboxValue)) {
+      setSelectedCheckboxes(
+        selectedCheckboxes.filter((value) => value !== checkboxValue)
+      )
+    } else {
+      setSelectedCheckboxes([...selectedCheckboxes, checkboxValue])
+    }
   }
 
   return (
@@ -275,13 +320,19 @@ export default function Search() {
                                         <div
                                           key={option.value}
                                           className="flex items-center"
+                                          onClick={() =>
+                                            handleCheckboxChange(option.value)
+                                          }
                                         >
                                           <input
-                                            id={`filter-mobile-${section.id}-${optionIdx}`}
-                                            name={`${section.id}[]`}
-                                            defaultValue={option.value}
+                                            // id={`filter-mobile-${section.id}-${optionIdx}`}
+                                            // name={`${section.id}[]`}
+                                            // defaultValue={option.value}
                                             type="checkbox"
-                                            defaultChecked={option.checked}
+                                            // defaultChecked={option.checked}
+                                            checked={selectedCheckboxes.includes(
+                                              option.value
+                                            )}
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                           />
                                           <label
@@ -338,8 +389,10 @@ export default function Search() {
                           {sortOptions.map((option) => (
                             <Menu.Item key={option.name}>
                               {({ active }) => (
-                                <a
-                                  href={option.href}
+                                <span
+                                  onClick={() =>
+                                    handleSortOptionChange(option.value)
+                                  }
                                   className={classNames(
                                     option.current
                                       ? 'font-medium text-gray-900'
@@ -349,7 +402,7 @@ export default function Search() {
                                   )}
                                 >
                                   {option.name}
-                                </a>
+                                </span>
                               )}
                             </Menu.Item>
                           ))}
@@ -395,9 +448,18 @@ export default function Search() {
                       {subCategories.map((category) => (
                         <li
                           key={category.name}
-                          className="shadow-md p-4 cursor-pointer"
+                          className="shadow-md p-4 cursor-pointer "
+                          style={
+                            searchType.includes(category.name)
+                              ? {
+                                  border: '2px solid green',
+                                  boxShadow: '0 0 5px green',
+                                }
+                              : {}
+                          }
+                          onClick={() => handleCategoryClick(category.name)}
                         >
-                          <a href={category.href}>{category.name}</a>
+                          {category.name}
                         </li>
                       ))}
                     </ul>
@@ -467,41 +529,66 @@ export default function Search() {
                     {/* <AccommodationHome /> */}
                     {/* <PlacesList /> */}
                     <div className="flex flex-wrap justify-center">
-                      {culturalStayHotels.map((hotel, index) => (
-                        <div
-                          key={index}
-                          className="max-w-sm md:max-w-sm rounded-xl overflow-hidden shadow-lg bg-white h-[350px] w-[350px] mx-2 my-2 md:w-1/4"
-                        >
-                          <img
-                            className="w-full h-32 md:h-48 object-cover"
-                            src={hotel.image}
-                            alt="Hotel"
-                          />
-                          <div className="px-6 py-2">
-                            <div className="font-bold text-md text-left">
-                              {hotel.name}
-                            </div>
-                            <div className="text-sm text-left">
-                              {hotel.location}
-                            </div>
-                            <p className="text-gray-700 text-sm text-left mt-1">
-                              <span className="inline-block flex">
-                                <Rating defaultValue={1} max={1} />
-                                <span className="ml-2 flex-auto font-semibold">
-                                  {hotel.rating}
+                      {culturalStayHotels
+                        .filter((hotel) => {
+                          const isMatchingType =
+                            searchType.length === 0 ||
+                            searchType.includes(hotel.type)
+                          const isMatchingTerm =
+                            searchTerm === '' ||
+                            hotel.name
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase())
+                          const isMatchingRating =
+                            selectedCheckboxes.length === 0 ||
+                            selectedCheckboxes.includes(
+                              Math.floor(hotel.rating)
+                            )
+                          return (
+                            isMatchingType && isMatchingTerm && isMatchingRating
+                          )
+                        })
+                        .sort((a, b) => {
+                          if (sortOption === 'bestRating') {
+                            return b.rating - a.rating // Sort by best rating
+                          }
+                          return 0 // Default case
+                        })
+                        .map((hotel, index) => (
+                          <div
+                            key={index}
+                            className="max-w-sm md:max-w-sm rounded-xl overflow-visible shadow-lg bg-white h-[350px] w-[350px] mx-2 my-2 md:w-1/4 "
+                          >
+                            <img
+                              className="w-full h-32 md:h-48 object-cover"
+                              src={hotel.image}
+                              alt="Hotel"
+                            />
+                            <div className="px-6 py-1">
+                              <div className="font-bold text-md text-left">
+                                {hotel.name}
+                              </div>
+                              <div className="text-sm text-left">
+                                {hotel.location}
+                              </div>
+                              <p className="text-gray-700 text-sm text-left mt-1">
+                                <span className="inline-block flex">
+                                  <Rating defaultValue={1} max={1} />
+                                  <span className="ml-2 flex-auto font-semibold">
+                                    {hotel.rating}
+                                  </span>
                                 </span>
+                              </p>
+                            </div>
+                            <div className="px-6 pb-2 ">
+                              <span className="inline-block flex justify-end ">
+                                <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 py-2 rounded-full mb-1">
+                                  <FaArrowRight />
+                                </button>
                               </span>
-                            </p>
+                            </div>
                           </div>
-                          <div className="px-6 pb-2">
-                            <span className="inline-block flex justify-end ">
-                              <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 py-2 rounded-full flex items-center ">
-                                <FaArrowRight />
-                              </button>
-                            </span>
-                          </div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   </div>
                 </div>

@@ -16,7 +16,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'dashboard',
     label: 'Dashboard',
-    path: '/',
+    path: '/admin',
     icon: <HiOutlineViewGrid />,
   },
   {
@@ -34,7 +34,13 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'Tourist Sites',
     label: 'Tourist Sites',
-    path: '/orders',
+    path: '/admin/attractionsList',
+    icon: <HiLibrary />,
+  },
+  {
+    key: 'Site Recommendations',
+    label: 'Site Recommendations',
+    path: '/admin/recommendationsList',
     icon: <HiLibrary />,
   },
   {

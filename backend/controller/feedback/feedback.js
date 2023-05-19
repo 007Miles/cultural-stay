@@ -71,7 +71,7 @@ export const deleteFeedback = asyncWrapper(async (req, res) => {
   }
 })
 
-//get all the feedbacks
+//get all the feedbacks for a location
 export const getAllFeedbackforLoc = asyncWrapper(async (req, res) => {
   const { id: locID } = req.params
 
@@ -79,6 +79,18 @@ export const getAllFeedbackforLoc = asyncWrapper(async (req, res) => {
     'loc_id',
     'name'
   )
+
+  if (result) {
+    res.status(201).json({ result })
+  }
+})
+
+//get all the feedbacks
+export const getAllFeedback = asyncWrapper(async (req, res) => {
+  const result = await FeedBack.find()
+    .populate('loc_id', 'name address price_per_night images image')
+    .select('-ratings_list -comments')
+    .select({ images: { $slice: 1 }, image: { $slice: 1 } })
 
   if (result) {
     res.status(201).json({ result })

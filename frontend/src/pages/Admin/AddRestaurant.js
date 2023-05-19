@@ -23,12 +23,17 @@ const AddRestaurant = () => {
     formData.append('name', name)
     formData.append('city', city)
     formData.append('description', description)
-    formData.append('image', image)
+    // formData.append('image', image)
     formData.append('address', address)
     formData.append('phone', phone)
     formData.append('website', website)
     formData.append('area', area)
     formData.append('food', food)
+
+    image.forEach((image) => {
+      formData.append('image', image)
+    })
+
     try {
       const resp = await axios.post(resUrl, formData, {
         headers: {
@@ -47,6 +52,10 @@ const AddRestaurant = () => {
     const timestamp = new Date().getTime()
     const extension = originalName.split('.').pop()
     return `${timestamp}.${extension}`
+  }
+
+  const handleImageChange = (e) => {
+    setImage([...image, ...e.target.files])
   }
 
   return (
@@ -136,8 +145,7 @@ const AddRestaurant = () => {
                         multiple
                         name="image"
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         placeholder="Upload Upto 4 Images"
                         required
                       ></input>

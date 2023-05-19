@@ -55,19 +55,71 @@ export const getTouristAttractionById = async (req, res) => {
 }
 
 // Create a new tourits attraction site with uploading an image
-export const createTouristAttraction = async (req, res) => {
-  const { name, description, address, image, area } = req.body
+// export const createTouristAttraction = async (req, res) => {
+//   const { name, description, address, image, area } = req.body
 
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    folder: 'afPlaces',
-  })
-  // req.body.image = result.secure_url
+//   const result = await cloudinary.uploader.upload(req.file.path, {
+//     folder: 'afPlaces',
+//   })
+//   // req.body.image = result.secure_url
+//   try {
+//     const newTouristAttraction = new TouristAttraction({
+//       name,
+//       description,
+//       address,
+//       image: result.secure_url,
+//       area,
+//     })
+//     await newTouristAttraction.save()
+//     res.json(newTouristAttraction)
+//   } catch (error) {
+//     console.error(error)
+//     res.status(500).send('Server error')
+//   }
+// }
+
+// Create a new tourits attraction site with uploading multiple images
+export const createTouristAttraction = async (req, res) => {
+  const { name, description, address, area } = req.body
+
+  const files = req.files
+  let imagesArray = []
+
+  for (let i = 0; i < files.length; i++) {
+    const result = await cloudinary.uploader.upload(files[i].path, {
+      folder: 'afPlaces',
+    })
+    imagesArray.push(result.secure_url)
+  }
+
   try {
     const newTouristAttraction = new TouristAttraction({
       name,
       description,
       address,
-      image: result.secure_url,
+      images: imagesArray,
+      area,
+    })
+    await newTouristAttraction.save()
+    res.json(newTouristAttraction)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Server error')
+  }
+}
+
+// Create a new tourits attraction site from the user suggessions
+export const createTARecommendation = async (req, res) => {
+  const { name, description, address, images, area } = req.body
+  // console.log('test')
+  // console.log(req.body)
+
+  try {
+    const newTouristAttraction = new TouristAttraction({
+      name,
+      description,
+      address,
+      images,
       area,
     })
     await newTouristAttraction.save()
