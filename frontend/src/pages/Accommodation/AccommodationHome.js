@@ -60,8 +60,11 @@ const AccommodationHome = () => {
                     .toString()
                     .substring(0, 10)}{' '}
                   :{' '}
+                  {new Date(accommodation.availability_to)
+                    .toISOString()
+                    .substring(0, 10)}
                   <t>
-                    {accommodation.availability_to.toString().substring(0, 10)}
+                    {/* {accommodation.availability_to.toString().substring(0, 10)} */}
                   </t>
                 </p>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded-full flex items-center">
