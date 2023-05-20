@@ -3,54 +3,54 @@ import { Link } from 'react-router-dom'
 
 const places = [
   {
-    id: 1,
+    id: '64673e435daa6a9e27f14e1c',
     name: 'Gal Oya National Park',
     description:
       'A beautiful national park in Sri Lanka that is home to various wildlife and bird species.',
     address: 'Gal Oya National Park, Ampara, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449392/afPlaces/g2_l4sl38.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449390/afPlaces/g1_meld5b.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449554/afPlaces/g3_ibexum.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684487745/afPlaces/if3tblq7uszwk0ciltu5.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684487743/afPlaces/rptqwznvtnydjxgr6lop.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684487746/afPlaces/ux1lkrqdc7rykgivab5w.jpg',
     ],
     area: 'Ampara',
   },
   {
-    id: 2,
+    id: '64673ebd5daa6a9e27f14e22',
     name: 'Delft Island',
     description:
       'A small island located in the Jaffna district with beautiful scenery and wild horses.',
     address: 'Delft Island, Jaffna, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d1_fzuohi.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d3_nvpwuv.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683449711/afPlaces/d2_elkug0.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684487865/afPlaces/feehvr2nyypmxglj40lp.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684487867/afPlaces/kxv9dot3rddkxoehicu4.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684487869/afPlaces/k1npegl2jqsa3patuzbk.jpg',
     ],
     area: 'Jaffna',
   },
   {
-    id: 3,
+    id: '64673f5c5daa6a9e27f14e26',
     name: 'Pigeon Island',
     description:
       'A beautiful island with clear blue waters and white sandy beaches located in Trincomalee.',
     address: 'Nilaveli, Trincomalee, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p1_z2xtsw.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684488024/afPlaces/qqqyhsbtc497ajvdxsds.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684488026/afPlaces/cmez6ag9whcxlgr4imah.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684488028/afPlaces/hkqmhquvuzxmgh0nmaqv.jpg',
     ],
     area: 'Trincomalee',
   },
   {
-    id: 4,
+    id: '64673fb85daa6a9e27f14e2a',
     name: 'Ritigala',
     description:
       'A beautiful forest monastery located in the Anuradhapura district with ruins of ancient buildings and a scenic hiking trail.',
     address: 'Ritigala, Anuradhapura, Sri Lanka',
     images: [
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r1_quumb5.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684488116/afPlaces/azdo1rtrowcqe6abra7n.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684488118/afPlaces/lfdljz5mebvkojnmqit1.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1684488119/afPlaces/swvanortif4vasalh28l.jpg',
     ],
     area: 'Anuradhapura',
   },
