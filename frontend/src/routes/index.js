@@ -52,11 +52,11 @@ const IndexRoutes = () => {
         <Route path="/attractionView/:id" element={<AttractionView />} />
         <Route path="/createAttraction" element={<CreateAttraction />} />
         <Route path="/recommendation" element={<RecommendAttraction />} />
-        <Route path="/admin/attractionsList" element={<AttractionsList />} />
+        {/* <Route path="/admin/attractionsList" element={<AttractionsList />} />
         <Route
           path="/admin/recommendationsList"
           element={<RecommendationList />}
-        />
+        /> */}
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/search" element={<Search />} />
