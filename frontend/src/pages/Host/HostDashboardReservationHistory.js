@@ -121,6 +121,9 @@ const HostDashboardReservationHistory = () => {
                     >
                       Status
                     </th>
+                    <th scope="col" className="relative px-6 py-3">
+                      <span className="sr-only">View</span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -174,6 +177,16 @@ const HostDashboardReservationHistory = () => {
                           >
                             {reservation.status}
                           </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <button className="p-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
+                            <a
+                              className="nav-link"
+                              href={`/reservationHistoryDetail/${reservation._id}`}
+                            >
+                              View
+                            </a>
+                          </button>
                         </td>
                       </tr>
                     ))}

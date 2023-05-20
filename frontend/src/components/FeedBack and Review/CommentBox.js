@@ -39,11 +39,13 @@ export default function CommentBox({ id }) {
       >
         <div class="flex flex-wrap -mx-3 mb-6">
           <Avatar
-            alt="User"
-            src="https://res.cloudinary.com/dtktpemb7/image/upload/v1683432593/cld-sample.jpg"
-          />
+            alt={auth?.user}
+            // src="https://res.cloudinary.com/dtktpemb7/image/upload/v1683432593/cld-sample.jpg"
+          >
+            {auth?.user.charAt(0).toUpperCase()}
+          </Avatar>
           <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">
-            HI! {auth?.user}, What do you think about this place?
+            HI! {auth?.userName}, What do you think about this place?
           </h2>
           <div class="w-full md:w-full px-3 mb-2 mt-2">
             <textarea

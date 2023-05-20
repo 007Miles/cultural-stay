@@ -3,6 +3,21 @@ import axios from 'axios'
 
 const HostDashboardPlaceUpdate = () => {
   const [accommodation, setAccommodation] = useState(null)
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [area, setArea] = useState('')
+  const [availability_from, setAvailability_from] = useState('')
+  const [availability_to, setAvailability_to] = useState('')
+  const [no_of_guests_welcome, setNo_of_guests_welcome] = useState('')
+  const [no_of_bedrooms, setNo_of_bedrooms] = useState('')
+  const [no_of_beds, setNo_of_beds] = useState('')
+  const [no_of_washrooms, setNo_of_washrooms] = useState('')
+  const [price_per_night, setPrice_per_night] = useState('')
+  const [welcome_type, setWelcome_type] = useState('')
+  const [description, setDescription] = useState('')
+  const [facilities, setFacilities] = useState('')
+  const [createdBy, setCreatedBy] = useState('64525da5476b8cab8b1e6c04')
+  const [images, setImages] = useState([])
 
   const hostId = '6457ab81e8c48e0e8863313d'
 
@@ -118,24 +133,27 @@ const HostDashboardPlaceUpdate = () => {
     return <h2>No accommodation item to display</h2>
   }
 
-  const {
-    name,
-    address,
-    area,
-    availability_from,
-    availability_to,
-    no_of_guests_welcome,
-    no_of_bedrooms,
-    no_of_beds,
-    no_of_washrooms,
-    price_per_night,
-    welcome_type,
-    description,
-    facilities,
-    images,
-  } = accommodation
+  // const {
+  //   name,
+  //   address,
+  //   area,
+  //   availability_from,
+  //   availability_to,
+  //   no_of_guests_welcome,
+  //   no_of_bedrooms,
+  //   no_of_beds,
+  //   no_of_washrooms,
+  //   price_per_night,
+  //   welcome_type,
+  //   description,
+  //   facilities,
+  //   images,
+  // } = accommodation
 
-  console.log(accommodation)
+  const handleImageChange = (e) => {
+    setImages([...images, ...e.target.files])
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="bg-white shadow">
@@ -175,19 +193,24 @@ const HostDashboardPlaceUpdate = () => {
               <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
                   <h3 className="text-lg leading-6 font-medium text-gray-900 text-center uppercase font-bold">
-                    Accommodation Details {name}
+                    Accommodation Details
                   </h3>
                 </div>
                 <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
                   <dl className="sm:divide-y sm:divide-gray-200">
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                       <dt className="text-base font-medium text-gray-500">
-                        Accommodation Name
+                        Accommodation Name {name}
                       </dt>
                       <input
                         type="String"
-                        value={name}
+                        value={
+                          'Punchi Doowa, Private Mud House Near Kamburugamuwa'
+                        }
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setName(e.target.value)
+                        }}
                       />
                     </div>
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -199,6 +222,9 @@ const HostDashboardPlaceUpdate = () => {
                         value={'Kamburugamuwa, Southern Province, Sri Lanka'}
                         placeholder="Email"
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setAddress(e.target.value)
+                        }}
                       />
                     </div>
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -209,18 +235,12 @@ const HostDashboardPlaceUpdate = () => {
                         type="string"
                         value={'Southern Province'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setArea(e.target.value)
+                        }}
                       />
                     </div>
-                    <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-base font-medium text-gray-500">
-                        Google map link
-                      </dt>
-                      <input
-                        type="string"
-                        value={'Kamburugamuwa, Southern Province, Sri Lanka '}
-                        className="w-full p-2 border border-gray-300 rounded"
-                      />
-                    </div>
+
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                       <dt className="text-base font-medium text-gray-500">
                         Location Availability From
@@ -250,6 +270,9 @@ const HostDashboardPlaceUpdate = () => {
                         type="number"
                         value={'4'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setNo_of_guests_welcome(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -261,6 +284,9 @@ const HostDashboardPlaceUpdate = () => {
                         type="number"
                         value={'2'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setNo_of_bedrooms(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -272,6 +298,9 @@ const HostDashboardPlaceUpdate = () => {
                         type="number"
                         value={'2'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setNo_of_beds(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -283,6 +312,9 @@ const HostDashboardPlaceUpdate = () => {
                         type="number"
                         value={'1'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setNo_of_washrooms(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -294,6 +326,9 @@ const HostDashboardPlaceUpdate = () => {
                         type="number"
                         value={'4500'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setPrice_per_night(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -305,6 +340,9 @@ const HostDashboardPlaceUpdate = () => {
                         type="string"
                         value={'Families'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setWelcome_type(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -321,6 +359,9 @@ const HostDashboardPlaceUpdate = () => {
                         rows="3"
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="Enter a description"
+                        onChange={(e) => {
+                          setDescription(e.target.value)
+                        }}
                       ></textarea>
                     </div>
 
@@ -328,10 +369,13 @@ const HostDashboardPlaceUpdate = () => {
                       <dt className="text-base font-medium text-gray-500">
                         Facilities
                       </dt>
-                      <input
+                      <textarea
                         type="string"
                         value={'Wi-Fi,Cooking classes,Free parking,Kitchen'}
                         className="w-full p-2 border border-gray-300 rounded"
+                        onChange={(e) => {
+                          setFacilities(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -343,9 +387,11 @@ const HostDashboardPlaceUpdate = () => {
                         id="images"
                         name="images"
                         type="file"
+                        crossOrigin="annonymous"
                         multiple
                         accept="image/*"
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        onChange={handleImageChange}
                       />
                     </div>
                   </dl>

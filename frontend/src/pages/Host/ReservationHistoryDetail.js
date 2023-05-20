@@ -4,75 +4,12 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const HostDashboardReservationDetail = () => {
+const ReservationHistoryDetail = () => {
   const [reservation, setReservation] = useState(null)
-  const [acceptStatus, setAcceptStatus] = useState('')
-  const [declineStatus, setDeclineStatus] = useState('')
 
   const location = useLocation()
 
   const id = location.pathname.split('/')[2]
-
-  const handleAcceptClick = () => {
-    const data = { status: 'Accepted' }
-    const hostId = '6457ab81e8c48e0e8863313d'
-
-    const confirmAccept = window.confirm('Are you sure you want to Accept?')
-    if (confirmAccept) {
-      axios
-        .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
-        .then((response) => {
-          setAcceptStatus('Accepted')
-          console.log(response.data)
-          window.alert('Reservation Accepted')
-          toast.success('Reservation Accepted')
-
-          // Call the API to change availability
-          axios
-            .post(`http://localhost:4000/api/accommodation/${hostId}`, {
-              availability: 'Unavailable',
-            })
-            .then((availabilityResponse) => {
-              console.log(availabilityResponse.data)
-              // Redirect to the specified page
-              window.location.href = '/hostDashboardReservationAll'
-            })
-            .catch((error) => {
-              console.error(error)
-              window.alert('Something Went Wrong....')
-              toast.error('Something Went Wrong....')
-            })
-        })
-        .catch((error) => {
-          setAcceptStatus('Error')
-          console.error(error)
-          window.alert('Something Went Wrong....')
-          toast.error('Something Went Wrong....')
-        })
-    }
-  }
-
-  const handleDeclineClick = () => {
-    const data = { status: 'Declined' }
-    const confirmDecline = window.confirm('Are you sure you want to Decline?')
-    if (confirmDecline) {
-      axios
-        .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
-        .then((response) => {
-          setDeclineStatus('Declined')
-          console.log(response.data)
-          window.alert('Reservation Declined')
-          toast.success('Reservation Declined')
-          window.location.href = '/hostDashboardReservationAll' // Redirect to the specified page
-        })
-        .catch((error) => {
-          setDeclineStatus('Error')
-          console.error(error)
-          window.alert('Something Went Wrong....')
-          toast.error('Something Went Wrong....')
-        })
-    }
-  }
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
@@ -100,12 +37,12 @@ const HostDashboardReservationDetail = () => {
             Profile
           </a>
         </button>
-        <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-green-600">
+        <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-green-600">
           <a class="nav-link" href="/hostDashboardReservationAll">
             All Reservations
           </a>
         </button>
-        <button className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-red-600">
+        <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-red-600">
           <a class="nav-link" href="/hostDashboardReservationHistory">
             Reservation History
           </a>
@@ -210,17 +147,11 @@ const HostDashboardReservationDetail = () => {
               </div>
             </div>
             <div className="flex justify-end mt-4">
-              <button
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-                onClick={handleAcceptClick}
-              >
-                Accept
-              </button>
-              <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleDeclineClick}
-              >
-                Decline
+              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">
+                <a class="nav-link" href="/hostDashboardReservationHistory">
+                  {' '}
+                  Back
+                </a>
               </button>
             </div>
           </div>
@@ -231,4 +162,4 @@ const HostDashboardReservationDetail = () => {
   )
 }
 
-export default HostDashboardReservationDetail
+export default ReservationHistoryDetail

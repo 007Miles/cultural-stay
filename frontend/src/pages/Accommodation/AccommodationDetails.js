@@ -31,9 +31,9 @@ const AccommodationDetails = () => {
   const { auth } = useAuth()
 
   const location = useLocation()
-  console.log(location) //testing for function in console getting ID
+  // console.log(location) //testing for function in console getting ID
   const id = location.pathname.split('/')[2]
-  console.log(id) //testing for function in console and splitting ID
+  // console.log(id) //testing for function in console and splitting ID
 
   const openModal = () => {
     setShowModal(true)
@@ -224,7 +224,7 @@ const AccommodationDetails = () => {
               </div>
 
               <hr className="border-b border-gray-300 my-8" />
-              {auth?.user ? (
+              {auth?.user && auth?.role === 'tourist' ? (
                 <div className="mb-6">
                   <div className="font-bold text-2xl  text-left">
                     {/* <CommentBox id={'6456bd46925829cfd2eebb02'} /> */}
@@ -270,6 +270,10 @@ const AccommodationDetails = () => {
                             {new Date(accommodation.availability_to)
                               .toISOString()
                               .substring(0, 10)}
+                            {/* {new Date(accommodation.availability_to)
+                              .toISOString()
+                              .substring(0, 10)} */}
+                            {/* 2023-05-25 */}
                           </div>
                         </td>
                       </tr>
@@ -300,8 +304,8 @@ const AccommodationDetails = () => {
               </div>
             </div>
             <div className="mt-4">
-              {auth?.user ? (
-                <RatingBox id={'6456bd46925829cfd2eebb02'} />
+              {auth?.user && auth?.role === 'tourist' ? (
+                <RatingBox id={id} />
               ) : (
                 <div></div>
               )}
