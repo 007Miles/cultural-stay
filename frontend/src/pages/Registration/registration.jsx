@@ -94,7 +94,7 @@ const Registration = () => {
               className="block text-gray-700 text-xl font-bold mb-2"
               htmlFor="name"
             >
-              Name
+              User Name
             </label>
             <input
               className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
