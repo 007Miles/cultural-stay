@@ -170,7 +170,7 @@ export default function Search() {
   }
 
   const handleCheckboxChange = (checkboxValue) => {
-    alert(checkboxValue)
+    // alert(checkboxValue)
     if (selectedCheckboxes.includes(checkboxValue)) {
       setSelectedCheckboxes(
         selectedCheckboxes.filter((value) => value !== checkboxValue)
@@ -521,10 +521,16 @@ export default function Search() {
                                     <input
                                       id={`filter-${section.id}-${optionIdx}`}
                                       name={`${section.id}[]`}
-                                      defaultValue={option.value}
+                                      onClick={() =>
+                                        handleCheckboxChange(option.value)
+                                      }
+                                      // defaultValue={option.value}
+                                      checked={selectedCheckboxes.includes(
+                                        option.value
+                                      )}
                                       type="checkbox"
-                                      defaultChecked={option.checked}
-                                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                      // defaultChecked={option.checked}
+                                      className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-400"
                                     />
                                     <label
                                       htmlFor={`filter-${section.id}-${optionIdx}`}
