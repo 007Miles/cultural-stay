@@ -11,20 +11,14 @@ const Registration = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [role, setRole] = useState('')
   const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     // Add your form validation logic here, for example:
-    if (
-      !name ||
-      !email ||
-      !address ||
-      !phone ||
-      !password ||
-      !confirmPassword
-    ) {
+    if (!name || !email || !address || !phone) {
       setError('All fields are required')
       return
     }
@@ -36,44 +30,91 @@ const Registration = () => {
       setError('Phone number should contain at least 9 digits')
       return
     }
-    // Add your API call to submit the form data here, for example:
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        body: JSON.stringify({
-          name,
-          email,
-          address,
-          phone,
-          languages,
-          password,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      const data = await response.json()
-      console.log(data)
-      // Redirect the user to the login page or do something else here
-    } catch (err) {
-      console.error(err)
-      setError('An error occurred, please try again later')
+
+    if (role === 'host') {
+      try {
+        const response = await fetch('http://localhost:4000/api/hostLocal', {
+          method: 'POST',
+          body: JSON.stringify({
+            name,
+            email,
+            address,
+            phone,
+            languages,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        const data = await response.json()
+        console.log(data)
+
+        try {
+          const response = await fetch(
+            'http://localhost:4000/api/user/signIn',
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                username: name,
+                user_email: email,
+                role,
+                password,
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          )
+          const data = await response.json()
+          console.log(data)
+          window.location.href = '/accommodationForm'
+        } catch (err) {
+          console.error(err)
+          setError('An error occurred, please try again later')
+        }
+      } catch (err) {
+        console.error(err)
+        setError('An error occurred, please try again later')
+      }
+      // window.location.href = '/accommodationForm'
+    } else if (role === 'tourist') {
+      try {
+        const response = await fetch('http://localhost:4000/api/user/signIn', {
+          method: 'POST',
+          body: JSON.stringify({
+            username: name,
+            user_email: email,
+            role,
+            password,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        const data = await response.json()
+        console.log(data)
+        window.location.href = '/login'
+      } catch (err) {
+        console.error(err)
+        setError('An error occurred, please try again later')
+      }
+      //window.location.href = '/login'
     }
   }
 
   return (
-    // <div className="flex justify-center items-center h-screen bg-gray-100">
-    <div className="relative min-h-screen">
-      <div
-        className="flex justify-center items-center h-full bg-cover bg-fixed absolute inset-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundBlendMode: 'overlay',
-          backgroundColor: 'rgba(255, 255, 255, 0.3)',
-        }}
-      >
+    <div className="flex justify-center items-center bg-gray-100">
+      {/* <div
+      className="w-full h-screen flex justify-center items-center bg-cover bg-fixed"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundBlendMode: 'overlay',
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+      }}
+    > */}
+      <div className="w-full max-w-md mx-auto mt-20">
         <form
-          className="w-11/12 md:w-1/2 bg-white rounded-2xl shadow-lg p-8"
+          className=" bg-white rounded-2xl shadow-lg p-8"
           onSubmit={handleSubmit}
         >
           <h2 className="text-3xl font-bold mb-6 text-gray-600">
@@ -94,7 +135,7 @@ const Registration = () => {
               className="block text-gray-700 text-xl font-bold mb-2"
               htmlFor="name"
             >
-              Name
+              User Name
             </label>
             <input
               className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -168,6 +209,24 @@ const Registration = () => {
               value={languages}
               onChange={(event) => setLanguages(event.target.value)}
             />
+          </div>
+          <div className="mb-4 mt-10">
+            <label
+              className="block text-gray-700 text-xl font-bold mb-2"
+              htmlFor="role"
+            >
+              Role
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="role"
+              value={role}
+              onChange={(event) => setRole(event.target.value)}
+            >
+              <option value="">Select role</option>
+              <option value="tourist">Tourist</option>
+              <option value="host">Host</option>
+            </select>
           </div>
           <div className="mb-4 mt-10">
             <label

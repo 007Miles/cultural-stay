@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import Video from '../../Assets/v1.mp4'
 import AccommodationHome from '../Accommodation/AccommodationHome'
 import PlacesList from '../../components/Attractions/attractions'
 import { FaArrowRight } from 'react-icons/fa'
 import Rating from '@mui/material/Rating'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -31,9 +33,9 @@ const sortOptions = [
   },
 ]
 const subCategories = [
-  { name: 'Accomadations', href: '#' },
-  { name: 'Restuarants', href: '#' },
-  { name: 'Tourist Sites', href: '#' },
+  { name: 'Accomadations', href: '#', value: 'Accommodation' },
+  { name: 'Restuarants', href: '#', value: 'Restaurants' },
+  { name: 'Tourist Sites', href: '#', value: 'TouristAttraction' },
 ]
 const filters = [
   {
@@ -55,6 +57,23 @@ export default function Search() {
   const [searchType, setSearchType] = useState([])
   const [sortOption, setSortOption] = useState('bestRating')
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([])
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    async function getData() {
+      await axios
+        .get(`http://localhost:4000/api/feedback`)
+        .then((res) => {
+          console.log(res.data)
+          setData(res.data.modifiedResults)
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+
+    getData()
+  }, [data])
 
   const culturalStayHotels = [
     {
@@ -450,14 +469,14 @@ export default function Search() {
                           key={category.name}
                           className="shadow-md p-4 cursor-pointer "
                           style={
-                            searchType.includes(category.name)
+                            searchType.includes(category.value)
                               ? {
                                   border: '2px solid green',
                                   boxShadow: '0 0 5px green',
                                 }
                               : {}
                           }
-                          onClick={() => handleCategoryClick(category.name)}
+                          onClick={() => handleCategoryClick(category.value)}
                         >
                           {category.name}
                         </li>
@@ -529,66 +548,96 @@ export default function Search() {
                     {/* <AccommodationHome /> */}
                     {/* <PlacesList /> */}
                     <div className="flex flex-wrap justify-center">
-                      {culturalStayHotels
-                        .filter((hotel) => {
-                          const isMatchingType =
-                            searchType.length === 0 ||
-                            searchType.includes(hotel.type)
-                          const isMatchingTerm =
-                            searchTerm === '' ||
-                            hotel.name
-                              .toLowerCase()
-                              .includes(searchTerm.toLowerCase())
-                          const isMatchingRating =
-                            selectedCheckboxes.length === 0 ||
-                            selectedCheckboxes.includes(
-                              Math.floor(hotel.rating)
+                      {data ? (
+                        data
+                          .filter((hotel) => {
+                            const isMatchingType =
+                              searchType.length === 0 ||
+                              searchType.includes(hotel.location_type)
+                            const isMatchingTerm =
+                              searchTerm === '' ||
+                              hotel.loc_id.name
+                                .toLowerCase()
+                                .includes(searchTerm.toLowerCase())
+                            const isMatchingRating =
+                              selectedCheckboxes.length === 0 ||
+                              selectedCheckboxes.includes(
+                                Math.floor(hotel.rating)
+                              )
+                            return (
+                              isMatchingType &&
+                              isMatchingTerm &&
+                              isMatchingRating
                             )
-                          return (
-                            isMatchingType && isMatchingTerm && isMatchingRating
-                          )
-                        })
-                        .sort((a, b) => {
-                          if (sortOption === 'bestRating') {
-                            return b.rating - a.rating // Sort by best rating
-                          }
-                          return 0 // Default case
-                        })
-                        .map((hotel, index) => (
-                          <div
-                            key={index}
-                            className="max-w-sm md:max-w-sm rounded-xl overflow-visible shadow-lg bg-white h-[350px] w-[350px] mx-2 my-2 md:w-1/4 "
-                          >
-                            <img
-                              className="w-full h-32 md:h-48 object-cover"
-                              src={hotel.image}
-                              alt="Hotel"
-                            />
-                            <div className="px-6 py-1">
-                              <div className="font-bold text-md text-left">
-                                {hotel.name}
-                              </div>
-                              <div className="text-sm text-left">
-                                {hotel.location}
-                              </div>
-                              <p className="text-gray-700 text-sm text-left mt-1">
-                                <span className="inline-block flex">
-                                  <Rating defaultValue={1} max={1} />
-                                  <span className="ml-2 flex-auto font-semibold">
-                                    {hotel.rating}
+                          })
+                          .sort((a, b) => {
+                            if (sortOption === 'bestRating') {
+                              return b.rating - a.rating // Sort by best rating
+                            } else if (sortOption === 'priceHighToLow') {
+                              return (
+                                b.loc_id.price_per_night -
+                                a.loc_id.price_per_night
+                              ) // Sort by price: high to low
+                            } else if (sortOption === 'priceLowToHigh') {
+                              return (
+                                a.loc_id.price_per_night -
+                                b.loc_id.price_per_night
+                              ) // Sort by price: low to high
+                            }
+                            return 0 // Default case
+                          })
+                          .map((hotel, index) => (
+                            <div
+                              key={index}
+                              className="max-w-sm md:max-w-sm rounded-xl overflow-visible shadow-lg bg-white h-[350px] w-[350px] mx-2 my-2 md:w-1/4 flex flex-col"
+                            >
+                              <img
+                                className="w-full h-32 md:h-48 object-cover"
+                                src={hotel.loc_id.mainImage}
+                                alt="Hotel"
+                              />
+                              <div className="flex-grow px-6 py-1">
+                                <div
+                                  className="font-bold text-md text-left truncate "
+                                  title={hotel.loc_id.name.split(/[,]/)[0]}
+                                >
+                                  {hotel.loc_id.name.split(/[,]/)[0]}
+                                </div>
+                                <div className="text-sm text-left">
+                                  {hotel.loc_id.address}
+                                </div>
+                                <p className="text-gray-700 text-sm text-left mt-1">
+                                  <span className="inline-block flex">
+                                    <Rating defaultValue={1} max={1} />
+                                    <span className="ml-2 flex-auto font-semibold">
+                                      {hotel.rating}
+                                    </span>
                                   </span>
+                                </p>
+                              </div>
+                              <div className="px-6 pb-2 ">
+                                <span className="flex justify-end ">
+                                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 py-2 rounded-full mb-1">
+                                    <Link
+                                      to={
+                                        hotel.location_type === 'Accommodation'
+                                          ? `/accommodationDetails/${hotel.loc_id._id}`
+                                          : hotel.location_type ===
+                                            'Restaurants'
+                                          ? `/restaurants/${hotel.loc_id._id}`
+                                          : `/attractionView/${hotel.loc_id._id}`
+                                      }
+                                    >
+                                      <FaArrowRight />
+                                    </Link>
+                                  </button>
                                 </span>
-                              </p>
+                              </div>
                             </div>
-                            <div className="px-6 pb-2 ">
-                              <span className="inline-block flex justify-end ">
-                                <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 py-2 rounded-full mb-1">
-                                  <FaArrowRight />
-                                </button>
-                              </span>
-                            </div>
-                          </div>
-                        ))}
+                          ))
+                      ) : (
+                        <h3>No results to show</h3>
+                      )}
                     </div>
                   </div>
                 </div>

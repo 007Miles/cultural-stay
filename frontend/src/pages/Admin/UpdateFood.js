@@ -3,7 +3,8 @@ import './form.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-const foodUrl = 'http://localhost:4000/api/food/'
+// const foodUrl = 'http://localhost:4000/api/food/'
+const foodUrl = 'https://cultural-stay.onrender.com/api/food'
 
 const UpdateFood = () => {
   const { id } = useParams()
@@ -43,7 +44,6 @@ const UpdateFood = () => {
 
       alert('Food Item Updated Successfully')
       console.log(resp.data)
-      console.log(description)
     } catch (error) {
       alert('Sorry! Food Item Updation Failed...')
       console.log(error.response)
@@ -137,7 +137,7 @@ const UpdateFood = () => {
                     </div>
 
                     <button
-                      class="m-auto bg-green-500 mt-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
+                      class="m-auto bg-[#0092FB] mt-[20px] hover:bg-blue-500 text-white font-bold py-2 px-4 border border-green-700 rounded"
                       type="submit"
                       name="submit"
                     >

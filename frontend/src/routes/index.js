@@ -36,6 +36,7 @@ import AdminRestaurants from '../pages/Admin/AdminRestaurants'
 import Login from '../components/login/login'
 import AdminRoutes from './adminRoutes'
 import RecommendationList from '../components/Attractions/recommendationList'
+import ReservationHistoryDetail from '../pages/Host/ReservationHistoryDetail.js'
 
 const IndexRoutes = () => {
   return (
@@ -51,11 +52,11 @@ const IndexRoutes = () => {
         <Route path="/attractionView/:id" element={<AttractionView />} />
         <Route path="/createAttraction" element={<CreateAttraction />} />
         <Route path="/recommendation" element={<RecommendAttraction />} />
-        <Route path="/admin/attractionsList" element={<AttractionsList />} />
+        {/* <Route path="/admin/attractionsList" element={<AttractionsList />} />
         <Route
           path="/admin/recommendationsList"
           element={<RecommendationList />}
-        />
+        /> */}
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/search" element={<Search />} />
@@ -83,6 +84,10 @@ const IndexRoutes = () => {
         <Route
           path="/hostDashboardReservationDetail/:id"
           element={<HostDashboardReservationDetail />}
+        />
+        <Route
+          path="/reservationHistoryDetail/:id"
+          element={<ReservationHistoryDetail />}
         />
         <Route
           path="/hostDashboardPlaceUpdate"
