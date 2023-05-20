@@ -156,7 +156,7 @@ const AttractionsList = () => {
 
   return (
     <div className="flex">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="container mx-auto mt-10 w-2/3">
         <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
           <h5 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">

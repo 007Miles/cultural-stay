@@ -143,7 +143,7 @@ const RecommendationList = () => {
 
   return (
     <div className="flex">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="container mx-auto mt-10 w-2/3">
         <h1 className="text-3xl font-bold mb-6 mt-10 text-gray-600">
           Tourist Attraction Suggestions

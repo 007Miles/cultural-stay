@@ -17,7 +17,6 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Add your form validation logic here, for example:
     if (!name || !email || !address || !phone) {
       setError('All fields are required')
       return
