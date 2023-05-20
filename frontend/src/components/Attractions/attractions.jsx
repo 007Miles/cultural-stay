@@ -94,9 +94,7 @@ const PlacesList = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get(
-          'https://cultural-stay.onrender.com/api/TASites/'
-        )
+        const response = await axios.get('http://localhost:4000/api/TASites/')
         setPlaces(response.data.touristAttractions)
         console.log(places)
       } catch (err) {
