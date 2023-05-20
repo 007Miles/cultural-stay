@@ -3,8 +3,8 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Ripple, initTE } from 'tw-elements'
 
-// const deleteResUrl = 'http://localhost:4000/api/restaurants/'
-const deleteResUrl = 'https://cultural-stay.onrender.com/api/restaurants/'
+const deleteResUrl = 'http://localhost:4000/api/restaurants/'
+// const deleteResUrl = 'https://cultural-stay.onrender.com/api/restaurants/'
 
 const AdminRestaurant = ({ image, name, id, description, city }) => {
   initTE({ Ripple })

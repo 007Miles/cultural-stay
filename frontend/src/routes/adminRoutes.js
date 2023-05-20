@@ -10,7 +10,7 @@ export default function adminRoutes() {
     <Routes>
       <Route path="/admin" element={<Layout />}>
         <Route index element={<Dashboard />} />
-        <Route path="sellers" element={<Sellers />} />
+        <Route path="sellers" element={<Sellers />} />s
       </Route>
     </Routes>
   )

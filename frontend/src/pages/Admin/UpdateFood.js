@@ -3,8 +3,8 @@ import './form.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-// const foodUrl = 'http://localhost:4000/api/food/'
-const foodUrl = 'https://cultural-stay.onrender.com/api/food'
+const foodUrl = 'http://localhost:4000/api/food/'
+// const foodUrl = 'https://cultural-stay.onrender.com/api/food'
 
 const UpdateFood = () => {
   const { id } = useParams()
