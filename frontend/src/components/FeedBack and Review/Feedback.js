@@ -77,7 +77,7 @@ export default function Feedback({ id }) {
       )
 
       if (response) {
-        alert('success')
+        // alert('success')
       }
       //   setText('')
       //   // const accessToken = response?.data?.accessToken
@@ -116,7 +116,7 @@ export default function Feedback({ id }) {
               <ListItem alignItems="flex-start" key={comment._id}>
                 <ListItemAvatar>
                   <Avatar alt="User" src={comment?.image_url}>
-                    {/* {comment.postedBy[0].toUpperCase()} */}
+                    {comment.postedBy[0].toUpperCase()}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
