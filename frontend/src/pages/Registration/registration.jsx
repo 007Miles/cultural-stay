@@ -21,9 +21,9 @@ const Registration = () => {
       !name ||
       !email ||
       !address ||
-      !phone ||
-      !password ||
-      !confirmPassword
+      !phone 
+      
+      
     ) {
       setError('All fields are required')
       return
@@ -38,7 +38,7 @@ const Registration = () => {
     }
     // Add your API call to submit the form data here, for example:
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('http://localhost:4000/api/hostLocal', {
         method: 'POST',
         body: JSON.stringify({
           name,
@@ -46,7 +46,7 @@ const Registration = () => {
           address,
           phone,
           languages,
-          password,
+         
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,8 @@ const Registration = () => {
       })
       const data = await response.json()
       console.log(data)
-      // Redirect the user to the login page or do something else here
+      window.location.href = '/accommodationForm'
+      
     } catch (err) {
       console.error(err)
       setError('An error occurred, please try again later')
@@ -63,17 +64,17 @@ const Registration = () => {
 
   return (
     // <div className="flex justify-center items-center h-screen bg-gray-100">
-    <div className="relative min-h-screen">
-      <div
+    <div className="w-full max-w-md mx-auto mt-20">
+      {/* <div
         className="flex justify-center items-center h-full bg-cover bg-fixed absolute inset-0"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundBlendMode: 'overlay',
           backgroundColor: 'rgba(255, 255, 255, 0.3)',
         }}
-      >
+      > */}
         <form
-          className="w-11/12 md:w-1/2 bg-white rounded-2xl shadow-lg p-8"
+          className=" bg-white rounded-2xl shadow-lg p-8"
           onSubmit={handleSubmit}
         >
           <h2 className="text-3xl font-bold mb-6 text-gray-600">
@@ -210,7 +211,7 @@ const Registration = () => {
             </button>
           </div>
         </form>
-      </div>
+      {/* </div> */}
     </div>
   )
 }

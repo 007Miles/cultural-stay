@@ -132,3 +132,29 @@ export const updateAccommodation = asyncWrapper(async (req, res, next) => {
   }
   res.status(200).json({ accommodation })
 })
+
+// change the availability of the accommodation
+
+export const changeAvailability = async (req, res, next) => {
+  try {
+    const { id: hostID } = req.params
+    const { availability } = req.body
+
+    const updatedaccommodation = await Accommodation.findOneAndUpdate(
+      { createdBy: hostID },
+      { availability },
+      { new: true, runValidators: true }
+    )
+
+    if (!updatedaccommodation) {
+      return res.status(404).json({ message: 'Accommodation not found' })
+    }
+
+    res.status(200).json(updatedaccommodation)
+  } catch (error) {
+    console.error(error)
+    res
+      .status(500)
+      .json({ message: 'Error updating accommodation availability' })
+  }
+}

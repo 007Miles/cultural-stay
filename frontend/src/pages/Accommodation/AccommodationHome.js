@@ -55,11 +55,17 @@ const AccommodationHome = () => {
                   Stay with
                   {/* {accommodation.createdBy} */}
                   <br />
-                  Available :{accommodation.availability_from.substring(
-                    0,
-                    10
-                  )}{' '}
-                  : <t>{accommodation.availability_to}</t>
+                  Available :
+                  {accommodation.availability_from
+                    .toString()
+                    .substring(0, 10)}{' '}
+                  :{' '}
+                  {new Date(accommodation.availability_to)
+                    .toISOString()
+                    .substring(0, 10)}
+                  <t>
+                    {/* {accommodation.availability_to.toString().substring(0, 10)} */}
+                  </t>
                 </p>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded-full flex items-center">
                   {/* <a
@@ -80,7 +86,7 @@ const AccommodationHome = () => {
                 </button>
               </div>
             </div>
-            <div class="px-6 pt-2 pb-2 text-left">
+            <div class="px-6 pb-2 text-left">
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
                 Rs.{accommodation.price_per_night}/night
               </span>

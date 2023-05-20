@@ -5,7 +5,7 @@ import altbgImg from '../../Assets/bgImg.jpg'
 export default function Dashboard() {
   return (
     <div className="flex flex-col gap-4">
-      {/* <DashboardStatGrid /> */}
+      <DashboardStatGrid />
       <div className="flex flex-row gap-4 w-full">
         <div class="h-screen w-full bg-gray-50 flex items-center ">
           <section
@@ -18,7 +18,7 @@ export default function Dashboard() {
                   <h1 class="text-5xl font-medium mb-6">
                     Welcome Back! to the Admin Panel
                   </h1>
-                  <p class="text-xl mb-12">
+                  <p class="text-xl mb-12 backdrop-blur-md text-yellow-100">
                     We're dedicated to showcasing the rich cultural heritage of
                     our local community. Here, you'll find all the tools and
                     resources you need to share and promote the unique customs,
@@ -27,7 +27,7 @@ export default function Dashboard() {
                     authentic essence of our region!
                   </p>
                   <a
-                    href="#"
+                    // href="#"
                     class="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600"
                   >
                     Start here...
