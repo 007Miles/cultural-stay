@@ -9,7 +9,8 @@ const AccommodationHome = () => {
   useEffect(() => {
     function fetchData() {
       axios
-        .get('http://localhost:4000/api/accommodation')
+        // .get('http://localhost:4000/api/accommodation')
+        .get('https://cultural-stay.onrender.com/api/accommodation')
         .then((res) => {
           if (Array.isArray(res.data.accommodation)) {
             setCulturalStayHotels(res.data.accommodation)
@@ -60,9 +61,9 @@ const AccommodationHome = () => {
                     .toString()
                     .substring(0, 10)}{' '}
                   :{' '}
-                  {new Date(accommodation.availability_to)
+                  {/* {new Date(accommodation.availability_to)
                     .toISOString()
-                    .substring(0, 10)}
+                    .substring(0, 10)} */}
                   <t>
                     {/* {accommodation.availability_to.toString().substring(0, 10)} */}
                   </t>

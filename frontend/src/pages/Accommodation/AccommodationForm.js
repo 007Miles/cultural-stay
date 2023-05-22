@@ -81,7 +81,8 @@ const AccommodationForm = () => {
       })
 
       const response = await axios.post(
-        'http://localhost:4000/api/accommodation',
+        // 'http://localhost:4000/api/accommodation',
+        'https://cultural-stay.onrender.com/api/accommodation',
         formData,
         {
           headers: {
