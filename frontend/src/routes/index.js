@@ -52,11 +52,11 @@ const IndexRoutes = () => {
         <Route path="/attractionView/:id" element={<AttractionView />} />
         <Route path="/createAttraction" element={<CreateAttraction />} />
         <Route path="/recommendation" element={<RecommendAttraction />} />
-        <Route path="/admin/attractionsList" element={<AttractionsList />} />
+        {/* <Route path="/admin/attractionsList" element={<AttractionsList />} />
         <Route
           path="/admin/recommendationsList"
           element={<RecommendationList />}
-        />
+        /> */}
 
         <Route path="feedback" element={<Feedback />} />
         <Route path="/search" element={<Search />} />
@@ -109,7 +109,7 @@ const IndexRoutes = () => {
           element={<RestaurantsByFood />}
         />
 
-        <Route path="/admin/food" element={<AdminFoods />} />
+        {/* <Route path="/admin/food" element={<AdminFoods />} />
         <Route path="/admin/restaurants" element={<AdminRestaurants />} />
         <Route path="/admin/add-food" element={<AddFood />} />
         <Route path="/admin/update-food/:id" element={<UpdateFood />} />
@@ -117,7 +117,7 @@ const IndexRoutes = () => {
         <Route
           path="/admin/update-restaurant/:id"
           element={<UpdateRestaurant />}
-        />
+        /> */}
 
         {/* insert all routes above the error route */}
         <Route path="*" element={<ErrorPage />} />

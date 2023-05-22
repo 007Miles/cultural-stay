@@ -31,9 +31,9 @@ const AccommodationDetails = () => {
   const { auth } = useAuth()
 
   const location = useLocation()
-  console.log(location) //testing for function in console getting ID
+  // console.log(location) //testing for function in console getting ID
   const id = location.pathname.split('/')[2]
-  console.log(id) //testing for function in console and splitting ID
+  // console.log(id) //testing for function in console and splitting ID
 
   const openModal = () => {
     setShowModal(true)
@@ -306,7 +306,7 @@ const AccommodationDetails = () => {
             </div>
             <div className="mt-4">
               {auth?.user && auth?.role === 'tourist' ? (
-                <RatingBox id={'6456bd46925829cfd2eebb02'} />
+                <RatingBox id={id} />
               ) : (
                 <div></div>
               )}

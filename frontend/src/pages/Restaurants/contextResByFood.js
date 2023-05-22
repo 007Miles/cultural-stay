@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useCallback } from 'react'
 
-// const search = 'http://localhost:4000/api/restaurants?food='
-const search = 'https://cultural-stay.onrender.com/api/restaurants?food='
+const search = 'http://localhost:4000/api/restaurants?food='
+// const search = 'https://cultural-stay.onrender.com/api/restaurants?food='
 
 const AppContext = React.createContext()
 
