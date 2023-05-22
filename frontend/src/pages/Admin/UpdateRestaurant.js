@@ -3,8 +3,9 @@ import './form.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-const resUrl = 'http://localhost:4000/api/restaurants/'
+// const resUrl = 'http://localhost:4000/api/restaurants/'
 // const resUrl = 'https://cultural-stay.onrender.com/api/restaurants/'
+const resUrl = 'https://fine-teal-ostrich-tam.cyclic.app/api/restaurants/'
 
 const UpdateRestaurant = () => {
   const { id } = useParams()
