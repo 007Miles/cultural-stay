@@ -93,27 +93,10 @@ const SingleRestaurant = () => {
       </div>
       <div class="md:hidden">
         <img class="w-full" alt={name} src={image[0]} />
-        <div class="flex items-center justify-between mt-3 space-x-4 md:space-x-0">
-          <img
-            alt={image[0]}
-            class="md:w-48 md:h-48 w-[130px] h-[130px]"
-            src={image[1]}
-          />
-          <img
-            alt={image[0]}
-            class="md:w-48 md:h-48 w-[130px] h-[130px]"
-            src={image[2]}
-          />
-          <img
-            alt={image[0]}
-            class="md:w-48 md:h-48 w-[130px] h-[130px]"
-            src={image[3]}
-          />
-          <img
-            alt={image[0]}
-            class="md:w-48 md:h-48 w-[130px] h-[130px]"
-            src={image[0]}
-          />
+        <div class="flex items-center justify-between mt-3 space-x-3 md:space-x-0">
+          <img alt={image[0]} class="w-1/3 aspect-square" src={image[1]} />
+          <img alt={image[0]} class="w-1/3 aspect-square" src={image[2]} />
+          <img alt={image[0]} class="w-1/3 aspect-square" src={image[3]} />
         </div>
       </div>
       <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
