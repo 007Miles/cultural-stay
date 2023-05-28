@@ -11,7 +11,7 @@ const HostDashboardProfile = () => {
       try {
         const response = await axios.get(
           // `http://localhost:4000/api/hostLocal/${hostId}`
-          `https://cultural-stay.onrender.com/api/hostLocal/${hostId}`
+          `https://fine-teal-ostrich-tam.cyclic.app/api/hostLocal/${hostId}`
         )
         console.log('Host data received:', response.data)
         setHostData(response.data.host)

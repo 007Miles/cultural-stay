@@ -11,7 +11,7 @@ const TouristAttractionUpdateForm = ({ attraction, onUpdate }) => {
     e.preventDefault()
 
     try {
-      await axios.put(`/api/tourist-attractions/${attraction._id}`, {
+      await axios.put(`https://fine-teal-ostrich-tam.cyclic.app/api/tourist-attractions/${attraction._id}`, {
         name,
         description,
         address,

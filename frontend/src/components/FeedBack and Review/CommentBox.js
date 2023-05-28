@@ -14,7 +14,7 @@ export default function CommentBox({ id }) {
 
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/feedback/${id}`,
+        `https://fine-teal-ostrich-tam.cyclic.app/api/feedback/${id}`,
         { comment: { text: text }, userId: auth.user }
       )
       setText('')

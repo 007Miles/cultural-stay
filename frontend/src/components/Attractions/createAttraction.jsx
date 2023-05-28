@@ -31,7 +31,7 @@ const TouristAttractionForm = () => {
       })
       console.log(formData)
       const response = await axios.post(
-        'http://localhost:4000/api/TASites/',
+        'https://fine-teal-ostrich-tam.cyclic.app/api/TASites/',
         formData,
         {
           headers: {

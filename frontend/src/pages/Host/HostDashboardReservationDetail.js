@@ -22,7 +22,7 @@ const HostDashboardReservationDetail = () => {
       axios
         // .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
         .post(
-          `https://cultural-stay.onrender.com/api/accommodationReserve/${id}`,
+          `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`,
           data
         )
         .then((response) => {
@@ -35,7 +35,7 @@ const HostDashboardReservationDetail = () => {
           axios
             // .post(`http://localhost:4000/api/accommodation/${hostId}`, {
             .post(
-              `https://cultural-stay.onrender.com/api/accommodation/${hostId}`,
+              `https://fine-teal-ostrich-tam.cyclic.app/api/accommodation/${hostId}`,
               {
                 availability: 'Unavailable',
               }
@@ -67,7 +67,7 @@ const HostDashboardReservationDetail = () => {
       axios
         // .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
         .post(
-          `https://cultural-stay.onrender.com/api/accommodationReserve/${id}`,
+          `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`,
           data
         )
         .then((response) => {
@@ -88,7 +88,9 @@ const HostDashboardReservationDetail = () => {
 
   useEffect(() => {
     // fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
-    fetch(`https://cultural-stay.onrender.com/api/accommodationReserve/${id}`)
+    fetch(
+      `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`
+    )
       .then((response) => response.json())
       .then((data) => setReservation(data.reservation))
       .catch((error) => console.error(error.reservation))
