@@ -34,7 +34,7 @@ const ReserveForm = () => {
     axios
       // .post('http://localhost:4000/api/accommodationReserve', newReservation)
       .post(
-        'https://cultural-stay.onrender.com/api/accommodationReserve',
+        'https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve',
         newReservation
       )
       .then(() => {

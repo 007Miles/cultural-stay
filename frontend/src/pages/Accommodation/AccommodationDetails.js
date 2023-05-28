@@ -46,7 +46,9 @@ const AccommodationDetails = () => {
   useEffect(() => {
     // Fetch accommodation details from the API
     // fetch(`http://localhost:4000/api/accommodation/byid/${id}`)
-    fetch(`https://cultural-stay.onrender.com/api/accommodation/byid/${id}`)
+    fetch(
+      `https://fine-teal-ostrich-tam.cyclic.app/api/accommodation/byid/${id}`
+    )
       .then((response) => response.json())
       .then((data) => setAccommodation(data.accommodation))
       .catch((error) => console.error(error))

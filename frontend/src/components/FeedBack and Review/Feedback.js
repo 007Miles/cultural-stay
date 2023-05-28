@@ -52,7 +52,7 @@ export default function Feedback({ id }) {
   useEffect(() => {
     function getComments() {
       axios
-        .get(`http://localhost:4000/api/feedback/${id}`)
+        .get(`https://fine-teal-ostrich-tam.cyclic.app/api/feedback/${id}`)
         .then((res) => {
           console.log(res.data)
           setComments(res.data.result.comments)
@@ -72,7 +72,7 @@ export default function Feedback({ id }) {
 
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/feedback/${id}`,
+        `https://fine-teal-ostrich-tam.cyclic.app/api/feedback/${id}`,
         { data: { comment: cid } }
       )
 

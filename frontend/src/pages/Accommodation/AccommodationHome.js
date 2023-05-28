@@ -10,7 +10,7 @@ const AccommodationHome = () => {
     function fetchData() {
       axios
         // .get('http://localhost:4000/api/accommodation')
-        .get('https://cultural-stay.onrender.com/api/accommodation')
+        .get('https://fine-teal-ostrich-tam.cyclic.app/api/accommodation')
         .then((res) => {
           if (Array.isArray(res.data.accommodation)) {
             setCulturalStayHotels(res.data.accommodation)

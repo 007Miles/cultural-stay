@@ -73,7 +73,7 @@ const PlaceCard = ({ place }) => {
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-xl hover:shadow-slate-400">
       {/* <a href=`/{place.id}`> */}
       <Link to={`/attractionView/${place._id}`}>
-        <img class="rounded-t-lg" src={place.images[0]} alt={place.name} />
+        <img class="w-full h-[270px] rounded-t-lg" src={place.images[0]} alt={place.name} />
       </Link>
       {/* </a> */}
       <div class="p-5">
@@ -94,7 +94,7 @@ const PlacesList = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/TASites/')
+        const response = await axios.get('https://fine-teal-ostrich-tam.cyclic.app/api/TASites/')
         setPlaces(response.data.touristAttractions)
         console.log(places)
       } catch (err) {

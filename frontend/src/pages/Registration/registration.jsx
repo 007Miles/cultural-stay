@@ -32,7 +32,7 @@ const Registration = () => {
 
     if (role === 'host') {
       try {
-        const response = await fetch('http://localhost:4000/api/hostLocal', {
+        const response = await fetch('https://fine-teal-ostrich-tam.cyclic.app/api/hostLocal', {
           method: 'POST',
           body: JSON.stringify({
             name,
@@ -50,7 +50,7 @@ const Registration = () => {
 
         try {
           const response = await fetch(
-            'http://localhost:4000/api/user/signIn',
+            'https://fine-teal-ostrich-tam.cyclic.app/api/user/signIn',
             {
               method: 'POST',
               body: JSON.stringify({
@@ -78,7 +78,7 @@ const Registration = () => {
       // window.location.href = '/accommodationForm'
     } else if (role === 'tourist') {
       try {
-        const response = await fetch('http://localhost:4000/api/user/signIn', {
+        const response = await fetch('https://fine-teal-ostrich-tam.cyclic.app/api/user/signIn', {
           method: 'POST',
           body: JSON.stringify({
             username: name,
