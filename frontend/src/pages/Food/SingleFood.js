@@ -4,7 +4,8 @@ import { useParams, Link } from 'react-router-dom'
 
 // const url = 'http://localhost:4000/api/food/'
 const resUrl = 'http://localhost:4000/api/restaurants?food='
-const url = 'https://cultural-stay.onrender.com/api/food/'
+// const url = 'https://cultural-stay.onrender.com/api/food/'
+const url = 'https://fine-teal-ostrich-tam.cyclic.app/api/food/'
 
 const SingleFood = () => {
   // const { setSearchTerm } = useGlobalContext()

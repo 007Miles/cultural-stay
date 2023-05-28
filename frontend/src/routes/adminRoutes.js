@@ -5,6 +5,12 @@ import Sellers from '../components/Dashboard/Sellers'
 import RequireAuth from '../components/login/RequireAuth'
 import AttractionsList from '../components/Attractions/attractionsList'
 import RecommendationList from '../components/Attractions/recommendationList'
+import UpdateRestaurant from '../pages/Admin/UpdateRestaurant'
+import AddRestaurant from '../pages/Admin/AddRestaurant'
+import UpdateFood from '../pages/Admin/UpdateFood'
+import AddFood from '../pages/Admin/AddFood'
+import AdminRestaurants from '../pages/Admin/AdminRestaurants'
+import AdminFoods from '../pages/Admin/AdminFoods'
 
 export default function adminRoutes() {
   return (
@@ -17,6 +23,15 @@ export default function adminRoutes() {
           <Route
             path="/admin/recommendationsList"
             element={<RecommendationList />}
+          />
+          <Route path="/admin/food" element={<AdminFoods />} />
+          <Route path="/admin/restaurants" element={<AdminRestaurants />} />
+          <Route path="/admin/add-food" element={<AddFood />} />
+          <Route path="/admin/update-food/:id" element={<UpdateFood />} />
+          <Route path="/admin/add-restaurant" element={<AddRestaurant />} />
+          <Route
+            path="/admin/update-restaurant/:id"
+            element={<UpdateRestaurant />}
           />
         </Route>
       </Route>

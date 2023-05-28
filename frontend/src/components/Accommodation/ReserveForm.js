@@ -32,7 +32,11 @@ const ReserveForm = () => {
     }
 
     axios
-      .post('http://localhost:4000/api/accommodationReserve', newReservation)
+      // .post('http://localhost:4000/api/accommodationReserve', newReservation)
+      .post(
+        'https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve',
+        newReservation
+      )
       .then(() => {
         console.log('Success', newReservation)
         window.alert('Reservation Complete')

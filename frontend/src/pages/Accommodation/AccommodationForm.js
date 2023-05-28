@@ -81,7 +81,8 @@ const AccommodationForm = () => {
       })
 
       const response = await axios.post(
-        'http://localhost:4000/api/accommodation',
+        // 'http://localhost:4000/api/accommodation',
+        'https://fine-teal-ostrich-tam.cyclic.app/api/accommodation',
         formData,
         {
           headers: {

@@ -12,7 +12,7 @@ const AttractionView = () => {
     const fetchPlace = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/TASites/${id}`
+          `https://fine-teal-ostrich-tam.cyclic.app/api/TASites/${id}`
         )
         // Map images to the format required by ImageGallery
         const images = response.data.images.map((image) => ({

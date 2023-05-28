@@ -3,7 +3,8 @@ import { useCallback } from 'react'
 
 const url = 'http://localhost:4000/api/food'
 // const search = 'http://localhost:4000/api/food?name='
-const search = 'https://cultural-stay.onrender.com/api/food?name='
+// const search = 'https://cultural-stay.onrender.com/api/food?name='
+const search = 'https://fine-teal-ostrich-tam.cyclic.app/api/food?name='
 
 const AppContext = React.createContext()
 

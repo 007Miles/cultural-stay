@@ -15,7 +15,10 @@ const HostDashboardReservationHistory = () => {
   useEffect(() => {
     function fetchData() {
       axios
-        .get('http://localhost:4000/api/accommodationReserve')
+        // .get('http://localhost:4000/api/accommodationReserve')
+        .get(
+          'https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve'
+        )
         .then((res) => {
           if (Array.isArray(res.data.reservation)) {
             setReservationDetails(res.data.reservation)

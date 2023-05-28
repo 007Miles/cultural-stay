@@ -92,7 +92,7 @@ const RecommendationList = () => {
 
   const fetchSuggestions = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/suggestion/')
+      const response = await axios.get('https://fine-teal-ostrich-tam.cyclic.app/api/suggestion/')
       setSuggestions(response.data.suggestions)
     } catch (error) {
       console.error(error)
@@ -101,7 +101,7 @@ const RecommendationList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/suggestion/${id}`)
+      await axios.delete(`https://fine-teal-ostrich-tam.cyclic.app/api/suggestion/${id}`)
       fetchSuggestions()
     } catch (error) {
       console.error(error)
@@ -127,7 +127,7 @@ const RecommendationList = () => {
       })
       console.log(formData)
       await axios.post(
-        'http://localhost:4000/api/TASites/fromRecom',
+        'https://fine-teal-ostrich-tam.cyclic.app/api/TASites/fromRecom',
         formData,
         {
           headers: {

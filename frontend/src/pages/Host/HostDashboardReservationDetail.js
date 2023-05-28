@@ -20,7 +20,11 @@ const HostDashboardReservationDetail = () => {
     const confirmAccept = window.confirm('Are you sure you want to Accept?')
     if (confirmAccept) {
       axios
-        .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
+        // .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
+        .post(
+          `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`,
+          data
+        )
         .then((response) => {
           setAcceptStatus('Accepted')
           console.log(response.data)
@@ -29,9 +33,13 @@ const HostDashboardReservationDetail = () => {
 
           // Call the API to change availability
           axios
-            .post(`http://localhost:4000/api/accommodation/${hostId}`, {
-              availability: 'Unavailable',
-            })
+            // .post(`http://localhost:4000/api/accommodation/${hostId}`, {
+            .post(
+              `https://fine-teal-ostrich-tam.cyclic.app/api/accommodation/${hostId}`,
+              {
+                availability: 'Unavailable',
+              }
+            )
             .then((availabilityResponse) => {
               console.log(availabilityResponse.data)
               // Redirect to the specified page
@@ -57,7 +65,11 @@ const HostDashboardReservationDetail = () => {
     const confirmDecline = window.confirm('Are you sure you want to Decline?')
     if (confirmDecline) {
       axios
-        .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
+        // .post(`http://localhost:4000/api/accommodationReserve/${id}`, data)
+        .post(
+          `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`,
+          data
+        )
         .then((response) => {
           setDeclineStatus('Declined')
           console.log(response.data)
@@ -75,7 +87,10 @@ const HostDashboardReservationDetail = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
+    // fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
+    fetch(
+      `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`
+    )
       .then((response) => response.json())
       .then((data) => setReservation(data.reservation))
       .catch((error) => console.error(error.reservation))

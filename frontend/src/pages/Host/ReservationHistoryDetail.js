@@ -12,7 +12,10 @@ const ReservationHistoryDetail = () => {
   const id = location.pathname.split('/')[2]
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
+    // fetch(`http://localhost:4000/api/accommodationReserve/${id}`)
+    fetch(
+      `https://fine-teal-ostrich-tam.cyclic.app/api/accommodationReserve/${id}`
+    )
       .then((response) => response.json())
       .then((data) => setReservation(data.reservation))
       .catch((error) => console.error(error.reservation))
