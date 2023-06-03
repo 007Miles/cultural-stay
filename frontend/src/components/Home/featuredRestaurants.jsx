@@ -1,7 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const restaurants = [
+const restaurants = [  
+  {
+    id: '646f90b3c3b6628001212203',
+    name: "FedoNS' Cafe",
+    description: 'Dreamy food made with Sri Lankan magic',
+    address: 'Ritigala, Anuradhapura, Sri Lanka',
+    images: [
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1685033139/afRestaurant/s6sk2mwapcrf9p6uwaqk.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
+      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
+    ],
+    area: 'Anuradhapura',
+  },
   {
     id: '644feb454ae98832d6797b9b',
     name: 'Milky Way Restaurant',
@@ -37,18 +49,6 @@ const restaurants = [
       'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450055/afPlaces/p3_l23ed0.jpg',
     ],
     area: 'Trincomalee',
-  },
-  {
-    id: '645788c07252c4c337b9ddae',
-    name: 'Royal Restaurant',
-    description: 'Come and enjoy a luxerious meal with us',
-    address: 'Ritigala, Anuradhapura, Sri Lanka',
-    images: [
-      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1683458233/afRestaurant/vxpqcg3bljphupeiqzvx.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r2_k4gqte.jpg',
-      'https://res.cloudinary.com/ddcutbnra/image/upload/v1683450224/afPlaces/r3_ur12av.jpg',
-    ],
-    area: 'Anuradhapura',
   },
 ]
 
